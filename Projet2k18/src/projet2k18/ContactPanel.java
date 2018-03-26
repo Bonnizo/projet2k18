@@ -111,7 +111,13 @@ public class ContactPanel extends JPanel {
 				try {
 					FileInputStream in = new FileInputStream(listOfFiles[i]);
 					ObjectInputStream ois = new ObjectInputStream(in);
-					//PersonneInfo temp = (PersonneInfo)ois;
+					try {
+						PersonneInfo temp = (PersonneInfo)ois.readObject();
+						listPerson[i] = temp;
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					try {
 						listPerson[i] = (PersonneInfo)ois.readObject();
 					} catch (ClassNotFoundException e) {
@@ -126,15 +132,15 @@ public class ContactPanel extends JPanel {
 			}
 		}
 		
-		/*
-		for (int i = 0; i < finale.size(); i++) {
+		for (int i = 0; i < listPerson.length; i++) {
+			
 			JLabel test = new JLabel(
-					finale.get(i).getPrenom() + " " + finale.get(i).getNom() + " " + finale.get(i).getTelephone() + " "
-							+ finale.get(i).getAdresse() + " " + finale.get(i).getEmail() + " ");
-			test.setPreferredSize(new Dimension(300, 400));
+					listPerson[i].getPrenom() + " " + listPerson[i].getNom() + " " + listPerson[i].getTelephone() + " "
+							+ listPerson[i].getAdresse() + " " + listPerson[i].getEmail() + " ");
+			test.setPreferredSize(new Dimension(300, 400 ));
 			annuaire.add(test);
 		}
-		*/
+		
 		listeContacts.repaint();
 		listeContacts.revalidate();
 		annuaire.repaint();
