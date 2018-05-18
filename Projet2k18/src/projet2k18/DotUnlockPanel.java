@@ -57,22 +57,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	private JLabel output;
 	private String finalPattern = "";
 	
-	public class RoundButton extends JButton {
-		 
-		  public RoundButton(String text) {
-			super(text);
-		    setFocusPainted(false);
-		    setBackground(Color.BLACK);
-		  }
-		 
-		  /**
-		   * détermine si le point (x, y) est à l'intérieur de l'icône circulaire
-		   */
-		  public boolean contains(int x, int y) {
-			return drawing;
-		    
-		  }
-		}
+	
 	
 	public DotUnlockPanel() {
 		
@@ -81,10 +66,6 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			oncw = incw + 40;
 			th = new Thread(this);
 			setOpaque(false);
-			
-			RoundButton btnNewButton = new RoundButton("hihihi");
-			btnNewButton.setBackground(Color.CYAN);
-			add(btnNewButton);
 			
 			ActionListener al = new ActionListener() {
 				@Override
