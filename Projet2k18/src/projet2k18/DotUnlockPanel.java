@@ -67,6 +67,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			th = new Thread(this);
 			setOpaque(false);
 			
+			
 			ActionListener al = new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
