@@ -73,20 +73,21 @@ public class FrameMenu extends JFrame {
 			}
 		};*/
 		
-		
 		//placement navigation
-		navigation.setBounds(10, 570, 400, 150);
+		navigation.setBounds(10, 710, 400, 50);
 		navigation .setBackground(Color.BLUE);
 		FlowLayout navigationLayout = new FlowLayout(0, 40, 50);
 		menu.setLayout(navigationLayout);
 		
+		
 		//placement menu 
-		menu.setBounds(10, 90, 400, 570);
-		FlowLayout menuLayout = new FlowLayout(0, 40, 50);
+		menu.setBounds(10, 40, 400, 670);
+		FlowLayout menuLayout = new FlowLayout(0, 40, 45);
 		menu.setLayout(menuLayout);
 		menu.setBackground(Color.WHITE);
 		
-		
+
+
 		//creation des boutons des applications  avec photo centrée
 		
 		JButton app1 = new JButton(agenda);
@@ -126,6 +127,15 @@ public class FrameMenu extends JFrame {
 		JButton app12 = new JButton(album);
 		app12.setHorizontalTextPosition(AbstractButton.CENTER);
 		app12.setBackground(Color.BLACK);
+		JButton app13 = new JButton(album);
+		app13.setHorizontalTextPosition(AbstractButton.CENTER);
+		app13.setBackground(Color.BLACK);
+		JButton app14 = new JButton(album);
+		app14.setHorizontalTextPosition(AbstractButton.CENTER);
+		app14.setBackground(Color.BLACK);
+		JButton app15 = new JButton(album);
+		app15.setHorizontalTextPosition(AbstractButton.CENTER);
+		app15.setBackground(Color.BLACK);
 		
 		//creation bouton navigation
 		
@@ -154,6 +164,9 @@ public class FrameMenu extends JFrame {
 		app10.setPreferredSize(new Dimension(80, 80));
 		app11.setPreferredSize(new Dimension(80, 80));
 		app12.setPreferredSize(new Dimension(80, 80));
+		app13.setPreferredSize(new Dimension(80, 80));
+		app14.setPreferredSize(new Dimension(80, 80));
+		app15.setPreferredSize(new Dimension(80, 80));
 		
 		// arrondir bouton !--> comment enlever ce quil depasse ??<--!
 		app1.setBorder(new RoundedBorder(20));
@@ -165,6 +178,12 @@ public class FrameMenu extends JFrame {
 		app7.setBorder(new RoundedBorder(20));
 		app8.setBorder(new RoundedBorder(20));
 		app9.setBorder(new RoundedBorder(20));
+		app10.setPreferredSize(new Dimension(80, 80));
+		app11.setPreferredSize(new Dimension(80, 80));
+		app12.setPreferredSize(new Dimension(80, 80));
+		app13.setPreferredSize(new Dimension(80, 80));
+		app14.setPreferredSize(new Dimension(80, 80));
+		app15.setPreferredSize(new Dimension(80, 80));
 
 		//ajout bouton
 		menu.add(app1);
@@ -179,6 +198,9 @@ public class FrameMenu extends JFrame {
 		menu.add(app10);
 		menu.add(app11);
 		menu.add(app12);
+		menu.add(app13);
+		menu.add(app14);
+		menu.add(app15);
 		
 /*			//ajout bouton menu
 	
