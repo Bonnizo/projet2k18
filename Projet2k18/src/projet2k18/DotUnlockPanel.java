@@ -1,13 +1,10 @@
 package projet2k18;
 
 import java.awt.BasicStroke;
+import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
@@ -24,14 +21,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.border.Border;
 
 public class DotUnlockPanel extends JPanel implements Runnable {
 	
@@ -57,9 +49,11 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	private JLabel output;
 	private String finalPattern = "";
 	
-	
-	
-	public DotUnlockPanel() {
+	private CardLayout cardLayout;
+	private JPanel contentPanel; 
+	public DotUnlockPanel(CardLayout cardLayout, JPanel contentPanel) {
+		this.cardLayout = cardLayout;
+		this.contentPanel = contentPanel;
 		setBackground(Color.BLACK);
 		
 		try {
@@ -86,15 +80,14 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 						if(compareSchemeCode()) {
 							//TODO :
 							//	switcher vers le JPanel HomeScreenPanel
-							//JFrame topFrame = (JFrame) getParent();
-							//topFrame.setVisible(false);
-							//topFrame.add(new HomeScreenPanel());
-							System.out.println("Unlock");
+							cardLayout.show(contentPanel, "menu");
+							//System.out.println("Unlock");
+							resetScreen();
 						}
 						else {
 							//Si le code ne correspond pas on reset l'écran
 							resetScreen();
-							System.out.println("Stay locked");
+							//System.out.println("Stay locked");
 						}
 						
 						timer.stop();
@@ -289,7 +282,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			s += "," + pattern[i];
 		}
 		patt = s.substring(1);
-		System.out.println("Pattern = " + patt);
+		 
 		//output.setText("Pattern = " + patt);
 	}
 
@@ -298,10 +291,10 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	}
 
 	private void clearPattern() {
+		finalPattern = "";
 		for (int i = 0; i < pattern.length; ++i) {
 			pattern[i] = 0;
 		}
-		
 	}
 
 	@Override
