@@ -63,9 +63,7 @@ public class FrameMain extends JFrame {
 	// panel Jeu
 	private JPanel jeuPanel = new JPanel();
 	
-	//panel verouiller
 	
-	private DotUnlockPanel verou = new DotUnlockPanel();
 	
 	// liste boutton pour les app
 
@@ -94,6 +92,10 @@ public class FrameMain extends JFrame {
 
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel contentPanel = new JPanel(cardLayout);
+	
+	//panel verouiller
+	
+	private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel);
 
 	public FrameMain() {
 
