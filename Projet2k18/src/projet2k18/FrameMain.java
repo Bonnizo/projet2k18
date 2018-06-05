@@ -21,10 +21,12 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
@@ -94,6 +96,10 @@ public class FrameMain extends JFrame {
 
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel contentPanel = new JPanel(cardLayout);
+
+	//timer
+	
+	private Timer timer = new Timer();
 
 	public FrameMain() {
 
@@ -206,6 +212,8 @@ public class FrameMain extends JFrame {
 		app14.setBorder(new RoundedBorder(20));
 		app15.setBorder(new RoundedBorder(20));
 
+		
+		//effacer background
 		app1.setContentAreaFilled(false);
 		app2.setContentAreaFilled(false);
 		app3.setContentAreaFilled(false);
@@ -225,12 +233,8 @@ public class FrameMain extends JFrame {
 		nav1.setContentAreaFilled(false);
 		nav2.setContentAreaFilled(false);
 		nav3.setContentAreaFilled(false);
-		/*
-		 * //ajout action bouton actionListener test = new actionListener();
-		 * app1.addActionListener(test);
-		 * 
-		 * 
-		 */
+		
+		
 		// ajout bouton
 		menuPanel.add(app1);
 		menuPanel.add(app2);
@@ -268,11 +272,27 @@ public class FrameMain extends JFrame {
 		jeuPanel.setBackground(Color.YELLOW);
 		jeuPanel.setPreferredSize(new Dimension(400,670));
 		
+		
+		
+		//action bouton app
 		app1.addActionListener(new boutonContact());
 		app2.addActionListener(new boutonPhoto());
 		app3.addActionListener(new boutonJeu());
+		
+		
+		
+		//action bouton navigation
+		
 		nav1.addActionListener(new boutonMenu());
 		nav2.addActionListener(new boutonVerou());
+		nav3.addActionListener(new boutonQuit());
+		
+		
+		
+		
+
+
+		
 	}
 	// Creation action bouton
 
@@ -315,5 +335,14 @@ public class FrameMain extends JFrame {
 		{
 			cardLayout.show(contentPanel, "verouiller");
 		}
+	}
+	class boutonQuit implements ActionListener 
+	{
+	
+		public void actionPerformed(ActionEvent e) 
+		{
+		System.exit(0);
+		}
+		
 	}
 }
