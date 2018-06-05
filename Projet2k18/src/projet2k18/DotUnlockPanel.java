@@ -29,7 +29,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	
 	// Déclaration des constantes
 	private final Color INK = new Color(255, 255, 255);
-	private final Color DOT = Color.WHITE;
+	private final Color DOT = Color.BLACK;
 
 	// Déclaration des tableaux/Listes
 	private boolean trues[] = new boolean[9];

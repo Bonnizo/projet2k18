@@ -66,7 +66,7 @@ public class FrameMain extends JFrame {
 	private JPanel jeuPanel = new JPanel();
 	
 	
-	//site icone https://www.flaticon.com/free-icons/menu
+	//site icone https://www.flaticon.com/free-icons/
 	// liste boutton pour les app
 
 	private JButton app1 = new JButton("contact");
@@ -86,9 +86,9 @@ public class FrameMain extends JFrame {
 	private JButton app15 = new JButton("autre");
 
 	// naviguer
-	private JButton nav1 = new JButton(new ImageIcon ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\Projet2k18\\Image\\FondEcran\\menu.png"));
-	private JButton nav2 = new JButton("eteindre");
-	private JButton nav3 = new JButton("verouiller");
+	private JButton nav1 = new JButton(new ImageIcon ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\menu.png"));
+	private JButton nav2 = new JButton(new ImageIcon ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\lock.png"));
+	private JButton nav3 = new JButton(new ImageIcon ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\turn-off.png"));
 
 	// panel
 
@@ -142,8 +142,7 @@ public class FrameMain extends JFrame {
 		// placement navigation
 
 		navigationPanel.setPreferredSize(new Dimension(400, 50));
-		Color navigationCouleur = new Color(140, 159, 176);
-		navigationPanel.setBackground(navigationCouleur);
+		navigationPanel.setBackground(Color.BLACK);
 		FlowLayout navigationLayout = new FlowLayout(50, 70, 05);
 		navigationPanel.setLayout(navigationLayout);
 
@@ -169,8 +168,7 @@ public class FrameMain extends JFrame {
 		 * //creation bouton navigation
 		 * 
 		 * 
-		 * nav1.setHorizontalTextPosition(AbstractButton.CENTER);
-		 * nav1.setBackground(Color.RED);
+		 * 		 * nav1.setBackground(Color.RED);
 		 * nav2.setHorizontalTextPosition(AbstractButton.CENTER);
 		 * nav2.setBackground(Color.RED);
 		 * nav3.setHorizontalTextPosition(AbstractButton.CENTER);
@@ -196,9 +194,9 @@ public class FrameMain extends JFrame {
 		app14.setPreferredSize(new Dimension(80, 80));
 		app15.setPreferredSize(new Dimension(80, 80));
 
-		nav1.setPreferredSize(new Dimension(40, 40));
-		nav2.setPreferredSize(new Dimension(40, 40));
-		nav3.setPreferredSize(new Dimension(40, 40));
+		nav1.setPreferredSize(new Dimension(42, 42));
+		nav2.setPreferredSize(new Dimension(42, 42));
+		nav3.setPreferredSize(new Dimension(42, 42));
 
 		// arrondir bouton !--> comment enlever ce quil depasse ??<--!
 		app1.setBorder(new RoundedBorder(20));
@@ -239,9 +237,17 @@ public class FrameMain extends JFrame {
 		nav2.setContentAreaFilled(false);
 		nav3.setContentAreaFilled(false);
 		
-		//background bouton a voir ...
-		nav1.setFocusPainted(false);
+		
+		//non bordure au bouton
+		nav1.setBorderPainted(false);
+		nav2.setBorderPainted(false);
+		nav3.setBorderPainted(false);
+		
+		// pas de bordure quand on appuie dessus
+		nav1.setFocusable(false);
 		nav2.setFocusable(false);
+		nav3.setFocusable(false);
+		
 		
 		// ajout bouton
 		menuPanel.add(app1);
