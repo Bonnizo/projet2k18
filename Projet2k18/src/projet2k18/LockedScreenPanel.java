@@ -30,8 +30,13 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	
 	private Calendar now = Calendar.getInstance();
 	private Thread th;
-	public LockedScreenPanel() {
-		
+	private CardLayout cardLayout;
+	private JPanel contentPanel;
+	
+	
+	public LockedScreenPanel(CardLayout cardLayout, JPanel contentPanel) {
+		this.cardLayout = cardLayout;
+		this.contentPanel = contentPanel;
 		th = new Thread(this);
 		
 		th.start();
@@ -73,10 +78,6 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    lblUnlock.setForeground(Color.WHITE);
 	    lblUnlock.setBounds(93, 555, 304, 110);
 	    centerPanel.add(lblUnlock);
-	    
-	    JButton btnNewButton = new JButton("New button");
-	    btnNewButton.setBounds(22, 143, 89, 49);
-	    centerPanel.add(btnNewButton);
 	    
 	    JPanel southPanel = new JPanel();
 	    add(southPanel, BorderLayout.SOUTH);
@@ -127,8 +128,8 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 						System.out.println("Unlock");
 						System.out.println(getDistance(xBegin, yBegin, xEnd, yEnd));
 						
-						//TODO:
-						//Insérer code pour afficher JPanel DotUnlockPanel
+						cardLayout.show(contentPanel, "verouiller");
+						
 					}
 				}
 			};
