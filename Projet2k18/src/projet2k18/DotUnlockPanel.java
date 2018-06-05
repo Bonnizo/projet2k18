@@ -78,16 +78,12 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 						System.out.println(finalPattern);
 						//Test conditionnel si le schema dessiné correspond au schéma sauvegardé
 						if(compareSchemeCode()) {
-							//TODO :
-							//	switcher vers le JPanel HomeScreenPanel
 							cardLayout.show(contentPanel, "menu");
-							//System.out.println("Unlock");
 							resetScreen();
 						}
 						else {
 							//Si le code ne correspond pas on reset l'écran
 							resetScreen();
-							//System.out.println("Stay locked");
 						}
 						
 						timer.stop();

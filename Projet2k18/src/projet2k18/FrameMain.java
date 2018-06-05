@@ -96,6 +96,7 @@ public class FrameMain extends JFrame {
 	//panel verouiller
 	
 	private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel);
+	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
 	public FrameMain() {
 
@@ -117,11 +118,13 @@ public class FrameMain extends JFrame {
 		smartphonePanel.add(navigationPanel);
 
 		// ajout panel
+		
 		contentPanel.add(menuPanel, "menu");
 		contentPanel.add(photoPanel,"photo" );
 		contentPanel.add(contactPanel,"contact" );
 		contentPanel.add(jeuPanel, "jeu");
 		contentPanel.add(verou, "verouiller");
+		contentPanel.add(locked, "locked");
 
 		// placement menu
 
@@ -315,7 +318,7 @@ public class FrameMain extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			cardLayout.show(contentPanel, "verouiller");
+			cardLayout.show(contentPanel, "locked");
 		}
 	}
 }
