@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.JButton;
 
 public class LockedScreenPanel extends JPanel implements Runnable {
 	private JLabel lblMinuteBig = new JLabel();	
@@ -72,6 +73,10 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    lblUnlock.setForeground(Color.WHITE);
 	    lblUnlock.setBounds(93, 555, 304, 110);
 	    centerPanel.add(lblUnlock);
+	    
+	    JButton btnNewButton = new JButton("New button");
+	    btnNewButton.setBounds(22, 143, 89, 49);
+	    centerPanel.add(btnNewButton);
 	    
 	    JPanel southPanel = new JPanel();
 	    add(southPanel, BorderLayout.SOUTH);

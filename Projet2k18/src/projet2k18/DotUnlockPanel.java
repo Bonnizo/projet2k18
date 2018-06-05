@@ -298,10 +298,10 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	}
 
 	private void clearPattern() {
+		finalPattern = "";
 		for (int i = 0; i < pattern.length; ++i) {
 			pattern[i] = 0;
 		}
-		
 	}
 
 	@Override
