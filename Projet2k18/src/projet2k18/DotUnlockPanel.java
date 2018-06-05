@@ -60,7 +60,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	
 	
 	public DotUnlockPanel() {
-		
+		setBackground(Color.BLACK);
 		
 		try {
 			oncw = incw + 40;
@@ -72,12 +72,16 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
 					if (time == 0) {
+						
 						//check si le modèle dessiné correspond au modèle enregistré
 						for(int numDot : pattern ) {
+							
 							if(numDot > 0) {
 								finalPattern += Integer.toString(numDot);
+								
 							}
 						}
+						System.out.println(finalPattern);
 						//Test conditionnel si le schema dessiné correspond au schéma sauvegardé
 						if(compareSchemeCode()) {
 							//TODO :
@@ -85,12 +89,12 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 							//JFrame topFrame = (JFrame) getParent();
 							//topFrame.setVisible(false);
 							//topFrame.add(new HomeScreenPanel());
-							PhoneFrame pf = new PhoneFrame();
-							pf.setPanel(new HomeScreenPanel());
+							System.out.println("Unlock");
 						}
 						else {
 							//Si le code ne correspond pas on reset l'écran
 							resetScreen();
+							System.out.println("Stay locked");
 						}
 						
 						timer.stop();
@@ -141,7 +145,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 						for (int i = 0; i < rect.length; ++i) {
 							if (trues[i] != true) {
 								if (rect[i].contains(me.getPoint())) {
-									index++;
+									
 									
 									//créer la ligne de centre du point vers le centre du point suivant
 									enddx = (int) rect[i].getCenterX();
@@ -158,6 +162,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 									start = i;
 									trues[i] = true;
 									pattern[index] = i+1;
+									index++;
 									break;
 								}
 							}
@@ -267,8 +272,6 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			timer.stop();
 		}
 		
-		
-		
 		clearPattern();
 		lines.clear();
 		makeFalse();
@@ -286,7 +289,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			s += "," + pattern[i];
 		}
 		patt = s.substring(1);
-		//System.out.println("Pattern = " + patt);
+		System.out.println("Pattern = " + patt);
 		//output.setText("Pattern = " + patt);
 	}
 
@@ -298,6 +301,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 		for (int i = 0; i < pattern.length; ++i) {
 			pattern[i] = 0;
 		}
+		
 	}
 
 	@Override
