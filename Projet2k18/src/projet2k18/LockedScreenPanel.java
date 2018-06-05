@@ -45,19 +45,19 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    
 	    JPanel centerPanel = new JPanel();
 	    add(centerPanel, BorderLayout.CENTER);
-	    centerPanel.setBackground(Color.BLACK);
+	    centerPanel.setBackground(Color.DARK_GRAY);
 	    centerPanel.setLayout(null);
 	    
 	    lblMinuteBig.setText(String.format("%02d",now.get(Calendar.MINUTE)));;
 	    lblMinuteBig.setFont(new Font("Tahoma", Font.BOLD, 70));
 	    lblMinuteBig.setForeground(Color.WHITE);
-	    lblMinuteBig.setBounds(178, 176, 108, 92);
+	    lblMinuteBig.setBounds(160, 176, 108, 92);
 	    centerPanel.add(lblMinuteBig);
 	    
 	    lblHourBig.setText(String.format("%02d", now.get(Calendar.HOUR_OF_DAY)));
 	    lblHourBig.setFont(new Font("Tahoma", Font.BOLD, 70));
 	    lblHourBig.setForeground(Color.WHITE);
-	    lblHourBig.setBounds(178, 82, 108, 122);
+	    lblHourBig.setBounds(160, 82, 108, 122);
 	    centerPanel.add(lblHourBig);
 	    String[] strDays = new String[] { "Dim.", "Lun.", "Mar.", "Mer.", "Jeu.", "Ven.",
 	            "Sam." };
@@ -70,13 +70,13 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    lblSamMai.setBackground(Color.WHITE);
 	    lblSamMai.setFont(new Font("Tahoma", Font.BOLD, 20));
 	    lblSamMai.setForeground(Color.WHITE);
-	    lblSamMai.setBounds(162, 262, 150, 25);
+	    lblSamMai.setBounds(150, 262, 150, 25);
 	    centerPanel.add(lblSamMai);
 	    
 	    JLabel lblUnlock = new JLabel("<html><center>Faites glisser le curseur sur l'écran <br /> pour le déverrouiller</center></html>");
 	    lblUnlock.setFont(new Font("Tahoma", Font.BOLD, 16));
 	    lblUnlock.setForeground(Color.WHITE);
-	    lblUnlock.setBounds(93, 555, 304, 110);
+	    lblUnlock.setBounds(65, 540, 304, 110);
 	    centerPanel.add(lblUnlock);
 	    
 	    JPanel southPanel = new JPanel();

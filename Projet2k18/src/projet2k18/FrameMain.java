@@ -66,7 +66,7 @@ public class FrameMain extends JFrame {
 	private JPanel jeuPanel = new JPanel();
 	
 	
-	
+	//site icone https://www.flaticon.com/free-icons/menu
 	// liste boutton pour les app
 
 	private JButton app1 = new JButton("contact");
@@ -86,7 +86,7 @@ public class FrameMain extends JFrame {
 	private JButton app15 = new JButton("autre");
 
 	// naviguer
-	private JButton nav1 = new JButton("menu");
+	private JButton nav1 = new JButton(new ImageIcon ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\Projet2k18\\Image\\FondEcran\\menu.png"));
 	private JButton nav2 = new JButton("eteindre");
 	private JButton nav3 = new JButton("verouiller");
 
@@ -239,6 +239,9 @@ public class FrameMain extends JFrame {
 		nav2.setContentAreaFilled(false);
 		nav3.setContentAreaFilled(false);
 		
+		//background bouton a voir ...
+		nav1.setFocusPainted(false);
+		nav2.setFocusable(false);
 		
 		// ajout bouton
 		menuPanel.add(app1);
