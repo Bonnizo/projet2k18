@@ -125,13 +125,13 @@ public class FrameMain extends JFrame {
 
 		// ajout panel
 		
+		contentPanel.add(locked, "locked");
+		contentPanel.add(verou, "verouiller");
 		contentPanel.add(menuPanel, "menu");
 		contentPanel.add(photoPanel,"photo" );
 		contentPanel.add(contactPanel,"contact" );
 		contentPanel.add(jeuPanel, "jeu");
-		contentPanel.add(verou, "verouiller");
-		contentPanel.add(locked, "locked");
-
+		
 		// placement menu
 
 		menuPanel.setPreferredSize(new Dimension(400, 670));
