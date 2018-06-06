@@ -23,7 +23,7 @@ public class PhoneFrame extends JFrame{
 			//getContentPane().setBackground(Color.BLACK);
 			setLayout(cardLayout);
 			
-			//setPanel(new LockedScreenPanel());
+			//setPanel(new SettingsPanel());
 			setVisible(true);		
 	}
 	

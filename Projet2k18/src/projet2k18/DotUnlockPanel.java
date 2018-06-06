@@ -23,10 +23,14 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.Timer;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import java.awt.Component;
 
 public class DotUnlockPanel extends JPanel implements Runnable {
-	
+
 	// Déclaration des constantes
 	private final Color INK = new Color(255, 255, 255);
 	private final Color DOT = Color.BLACK;
@@ -48,44 +52,79 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	private Timer timer;
 	private JLabel output;
 	private String finalPattern = "";
-	
+	private String finalPatternConfirm = "";
+
 	private CardLayout cardLayout;
-	private JPanel contentPanel; 
-	public DotUnlockPanel(CardLayout cardLayout, JPanel contentPanel) {
+	private JPanel contentPanel;
+	private Boolean changeCode;
+
+	public DotUnlockPanel(CardLayout cardLayout, JPanel contentPanel, Boolean changeCode) {
 		this.cardLayout = cardLayout;
 		this.contentPanel = contentPanel;
+		this.changeCode = changeCode;
 		setBackground(Color.BLACK);
-		
+
 		try {
 			oncw = incw + 40;
 			th = new Thread(this);
 			setOpaque(false);
-			
-			
+			setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+
 			ActionListener al = new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
 					if (time == 0) {
-						
-						//check si le modèle dessiné correspond au modèle enregistré
-						for(int numDot : pattern ) {
+						if (!changeCode) {
+							// check si le modèle dessiné correspond au modèle
+							// enregistré
+							for (int numDot : pattern) {
+
+								if (numDot > 0) {
+									finalPattern += Integer.toString(numDot);
+								}
+							}
+							// Test conditionnel si le schema dessiné correspond
+							// au schéma sauvegardé
+							if (compareSchemeCode()) {
+								cardLayout.show(contentPanel, "menu");
+								resetScreen();
+							} else {
+								// Si le code ne correspond pas on reset l'écran
+								resetScreen();
+							}
+						} else {
+							if (finalPattern.isEmpty()) {
+								for (int numDot : pattern) {
+
+									if (numDot > 0) {
+										finalPattern += Integer.toString(numDot);
+										resetScreen();
+									}
+								}
+							} else {
+								System.out.println("Confirm");
+								for (int numDot : pattern) {
+
+									if (numDot > 0) {
+
+										finalPatternConfirm += Integer.toString(numDot);
+										resetScreen();
+									}
+								}
+							}
+							System.out.println(finalPattern);
+							System.out.println(finalPatternConfirm);
 							
-							if(numDot > 0) {
-								finalPattern += Integer.toString(numDot);
+							if(finalPattern.equals(finalPatternConfirm)) {
+								System.out.println("code semblable");
 								
+								//ecriture du nouveau code dans le fichier scheme
+								//retour au panel menu
+							}
+							else {
+								System.out.println("Ouh pas ça Zinédine");
 							}
 						}
-						System.out.println(finalPattern);
-						//Test conditionnel si le schema dessiné correspond au schéma sauvegardé
-						if(compareSchemeCode()) {
-							cardLayout.show(contentPanel, "menu");
-							resetScreen();
-						}
-						else {
-							//Si le code ne correspond pas on reset l'écran
-							resetScreen();
-						}
-						
 						timer.stop();
 					}
 					--time;
@@ -108,7 +147,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 							endx = startx;
 							endy = starty;
 							trues[i] = true;
-							pattern[0] = i+1;
+							pattern[0] = i + 1;
 							start = i;
 							drawing = true;
 							break;
@@ -134,23 +173,23 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 						for (int i = 0; i < rect.length; ++i) {
 							if (trues[i] != true) {
 								if (rect[i].contains(me.getPoint())) {
-									
-									
-									//créer la ligne de centre du point vers le centre du point suivant
+
+									// créer la ligne de centre du point vers le
+									// centre du point suivant
 									enddx = (int) rect[i].getCenterX();
 									enddy = (int) rect[i].getCenterY();
 									lines.add(new Line2D.Double(startx, starty, enddx, enddy));
-									
-									// la prochaine ligne commence au centre du point actuel
+
+									// la prochaine ligne commence au centre du
+									// point actuel
 									startx = enddx;
 									starty = enddy;
-									
-									
+
 									end = i;
 
 									start = i;
 									trues[i] = true;
-									pattern[index] = i+1;
+									pattern[index] = i + 1;
 									index++;
 									break;
 								}
@@ -168,19 +207,17 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public void paintComponent(Graphics g) {
-		
+
 		/*
-		try {
-			Image img = ImageIO.read(new File("wallpaper.jpg"));
-			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		 * try { Image img = ImageIO.read(new File("wallpaper.jpg"));
+		 * g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+		 * 
+		 * 
+		 * } catch (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
 	}
 
 	@Override
@@ -196,7 +233,9 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 
 		// Création du trait
 		g.setColor(INK); // Couleur
-		g.setStroke(new BasicStroke(incw, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND)); // Forme du trait
+		g.setStroke(new BasicStroke(incw, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND)); // Forme
+																							// du
+																							// trait
 
 		// Dessine les lignes entre le point et le curseur
 		if (drawing == true) {
@@ -217,9 +256,13 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			for (int j = (getHeight() / 3) / 2; j < getHeight(); j += getHeight() / 3) {
 
 				// Dessine les points
-				g.fillOval(i - incw / 2, j - incw / 2, incw, incw); // i-incw / 2 permet de centrer
+				g.fillOval(i - incw / 2, j - incw / 2, incw, incw); // i-incw /
+																	// 2 permet
+																	// de
+																	// centrer
 
-				// Si le curseur est dans la zone du point on dessine un rond autour
+				// Si le curseur est dans la zone du point on dessine un rond
+				// autour
 				if (trues[ind] == true) {
 					g.drawOval(i - oncw / 2, j - oncw / 2, oncw, oncw);
 				}
@@ -231,26 +274,26 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			}
 		}
 	}
-	
+
 	private Boolean compareSchemeCode() {
 		File file = new File("scheme");
 		FileReader fr;
 		String str = "";
-		
+
 		try {
 			fr = new FileReader(file);
 			int i = 0;
-			
-			while((i = fr.read()) != -1) {
-				str += (char)i;
+
+			while ((i = fr.read()) != -1) {
+				str += (char) i;
 			}
-			
-		} catch(FileNotFoundException e) {
+
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if(str.equals(finalPattern)) {
+		if (str.equals(finalPattern)) {
 			return true;
 		}
 		return false;
@@ -260,7 +303,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 		if (timer.isRunning()) {
 			timer.stop();
 		}
-		
+
 		clearPattern();
 		lines.clear();
 		makeFalse();
@@ -278,8 +321,8 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			s += "," + pattern[i];
 		}
 		patt = s.substring(1);
-		 
-		//output.setText("Pattern = " + patt);
+
+		// output.setText("Pattern = " + patt);
 	}
 
 	public void setOutputComponent(JLabel l) {
@@ -287,9 +330,11 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	}
 
 	private void clearPattern() {
-		finalPattern = "";
-		for (int i = 0; i < pattern.length; ++i) {
-			pattern[i] = 0;
+		if (!changeCode) {
+			finalPattern = "";
+			for (int i = 0; i < pattern.length; ++i) {
+				pattern[i] = 0;
+			}
 		}
 	}
 
@@ -304,6 +349,5 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-}
 
+}

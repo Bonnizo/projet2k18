@@ -97,7 +97,8 @@ public class FrameMain extends JFrame {
 	
 	//panel verouiller
 	
-	private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel);
+	private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel, false);
+	private DotUnlockPanel changeCode = new DotUnlockPanel(cardLayout, contentPanel, true);
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
 	//timer
@@ -127,6 +128,7 @@ public class FrameMain extends JFrame {
 		
 		contentPanel.add(locked, "locked");
 		contentPanel.add(verou, "verouiller");
+		contentPanel.add(changeCode, "ChangeCode");
 		contentPanel.add(menuPanel, "menu");
 		contentPanel.add(photoPanel,"photo" );
 		contentPanel.add(contactPanel,"contact" );
