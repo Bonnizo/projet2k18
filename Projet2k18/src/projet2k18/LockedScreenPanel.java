@@ -76,7 +76,7 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    JLabel lblUnlock = new JLabel("<html><center>Faites glisser le curseur sur l'écran <br /> pour le déverrouiller</center></html>");
 	    lblUnlock.setFont(new Font("Tahoma", Font.BOLD, 16));
 	    lblUnlock.setForeground(Color.WHITE);
-	    lblUnlock.setBounds(65, 540, 304, 110);
+	    lblUnlock.setBounds(65, 520, 304, 110);
 	    centerPanel.add(lblUnlock);
 	    
 	    JPanel southPanel = new JPanel();

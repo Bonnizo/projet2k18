@@ -59,50 +59,55 @@ public class FrameMain extends JFrame {
 	// panel photo
 	private JPanel photoPanel = new JPanel();
 		
-	// panel contact
-	private JPanel contactPanel = new JPanel();
-
+	
 	// panel Jeu
 	private JPanel jeuPanel = new JPanel();
 	
+
+	
+		
 	
 	//site icone https://www.flaticon.com/free-icons/
 	// liste boutton pour les app
 
-	private JButton app1 = new JButton("contact");
-	private JButton app2 = new JButton("photo");
-	private JButton app3 = new JButton("jeu");
-	private JButton app4 = new JButton("autre");
-	private JButton app5 = new JButton("autre");
-	private JButton app6 = new JButton("autre");
-	private JButton app7 = new JButton("autre");
-	private JButton app8 = new JButton("autre");
-	private JButton app9 = new JButton("autre");
-	private JButton app10 = new JButton("autre");
-	private JButton app11 = new JButton("autre");
-	private JButton app12 = new JButton("autre");
-	private JButton app13 = new JButton("autre");
-	private JButton app14 = new JButton("autre");
-	private JButton app15 = new JButton("autre");
+	private BoutonApp  app1 = new BoutonApp("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
+	private BoutonApp  app2 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
+	private BoutonApp  app3 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
+	private BoutonApp  app4 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
+	private BoutonApp  app5 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
+	private BoutonApp  app6 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
+	private BoutonApp  app7 = new BoutonApp ("autre");
+	private BoutonApp  app8 = new BoutonApp ("autre");
+	private BoutonApp  app9 = new BoutonApp ("autre");
+	private BoutonApp  app10 = new BoutonApp ("autre");
+	private BoutonApp  app11 = new BoutonApp ("autre");
+	private BoutonApp  app12 = new BoutonApp ("autre");
+	private BoutonApp  app13 = new BoutonApp ("autre");
+	private BoutonApp  app14 = new BoutonApp ("autre");
+	private BoutonApp  app15 = new BoutonApp ("autre");
 
 	// naviguer
-	private JButton nav1 = new JButton(new ImageIcon ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\menu.png"));
-	private JButton nav2 = new JButton(new ImageIcon ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\lock.png"));
-	private JButton nav3 = new JButton(new ImageIcon ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\turn-off.png"));
+	private BoutonNav nav1 = new BoutonNav("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\menu.png");
+	private BoutonNav nav2 = new BoutonNav("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\lock.png");
+	private BoutonNav nav3 = new BoutonNav("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\turn-off.png");
 
-	// panel
+	// panel cardlayout
 
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel contentPanel = new JPanel(cardLayout);
 	
+	
 	//panel verouiller
 	
-	private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel);
-	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
+		private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel);
+		private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
-	//timer
+	// panel contact
+			private ContactPanel contactPanel = new ContactPanel();
+			
+			
 	
-	private Timer timer = new Timer();
+	
 
 	public FrameMain() {
 
@@ -123,7 +128,7 @@ public class FrameMain extends JFrame {
 		smartphonePanel.add(contentPanel);
 		smartphonePanel.add(navigationPanel);
 
-		// ajout panel
+		// ajout panel pour cardlayout
 		
 		contentPanel.add(locked, "locked");
 		contentPanel.add(verou, "verouiller");
@@ -131,6 +136,7 @@ public class FrameMain extends JFrame {
 		contentPanel.add(photoPanel,"photo" );
 		contentPanel.add(contactPanel,"contact" );
 		contentPanel.add(jeuPanel, "jeu");
+	
 		
 		// placement menu
 
@@ -139,11 +145,13 @@ public class FrameMain extends JFrame {
 		menuPanel.setLayout(menuLayout);
 		menuPanel.setBackground(Color.WHITE);
 
+		
+	
 		// placement navigation
 
 		navigationPanel.setPreferredSize(new Dimension(400, 50));
 		navigationPanel.setBackground(Color.BLACK);
-		FlowLayout navigationLayout = new FlowLayout(50, 70, 05);
+		FlowLayout navigationLayout = new FlowLayout(45, 70, 0);
 		navigationPanel.setLayout(navigationLayout);
 
 		/*
@@ -177,78 +185,8 @@ public class FrameMain extends JFrame {
 		 * 
 		 * 
 		 */
-		// redimension bouton
-		app1.setPreferredSize(new Dimension(80, 80));
-		app2.setPreferredSize(new Dimension(80, 80));
-		app3.setPreferredSize(new Dimension(80, 80));
-		app4.setPreferredSize(new Dimension(80, 80));
-		app5.setPreferredSize(new Dimension(80, 80));
-		app6.setPreferredSize(new Dimension(80, 80));
-		app7.setPreferredSize(new Dimension(80, 80));
-		app8.setPreferredSize(new Dimension(80, 80));
-		app9.setPreferredSize(new Dimension(80, 80));
-		app10.setPreferredSize(new Dimension(80, 80));
-		app11.setPreferredSize(new Dimension(80, 80));
-		app12.setPreferredSize(new Dimension(80, 80));
-		app13.setPreferredSize(new Dimension(80, 80));
-		app14.setPreferredSize(new Dimension(80, 80));
-		app15.setPreferredSize(new Dimension(80, 80));
+	
 
-		nav1.setPreferredSize(new Dimension(42, 42));
-		nav2.setPreferredSize(new Dimension(42, 42));
-		nav3.setPreferredSize(new Dimension(42, 42));
-
-		// arrondir bouton !--> comment enlever ce quil depasse ??<--!
-		app1.setBorder(new RoundedBorder(20));
-		app2.setBorder(new RoundedBorder(20));
-		app3.setBorder(new RoundedBorder(20));
-		app4.setBorder(new RoundedBorder(20));
-		app5.setBorder(new RoundedBorder(20));
-		app6.setBorder(new RoundedBorder(20));
-		app7.setBorder(new RoundedBorder(20));
-		app8.setBorder(new RoundedBorder(20));
-		app9.setBorder(new RoundedBorder(20));
-		app10.setBorder(new RoundedBorder(20));
-		app11.setBorder(new RoundedBorder(20));
-		app12.setBorder(new RoundedBorder(20));
-		app13.setBorder(new RoundedBorder(20));
-		app14.setBorder(new RoundedBorder(20));
-		app15.setBorder(new RoundedBorder(20));
-
-		
-		//effacer background
-		app1.setContentAreaFilled(false);
-		app2.setContentAreaFilled(false);
-		app3.setContentAreaFilled(false);
-		app4.setContentAreaFilled(false);
-		app5.setContentAreaFilled(false);
-		app6.setContentAreaFilled(false);
-		app7.setContentAreaFilled(false);
-		app8.setContentAreaFilled(false);
-		app9.setContentAreaFilled(false);
-		app10.setContentAreaFilled(false);
-		app11.setContentAreaFilled(false);
-		app12.setContentAreaFilled(false);
-		app13.setContentAreaFilled(false);
-		app14.setContentAreaFilled(false);
-		app15.setContentAreaFilled(false);
-
-		nav1.setContentAreaFilled(false);
-		nav2.setContentAreaFilled(false);
-		nav3.setContentAreaFilled(false);
-		
-		
-		//non bordure au bouton
-		nav1.setBorderPainted(false);
-		nav2.setBorderPainted(false);
-		nav3.setBorderPainted(false);
-		
-		// pas de bordure quand on appuie dessus
-		nav1.setFocusable(false);
-		nav2.setFocusable(false);
-		nav3.setFocusable(false);
-		
-		
 		// ajout bouton
 		menuPanel.add(app1);
 		menuPanel.add(app2);
@@ -266,6 +204,8 @@ public class FrameMain extends JFrame {
 		menuPanel.add(app14);
 		menuPanel.add(app15);
 
+		
+	
 		navigationPanel.add(nav1);
 		navigationPanel.add(nav2);
 		navigationPanel.add(nav3);
@@ -280,8 +220,8 @@ public class FrameMain extends JFrame {
 		photoPanel.setBackground(Color.RED);
 		photoPanel.setPreferredSize(new Dimension(400,670));
 		
-		contactPanel.setBackground(Color.GREEN);
-		contactPanel.setPreferredSize(new Dimension(400,670));
+
+		
 		
 		jeuPanel.setBackground(Color.YELLOW);
 		jeuPanel.setPreferredSize(new Dimension(400,670));
