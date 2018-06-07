@@ -64,32 +64,49 @@ public class FrameMain extends JFrame {
 	private JPanel jeuPanel = new JPanel();
 	
 
-	
-		
-	
 	//site icone https://www.flaticon.com/free-icons/
-	// liste boutton pour les app
+	//icone
+	private ImageIcon lock = new ImageIcon("image/lock.png");
+	private ImageIcon menu = new ImageIcon("image/menu.png");
+	private ImageIcon close = new ImageIcon("image/shutdown.png");
+	private ImageIcon agenda = new ImageIcon("image/contact.png");
+	private ImageIcon photo = new ImageIcon("image/photo.png");
+	private ImageIcon jeu = new ImageIcon("image/game.png");
+	private ImageIcon reglage = new ImageIcon("image/tools.png");	
+	private ImageIcon fake1 = new ImageIcon("image/menu.png");
+	private ImageIcon fake2 = new ImageIcon("image/facebook.png");
+	
+	
+	// Bouton pour les app
+	
+	private BoutonMenu app1 = new BoutonMenu (agenda, 80, new boutonContact());
+	private BoutonMenu app2 = new BoutonMenu (photo, 80, new boutonPhoto());
+	private BoutonMenu app3 = new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu app4= new BoutonMenu (jeu, 80, new boutonSettings());
+		
+	private BoutonMenu appfake1 =new BoutonMenu(jeu, 80, new boutonJeu());
+	private BoutonMenu appfake2 =new BoutonMenu(jeu, 80, new boutonJeu());
+	private BoutonMenu appfake3 =new BoutonMenu(jeu, 80, new boutonJeu());
+	private BoutonMenu appfake4 =new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu appfake5 =new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu appfake6 =new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu appfake7 =new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu appfake8 =new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu appfake9 =new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu appfake10 =new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu appfake11 =new BoutonMenu (jeu, 80, new boutonJeu());
+	
 
-	private BoutonApp  app1 = new BoutonApp("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
-	private BoutonApp  app2 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
-	private BoutonApp  app3 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
-	private BoutonApp  app4 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
-	private BoutonApp  app5 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
-	private BoutonApp  app6 = new BoutonApp ("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png");
-	private BoutonApp  app7 = new BoutonApp ("autre");
-	private BoutonApp  app8 = new BoutonApp ("autre");
-	private BoutonApp  app9 = new BoutonApp ("autre");
-	private BoutonApp  app10 = new BoutonApp ("autre");
-	private BoutonApp  app11 = new BoutonApp ("autre");
-	private BoutonApp  app12 = new BoutonApp ("autre");
-	private BoutonApp  app13 = new BoutonApp ("autre");
-	private BoutonApp  app14 = new BoutonApp ("autre");
-	private BoutonApp  app15 = new BoutonApp ("autre");
 
-	// naviguer
-	private BoutonNav nav1 = new BoutonNav("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\menu.png");
-	private BoutonNav nav2 = new BoutonNav("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\lock.png");
-	private BoutonNav nav3 = new BoutonNav("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\turn-off.png");
+
+	
+	// Bouton pour naviguer
+	private BoutonMenu nav1 = new BoutonMenu(menu, 40, new boutonMenu());
+	private BoutonMenu nav2 = new BoutonMenu(lock, 40, new boutonVerou());
+	private BoutonMenu nav3 = new BoutonMenu(close, 40, new boutonQuit());
+	
+	
+	
 
 	// panel cardlayout
 
@@ -104,9 +121,10 @@ public class FrameMain extends JFrame {
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
 	// panel contact
-			private ContactPanel contactPanel = new ContactPanel();
+	private ContactPanel contactPanel = new ContactPanel();
 			
-			
+		
+	
 	
 	
 
@@ -140,10 +158,10 @@ public class FrameMain extends JFrame {
 		contentPanel.add(changeCode,"settings");
 		
 		// placement menu
-
-		menuPanel.setPreferredSize(new Dimension(400, 670));
-		FlowLayout menuLayout = new FlowLayout(0, 40, 45);
+		contentPanel.setPreferredSize(new Dimension(400, 670));
+		GridLayout menuLayout = new GridLayout(0, 3);
 		menuPanel.setLayout(menuLayout);
+		
 		menuPanel.setBackground(Color.WHITE);
 
 		
@@ -152,64 +170,35 @@ public class FrameMain extends JFrame {
 
 		navigationPanel.setPreferredSize(new Dimension(400, 50));
 		navigationPanel.setBackground(Color.BLACK);
-		FlowLayout navigationLayout = new FlowLayout(45, 70, 0);
+		FlowLayout navigationLayout = new FlowLayout(0, 70, 0);
 		navigationPanel.setLayout(navigationLayout);
 
-		/*
-		 * {//fond ecran protected void paintComponent(Graphics g) {
-		 * super.paintComponents(g); ImageIcon fond = new ImageIcon(
-		 * "C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\Image\\FondEcran\\menu2.jpg"
-		 * ); Image fondMenu = fond.getImage(); g.drawImage(fondMenu, 0, 0, this); } };
-		 */
-
-		/*
-		 * 
-		 * 
-		 * 
-		 * 
-		 * //creation des boutons des applications avec photo centrée
-		 * 
-		 * 
-		 * app1.setHorizontalTextPosition(AbstractButton.CENTER);
-		 * app1.setBackground(Color.BLACK);
-		 * 
-		 * 
-		 * //creation bouton navigation
-		 * 
-		 * 
-		 * 		 * nav1.setBackground(Color.RED);
-		 * nav2.setHorizontalTextPosition(AbstractButton.CENTER);
-		 * nav2.setBackground(Color.RED);
-		 * nav3.setHorizontalTextPosition(AbstractButton.CENTER);
-		 * nav3.setBackground(Color.RED);
-		 * 
-		 * 
-		 * 
-		 */
+		
+		
+		//ajout bouton
 	
-
-		// ajout bouton
 		menuPanel.add(app1);
 		menuPanel.add(app2);
 		menuPanel.add(app3);
 		menuPanel.add(app4);
-		menuPanel.add(app5);
-		menuPanel.add(app6);
-		menuPanel.add(app7);
-		menuPanel.add(app8);
-		menuPanel.add(app9);
-		menuPanel.add(app10);
-		menuPanel.add(app11);
-		menuPanel.add(app12);
-		menuPanel.add(app13);
-		menuPanel.add(app14);
-		menuPanel.add(app15);
+		menuPanel.add(appfake1);
+		menuPanel.add(appfake2);
+		menuPanel.add(appfake3);
+		menuPanel.add(appfake4);
+		menuPanel.add(appfake5);
+		menuPanel.add(appfake6);
+		menuPanel.add(appfake7);
+		menuPanel.add(appfake8);
+		menuPanel.add(appfake9);
+		menuPanel.add(appfake10);
+		menuPanel.add(appfake11);
 
 		
 	
 		navigationPanel.add(nav1);
 		navigationPanel.add(nav2);
 		navigationPanel.add(nav3);
+		
 
 		
 		
@@ -228,18 +217,8 @@ public class FrameMain extends JFrame {
 		jeuPanel.setPreferredSize(new Dimension(400,670));
 		
 		
+	
 		
-		//action bouton app
-		app1.addActionListener(new boutonContact());
-		app2.addActionListener(new boutonPhoto());
-		app3.addActionListener(new boutonJeu());
-		app4.addActionListener(new boutonSettings());
-		
-		//action bouton navigation
-		
-		nav1.addActionListener(new boutonMenu());
-		nav2.addActionListener(new boutonVerou());
-		nav3.addActionListener(new boutonQuit());
 		
 		
 		
@@ -249,7 +228,7 @@ public class FrameMain extends JFrame {
 		
 	}
 	// Creation action bouton
-	class boutonSettings implements ActionListener 
+	class boutonSettings extends Listener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
@@ -258,7 +237,7 @@ public class FrameMain extends JFrame {
 		}
 	}
 
-	class boutonPhoto implements ActionListener 
+	class boutonPhoto extends Listener 
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
@@ -266,7 +245,7 @@ public class FrameMain extends JFrame {
 			cardLayout.show(contentPanel, "photo");
 		}
 	}
-	class boutonMenu implements ActionListener 
+	class boutonMenu extends Listener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
@@ -274,7 +253,7 @@ public class FrameMain extends JFrame {
 			cardLayout.show(contentPanel, "menu");
 		}
 	}
-	class boutonJeu implements ActionListener 
+	class boutonJeu extends Listener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
@@ -282,7 +261,7 @@ public class FrameMain extends JFrame {
 			cardLayout.show(contentPanel, "jeu");
 		}
 	}
-	class boutonContact implements ActionListener 
+	class boutonContact extends Listener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
@@ -290,7 +269,7 @@ public class FrameMain extends JFrame {
 			cardLayout.show(contentPanel, "contact");
 		}
 	}
-	class boutonVerou implements ActionListener 
+	class boutonVerou extends Listener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
@@ -298,7 +277,7 @@ public class FrameMain extends JFrame {
 			cardLayout.show(contentPanel, "locked");
 		}
 	}
-	class boutonQuit implements ActionListener 
+	class boutonQuit extends Listener
 	{
 	
 		public void actionPerformed(ActionEvent e) 
