@@ -99,7 +99,7 @@ public class FrameMain extends JFrame {
 	
 	//panel verouiller
 	
-		private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel,false false);
+		private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel,false);
 	private DotUnlockPanel changeCode = new DotUnlockPanel(cardLayout, contentPanel, true);
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
