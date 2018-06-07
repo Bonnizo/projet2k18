@@ -24,6 +24,17 @@ public class BoutonMenu extends JButton{
 	}
 
 	
+public BoutonMenu(ImageIcon img, int side){
+		
+		ImageIcon icon = new ImageIcon(img.getImage().getScaledInstance(side, side, Image.SCALE_SMOOTH));
+		this.setIcon(icon);
+		this.setBorder(null);
+		this.setOpaque(false);
+		this.setContentAreaFilled(false);
+		this.setBorderPainted(false);
+		this.setFocusPainted(false);
+		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 	
+	}
 
 }

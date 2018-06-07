@@ -69,32 +69,37 @@ public class FrameMain extends JFrame {
 	private ImageIcon lock = new ImageIcon("image/lock.png");
 	private ImageIcon menu = new ImageIcon("image/menu.png");
 	private ImageIcon close = new ImageIcon("image/shutdown.png");
+	
 	private ImageIcon agenda = new ImageIcon("image/contact.png");
 	private ImageIcon photo = new ImageIcon("image/photo.png");
 	private ImageIcon jeu = new ImageIcon("image/game.png");
-	private ImageIcon reglage = new ImageIcon("image/tools.png");	
-	private ImageIcon fake1 = new ImageIcon("image/menu.png");
-	private ImageIcon fake2 = new ImageIcon("image/facebook.png");
+	private ImageIcon reglage = new ImageIcon("image/setting.png");
 	
+	private ImageIcon fake1 = new ImageIcon("image/sms.png");
+	private ImageIcon fake2 = new ImageIcon("image/phone.png");
+	private ImageIcon fake3 = new ImageIcon("image/musique.png");
+	private ImageIcon fake4 = new ImageIcon("image/youtube.png");
+	private ImageIcon fake5 = new ImageIcon("image/cloud.png");
+	private ImageIcon fake6 = new ImageIcon("image/facebook.png");
+	private ImageIcon fake7 = new ImageIcon("image/instagram.png");
+	private ImageIcon fake8 = new ImageIcon("image/time.png");
 	
 	// Bouton pour les app
 	
 	private BoutonMenu app1 = new BoutonMenu (agenda, 80, new boutonContact());
 	private BoutonMenu app2 = new BoutonMenu (photo, 80, new boutonPhoto());
 	private BoutonMenu app3 = new BoutonMenu (jeu, 80, new boutonJeu());
-	private BoutonMenu app4= new BoutonMenu (jeu, 80, new boutonSettings());
-		
-	private BoutonMenu appfake1 =new BoutonMenu(jeu, 80, new boutonJeu());
-	private BoutonMenu appfake2 =new BoutonMenu(jeu, 80, new boutonJeu());
-	private BoutonMenu appfake3 =new BoutonMenu(jeu, 80, new boutonJeu());
-	private BoutonMenu appfake4 =new BoutonMenu (jeu, 80, new boutonJeu());
-	private BoutonMenu appfake5 =new BoutonMenu (jeu, 80, new boutonJeu());
-	private BoutonMenu appfake6 =new BoutonMenu (jeu, 80, new boutonJeu());
-	private BoutonMenu appfake7 =new BoutonMenu (jeu, 80, new boutonJeu());
-	private BoutonMenu appfake8 =new BoutonMenu (jeu, 80, new boutonJeu());
-	private BoutonMenu appfake9 =new BoutonMenu (jeu, 80, new boutonJeu());
-	private BoutonMenu appfake10 =new BoutonMenu (jeu, 80, new boutonJeu());
-	private BoutonMenu appfake11 =new BoutonMenu (jeu, 80, new boutonJeu());
+	private BoutonMenu app4= new BoutonMenu (reglage, 80, new boutonSettings());
+	
+	private BoutonMenu appfake1 =new BoutonMenu (fake1, 80);
+	private BoutonMenu appfake2 =new BoutonMenu (fake2, 80);
+	private BoutonMenu appfake3 =new BoutonMenu (fake3, 80);
+	private BoutonMenu appfake4 =new BoutonMenu (fake4, 80);
+	private BoutonMenu appfake5 =new BoutonMenu (fake5, 80);
+	private BoutonMenu appfake6 =new BoutonMenu (fake6, 80);
+	private BoutonMenu appfake7 =new BoutonMenu (fake7, 80);
+	private BoutonMenu appfake8 =new BoutonMenu (fake8, 80);
+	
 	
 
 
@@ -189,9 +194,7 @@ public class FrameMain extends JFrame {
 		menuPanel.add(appfake6);
 		menuPanel.add(appfake7);
 		menuPanel.add(appfake8);
-		menuPanel.add(appfake9);
-		menuPanel.add(appfake10);
-		menuPanel.add(appfake11);
+		
 
 		
 	
