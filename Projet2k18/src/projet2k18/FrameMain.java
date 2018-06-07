@@ -99,7 +99,7 @@ public class FrameMain extends JFrame {
 	
 	//panel verouiller
 	
-		private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel,false);
+	private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel,false);
 	private DotUnlockPanel changeCode = new DotUnlockPanel(cardLayout, contentPanel, true);
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
@@ -137,7 +137,7 @@ public class FrameMain extends JFrame {
 		contentPanel.add(photoPanel,"photo" );
 		contentPanel.add(contactPanel,"contact" );
 		contentPanel.add(jeuPanel, "jeu");
-	
+		contentPanel.add(changeCode,"settings");
 		
 		// placement menu
 
@@ -233,8 +233,7 @@ public class FrameMain extends JFrame {
 		app1.addActionListener(new boutonContact());
 		app2.addActionListener(new boutonPhoto());
 		app3.addActionListener(new boutonJeu());
-		
-		
+		app4.addActionListener(new boutonSettings());
 		
 		//action bouton navigation
 		
@@ -250,6 +249,14 @@ public class FrameMain extends JFrame {
 		
 	}
 	// Creation action bouton
+	class boutonSettings implements ActionListener 
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			cardLayout.show(contentPanel, "settings");
+		}
+	}
 
 	class boutonPhoto implements ActionListener 
 	{
