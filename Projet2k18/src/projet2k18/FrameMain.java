@@ -29,8 +29,7 @@ public class FrameMain extends JFrame {
 	private JPanel photoPanel = new JPanel();
 		
 	
-	// panel Jeu
-	private JPanel jeuPanel = new JPanel();
+
 	
 
 	//site icone https://www.flaticon.com/free-icons/
@@ -96,7 +95,8 @@ public class FrameMain extends JFrame {
 
 	// panel contact
 	private ContactPanel contactPanel = new ContactPanel();
-			
+	//jeu
+	private JeuPanel jeuPanel = new JeuPanel();
 		
 	
 	
@@ -185,10 +185,7 @@ public class FrameMain extends JFrame {
 		
 
 		
-		
-//		jeuPanel.setBackground(Color.YELLOW);
-//		jeuPanel.setPreferredSize(new Dimension(400,670));
-		
+
 		
 	
 		

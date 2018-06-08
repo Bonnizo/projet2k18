@@ -18,21 +18,39 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class jeuPanel extends JPanel{
+public class JeuPanel extends JPanel{
+	
+	
+	
+	
+//container
+	private JPanel jeu = new JPanel();
+	
+	
+	
+	
 	private JPanel panel1 = new JPanel();
 	private JLabel image, titre; 
 	private JTextField nom1, nom2;
 
+	
 
-	public jeuPanel(){
+	public JeuPanel(){
+		
+		
 		this.setBackground(Color.BLACK);
-		panel1.setSize(460,800);
+		
 		panel1.setLayout(new BorderLayout(0, 0));
 		interfac();	
 			//
+			
+
+		
 }
 
 	private void interfac() {
+		
+		
 		
 		// titre 
 		JPanel paneltitre = new JPanel();
@@ -124,7 +142,7 @@ public class jeuPanel extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			String name1 = nom1.getText();
 			String name2 = nom2.getText();
-//			setContentPane(new GamePanel(name1, name2));
+		//	setContentPane(new GamePanel(name1, name2));
 			repaint();
 		}
 

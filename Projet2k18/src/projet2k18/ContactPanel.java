@@ -17,92 +17,79 @@ public class ContactPanel extends JPanel {
 	// container
 	private JPanel contactListPanel = new JPanel();
 
-
-
-	
-
 	private ImageIcon rajouterContact = new ImageIcon("image/plus.png");
 
 	private ImageIcon effacerContact = new ImageIcon("image/close.png");
-	
+
 	// bouton contactPanel
 
-	private BoutonMenu plus = new BoutonMenu(rajouterContact,40,new boutonContact());
-	private BoutonMenu supprimer = new BoutonMenu(effacerContact,30, new effacerContact());
+	private BoutonMenu plus = new BoutonMenu(rajouterContact, 40, new boutonContact());
+	private BoutonMenu supprimer = new BoutonMenu(effacerContact, 30, new effacerContact());
 
-	//panel contactPanel
-	private JPanel contactPanel = new JPanel ();
+	// panel contactPanel
+	private JPanel contactPanel = new JPanel();
 
 	private JLabel contact = new JLabel("sadsadada");
-	
-	
-	
-	
-	//panel en plus
-	//panel liste contact
+
+	// panel en plus
+	// panel liste contact
 	private JPanel listeContacts = new JPanel();
-	
-	//panel liste bouton
-	
+
+	// panel liste bouton
+
 	private JPanel boutonContact = new JPanel();
-	
-	//cardlayout contact
+
+	// cardlayout contact
 	private CardLayout cardLayout2 = new CardLayout();
 	private JPanel contentPanel2 = new JPanel(cardLayout2);
-	
-	//flow layout bouton
-	
-	
+
+	// flow layout bouton
+
 	private ContactAppli contactAppli = new ContactAppli(cardLayout2, contentPanel2);
 
 	public ContactPanel() {
 
-		//caractristiques page
-		
+		// caractristiques page
+
 		this.setBackground(Color.WHITE);
 		setOpaque(false);
 		this.add(contentPanel2);
-		
+
 		boutonContact.setBackground(Color.WHITE);
-		
-		
-		boutonContact.setPreferredSize(new Dimension(400,670));
-		
-		listeContacts.setPreferredSize(new Dimension(400,670));
-		
+
+		boutonContact.setPreferredSize(new Dimension(400, 670));
+
+		listeContacts.setPreferredSize(new Dimension(400, 670));
+
 		contactPanel.setBackground(Color.WHITE);
-		
+
 		contentPanel2.add(contactPanel, "contactPanel");
 		contentPanel2.add(contactAppli, "contactAppli");
-			
+
 		boutonContact.add(plus);
 		boutonContact.add(supprimer);
 
 		listeContacts.setBackground(Color.WHITE);
-		contact.setPreferredSize(new Dimension (400, 20));
-	
-		listeContacts.add(contact,BorderLayout.NORTH);
-		boutonContact.add(listeContacts,BorderLayout.CENTER);
+		contact.setPreferredSize(new Dimension(400, 20));
+
+		listeContacts.add(contact, BorderLayout.NORTH);
+		boutonContact.add(listeContacts, BorderLayout.CENTER);
 		contactPanel.add(boutonContact, BorderLayout.NORTH);
-		
-		
-		Border panelBorder = BorderFactory.createMatteBorder(0, 0, 1,0 , Color.BLACK);
+
+		Border panelBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK);
 		contact.setBorder(panelBorder);
 	}
-	
-	class boutonContact extends Listener 
-	{
+
+	class boutonContact extends Listener {
 		@Override
-		public void actionPerformed(ActionEvent e) 
-		{
+		public void actionPerformed(ActionEvent e) {
 			cardLayout2.show(contentPanel2, "contactAppli");
 		}
 	}
-	class effacerContact extends Listener 
-	{
+
+	class effacerContact extends Listener {
 		@Override
-		public void actionPerformed(ActionEvent e) 
-		{
+		public void actionPerformed(ActionEvent e) {
 			cardLayout2.show(contentPanel2, "contactAppli");
 		}
 	}
