@@ -25,6 +25,7 @@ public class jeuPanel extends JPanel{
 
 
 	public jeuPanel(){
+		this.setBackground(Color.BLACK);
 		panel1.setSize(460,800);
 		panel1.setLayout(new BorderLayout(0, 0));
 		interfac();	
