@@ -13,7 +13,7 @@ public class Ecriture extends JTextField {
 	 Font gainFont = new Font("Tahoma", Font.PLAIN, 30);  
 	 Font lostFont = new Font("Tahoma", Font.ITALIC, 30);  
 	  
-	  
+//	  
 	  //Repris d'internet
 	  public Ecriture(final String hint) {  
 	  
