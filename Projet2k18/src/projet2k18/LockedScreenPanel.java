@@ -10,6 +10,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Calendar;
 
 import javax.swing.JFrame;
@@ -125,10 +129,11 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 					xEnd= me.getX();
 					yEnd = me.getY();
 					if(getDistance(xBegin, yBegin, xEnd, yEnd)>= 70){
-						System.out.println("Unlock");
-						System.out.println(getDistance(xBegin, yBegin, xEnd, yEnd));
-						
-						cardLayout.show(contentPanel, "verouiller");
+
+						if(getCode().equals(""))
+							cardLayout.show(contentPanel, "menu");
+						else
+							cardLayout.show(contentPanel, "verouiller");
 						
 					}
 				}
@@ -142,7 +147,28 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 		return distance;
 		
 	}
-	
+
+	private String getCode() {
+		File file = new File("scheme");
+		FileReader fr;
+		String str = "";
+
+		try {
+			fr = new FileReader(file);
+			int i = 0;
+
+			while ((i = fr.read()) != -1) {
+				str += (char) i;
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return str;
+	}
 	@Override
 	public void run() {
 		try {

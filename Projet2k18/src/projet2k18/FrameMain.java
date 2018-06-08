@@ -25,6 +25,8 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Timer;
 
@@ -155,6 +157,7 @@ public class FrameMain extends JFrame {
 		// ajout panel pour cardlayout
 		
 		contentPanel.add(locked, "locked");
+		
 		contentPanel.add(verou, "verouiller");
 		contentPanel.add(menuPanel, "menu");
 		contentPanel.add(photoPanel,"photo" );

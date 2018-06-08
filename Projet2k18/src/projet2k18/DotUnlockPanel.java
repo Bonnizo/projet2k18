@@ -62,6 +62,9 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 		this.cardLayout = cardLayout;
 		this.contentPanel = contentPanel;
 		this.changeCode = changeCode;
+		
+		
+		
 		setBackground(Color.BLACK);
 
 		try {
@@ -274,7 +277,8 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			}
 		}
 	}
-
+	
+	
 	private Boolean compareSchemeCode() {
 		File file = new File("scheme");
 		FileReader fr;
