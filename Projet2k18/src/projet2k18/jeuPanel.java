@@ -29,7 +29,7 @@ public class jeuPanel extends JPanel{
 		panel1.setSize(460,800);
 		panel1.setLayout(new BorderLayout(0, 0));
 		interfac();	
-			//
+
 }
 
 	private void interfac() {
