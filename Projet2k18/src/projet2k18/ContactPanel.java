@@ -30,6 +30,10 @@ public class ContactPanel extends JPanel {
 	private JPanel contactPanel = new JPanel();
 
 	private JLabel contact = new JLabel("sadsadada");
+	private JLabel contact1 = new JLabel("saasdadada");
+	private JLabel contact2 = new JLabel("sadsadada");
+	private JLabel contact3 = new JLabel("sa23dada");
+	
 
 	// panel en plus
 	// panel liste contact
@@ -71,13 +75,27 @@ public class ContactPanel extends JPanel {
 
 		listeContacts.setBackground(Color.WHITE);
 		contact.setPreferredSize(new Dimension(400, 20));
-
+		contact1.setPreferredSize(new Dimension(400, 20));
+		contact2.setPreferredSize(new Dimension(400, 20));
+		contact3.setPreferredSize(new Dimension(400, 20));
+		
 		listeContacts.add(contact, BorderLayout.NORTH);
+		
+		listeContacts.add(contact1, BorderLayout.NORTH);
+		listeContacts.add(contact2, BorderLayout.NORTH);
+		listeContacts.add(contact3, BorderLayout.NORTH);
+
+		
 		boutonContact.add(listeContacts, BorderLayout.CENTER);
 		contactPanel.add(boutonContact, BorderLayout.NORTH);
 
-		Border panelBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK);
+		Border panelBorder = BorderFactory.createMatteBorder(1, 0, 1, 0, Color.BLACK);
+
 		contact.setBorder(panelBorder);
+		contact1.setBorder(panelBorder);
+		contact2.setBorder(panelBorder);
+		contact3.setBorder(panelBorder);
+		
 	}
 
 	class boutonContact extends Listener {
