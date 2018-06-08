@@ -18,25 +18,31 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class jeuPanel extends JPanel{
-	private JPanel panel1 = new JPanel();
+public class JeuPanel extends JPanel{
+
+	
+	private JPanel jeu = new JPanel();
 	private JLabel image, titre; 
 	private JTextField nom1, nom2;
+	private ImageIcon boxe = new ImageIcon("image/Boxe.jpg");
 
+	
 
-	public jeuPanel(){
-		this.setBackground(Color.BLACK);
-		panel1.setSize(460,800);
-		panel1.setLayout(new BorderLayout(0, 0));
+	public JeuPanel(){
+		this.setPreferredSize(new Dimension(400, 670));
+		jeu.setLayout(new BorderLayout(0, 0));
+		jeu.setPreferredSize(new Dimension(400, 670));
 		interfac();	
-
+	
 }
 
 	private void interfac() {
 		
+		
+		
 		// titre 
 		JPanel paneltitre = new JPanel();
-		paneltitre.setPreferredSize(new Dimension(390, 100));
+//		paneltitre.setPreferredSize(new Dimension(390, 100));
 		paneltitre.setBackground(Color.WHITE);
 		titre= new JLabel("Tic Tac Tao");
 		titre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -45,15 +51,15 @@ public class jeuPanel extends JPanel{
 		
 		// image 
 		JPanel panImage = new JPanel();
-		image = new JLabel(new ImageIcon("C:/Users/Zaychenko/Documents/Java/Boxe.jpg"));
-		panImage.setPreferredSize(new Dimension(390, 400));
+		JLabel labphoto= new JLabel(boxe);
+//		panImage.setPreferredSize(new Dimension(390, 400));
 		panImage.setBackground(Color.WHITE);
 		panImage.setLayout(new BorderLayout());
-		panImage.add(image);
+		panImage.add(labphoto);
 
 		// Joueur1
 		JPanel pjoueur1 = new JPanel();
-		pjoueur1.setPreferredSize(new Dimension(390, 75));
+//		pjoueur1.setPreferredSize(new Dimension(390, 75));
 		pjoueur1.setBackground(Color.WHITE);
 		nom1 = new Ecriture("Nom joueur 1");
 		nom1.setPreferredSize(new Dimension(300, 50));
@@ -62,7 +68,7 @@ public class jeuPanel extends JPanel{
 		
 		// Joueur2
 		JPanel pjoueur2 = new JPanel();
-		pjoueur2.setPreferredSize(new Dimension(390, 75));
+//		pjoueur2.setPreferredSize(new Dimension(390, 75));
 		pjoueur2.setBackground(Color.WHITE);
 		nom2 = new Ecriture("Nom joueur 2");
 		nom2.setPreferredSize(new Dimension(300, 50));
@@ -102,10 +108,10 @@ public class jeuPanel extends JPanel{
 		pbouton.add(playbouton);
 		
 		
-		panel1.add(paneltitre, BorderLayout.NORTH);
-		panel1.add(pcentral, BorderLayout.CENTER);
-		panel1.add(pbouton, BorderLayout.SOUTH);
-		this.add(panel1);
+		jeu.add(paneltitre, BorderLayout.NORTH);
+		jeu.add(pcentral, BorderLayout.CENTER);
+		jeu.add(pbouton, BorderLayout.SOUTH);
+		this.add(jeu);
 		
 		
 	}
@@ -118,13 +124,12 @@ public class jeuPanel extends JPanel{
 			dialogregle.setVisible(true);			
 		}
 	}
-	
-	class BoutonPlay implements ActionListener{
+		class BoutonPlay implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
 			String name1 = nom1.getText();
 			String name2 = nom2.getText();
-//			setContentPane(new GamePanel(name1, name2));
+		//	setContentPane(new GamePanel(name1, name2));
 			repaint();
 		}
 
