@@ -216,8 +216,8 @@ public class FrameMain extends JFrame {
 
 		
 		
-		jeuPanel.setBackground(Color.YELLOW);
-		jeuPanel.setPreferredSize(new Dimension(400,670));
+//		jeuPanel.setBackground(Color.YELLOW);
+//		jeuPanel.setPreferredSize(new Dimension(400,670));
 		
 		
 	
