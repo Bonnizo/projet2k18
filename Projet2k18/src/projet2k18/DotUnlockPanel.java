@@ -17,6 +17,7 @@ import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +78,8 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
 					if (time == 0) {
+						
+						//Déverouillage
 						if (!changeCode) {
 							// check si le modèle dessiné correspond au modèle
 							// enregistré
@@ -95,7 +98,9 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 								// Si le code ne correspond pas on reset l'écran
 								resetScreen();
 							}
-						} else {
+						} 
+						//Changement de code
+						else {
 							if (finalPattern.isEmpty()) {
 								for (int numDot : pattern) {
 
@@ -115,17 +120,32 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 									}
 								}
 							}
-							System.out.println(finalPattern);
-							System.out.println(finalPatternConfirm);
-							
-							if(finalPattern.equals(finalPatternConfirm)) {
-								System.out.println("code semblable");
-								
-								//ecriture du nouveau code dans le fichier scheme
-								//retour au panel menu
-							}
-							else {
-								System.out.println("Ouh pas ça Zinédine");
+							//System.out.println(finalPattern);
+							//System.out.println(finalPatternConfirm);
+							if(!finalPattern.isEmpty() && !finalPatternConfirm.isEmpty()) {
+								if(finalPattern.equals(finalPatternConfirm)) {
+									System.out.println("code semblable");
+									
+									//ecriture du nouveau code dans le fichier scheme
+									//retour au panel menu
+									FileWriter fw;
+									try {
+										fw = new FileWriter(new File("scheme"));
+										fw.write(finalPattern);
+										fw.close();
+										
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+									cardLayout.show(contentPanel, "menu");
+									resetScreen();
+									
+								}
+								else {
+									finalPatternConfirm = "";
+									finalPattern = "";
+								}
 							}
 						}
 						timer.stop();
