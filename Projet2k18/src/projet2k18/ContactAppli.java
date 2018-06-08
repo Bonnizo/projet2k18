@@ -49,22 +49,24 @@ public class ContactAppli extends JPanel{
 	private HintTextField email = new HintTextField("email");
 	
 	
+	//image
+	ImageIcon back = new ImageIcon("image/back.png");	
+	ImageIcon ok = new ImageIcon("image/correct.png");
+	
 	//bouton 
 	
-	private JButton ok = new JButton(new ImageIcon("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\ok.png"));
-
-	private JButton annuler = new JButton(new ImageIcon("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\close.png"));
+	
+	private BoutonMenu annuler = new BoutonMenu(back, 40, new RetourContact());
+	private BoutonMenu correct = new BoutonMenu(ok, 40, new RetourContact());
 
 	
-	//image
-	
-	
-	private JButton boutonImg = new JButton(new ImageIcon("C:\\Users\\Victor\\Desktop\\ProgJava\\projet2k18\\images\\IconeBouton\\face.png"));
 
+	
+	
 	
 	//layout
 	private GridLayout grille = new GridLayout(0,1, 20,20);	
-	private FlowLayout test = new FlowLayout(100,95,75);
+	private FlowLayout boutonPlacer = new FlowLayout(100,100,80);
 	private BorderLayout centre = new BorderLayout();
 	
 	
@@ -114,19 +116,10 @@ public class ContactAppli extends JPanel{
 		email.setBorder(panelBorder);
 		
 		
-		//ajout image
-		imgPanel.add(boutonImg);
-		boutonImg.setContentAreaFilled(false);
-		
-		//taille bouton
-		ok.setPreferredSize(new Dimension(60,60));
-		annuler.setPreferredSize(new Dimension(60,60));
-		
-		//taille label 
-		boutonImg.setPreferredSize(new Dimension(70,80));
-		//ajout bouton gestion de l'ajout contact
+	
+	
 		boutonPanel.add(annuler);
-		boutonPanel.add(ok);
+		boutonPanel.add(correct);
 		
 		
 		
@@ -135,7 +128,7 @@ public class ContactAppli extends JPanel{
 		
 		//layout des 2 panels info + bouton
 		infoPanel.setLayout(grille);
-		boutonPanel.setLayout(test);
+		boutonPanel.setLayout(boutonPlacer);
 		
 		//transparent panel
 		infoPanel.setOpaque(false);
@@ -145,13 +138,6 @@ public class ContactAppli extends JPanel{
 		espacePanel2.setOpaque(false);
 		
 		
-		//transparent bouton
-		ok.setContentAreaFilled(false);
-		annuler.setContentAreaFilled(false);
-		ok.setBorderPainted(false);
-		annuler.setBorderPainted(false);
-		boutonImg.setContentAreaFilled(false);
-		boutonImg.setBorderPainted(false);
 		
 		
 		
@@ -166,8 +152,8 @@ public class ContactAppli extends JPanel{
 	
 		
 		
-		ok.addActionListener(new transfertData());
-		annuler.addActionListener(new boutonMenu());
+		
+		
 	}
 	
 	private void setFieldsText() 
@@ -208,12 +194,12 @@ public class ContactAppli extends JPanel{
 		}
 		
 	}
-	class boutonMenu implements ActionListener 
+	class RetourContact extends Listener 
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			cardLayout2.show(contentPanel2,  "test");
+			cardLayout2.show(contentPanel2,  "contactPanel");
 		}
 	}
 	
