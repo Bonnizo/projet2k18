@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Calendar;
 
 import javax.swing.JFrame;
@@ -140,7 +142,7 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 					xEnd= me.getX();
 					yEnd = me.getY();
 					if(getDistance(xBegin, yBegin, xEnd, yEnd)>= 70){
-
+						
 						if(getCode().equals(""))
 							cardLayout.show(contentPanel, "menu");
 						else

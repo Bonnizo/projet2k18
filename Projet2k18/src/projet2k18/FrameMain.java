@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -62,14 +64,14 @@ public class FrameMain extends JFrame {
 	private BoutonMenu app3 = new BoutonMenu (jeu, 80, new boutonJeu());
 	private BoutonMenu app4= new BoutonMenu (reglage, 80, new boutonSettings());
 	
-	private BoutonMenu appfake1 =new BoutonMenu (fake1, 80);
-	private BoutonMenu appfake2 =new BoutonMenu (fake2, 80);
-	private BoutonMenu appfake3 =new BoutonMenu (fake3, 80);
-	private BoutonMenu appfake4 =new BoutonMenu (fake4, 80);
-	private BoutonMenu appfake5 =new BoutonMenu (fake5, 80);
-	private BoutonMenu appfake6 =new BoutonMenu (fake6, 80);
-	private BoutonMenu appfake7 =new BoutonMenu (fake7, 80);
-	private BoutonMenu appfake8 =new BoutonMenu (fake8, 80);
+	private BoutonMenu appfake1 =new BoutonMenu (fake1, 80, new btnsHome());
+	private BoutonMenu appfake2 =new BoutonMenu (fake2, 80, new btnsHome());
+	private BoutonMenu appfake3 =new BoutonMenu (fake3, 80, new btnsHome());
+	private BoutonMenu appfake4 =new BoutonMenu (fake4, 80, new btnsHome());
+	private BoutonMenu appfake5 =new BoutonMenu (fake5, 80, new btnsHome());
+	private BoutonMenu appfake6 =new BoutonMenu (fake6, 80, new btnsHome());
+	private BoutonMenu appfake7 =new BoutonMenu (fake7, 80, new btnsHome());
+	private BoutonMenu appfake8 =new BoutonMenu (fake8, 80, new btnsHome());
 	
 	
 
@@ -190,6 +192,38 @@ public class FrameMain extends JFrame {
 		
 		
 	}
+	class btnsHome extends Listener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			URI uri = null;
+			if(e.getSource().equals(appfake1)){
+				try {
+					uri = new URI("https://www.youtube.com");
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if(e.getSource().equals(appfake2)){
+				try {
+					uri = new URI("https://www.youtube.com");
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			try {
+				java.awt.Desktop.getDesktop().browse(uri);
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+	
 	// Creation action bouton
 	class boutonSettings extends Listener
 	{
