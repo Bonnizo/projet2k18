@@ -7,7 +7,10 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.geom.RoundRectangle2D;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -185,18 +188,6 @@ public class FrameMain extends JFrame {
 		photoPanel.setBackground(Color.RED);
 		photoPanel.setPreferredSize(new Dimension(400,670));
 		
-
-		
-
-		
-	
-		
-		
-		
-		
-		
-
-
 		
 	}
 	// Creation action bouton
@@ -222,7 +213,13 @@ public class FrameMain extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			cardLayout.show(contentPanel, "menu");
+			if(getCode().equals("")) {
+				cardLayout.show(contentPanel, "menu");
+			}
+			else {
+				cardLayout.show(contentPanel, "verouiller");
+			}
+				
 		}
 	}
 	class boutonJeu extends Listener
@@ -257,5 +254,27 @@ public class FrameMain extends JFrame {
 		System.exit(0);
 		}
 		
+	}
+	
+	private String getCode() {
+		File file = new File("scheme");
+		FileReader fr;
+		String str = "";
+
+		try {
+			fr = new FileReader(file);
+			int i = 0;
+
+			while ((i = fr.read()) != -1) {
+				str += (char) i;
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return str;
 	}
 }

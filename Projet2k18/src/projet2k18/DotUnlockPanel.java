@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import java.awt.BorderLayout;
+
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import java.awt.Component;
 
@@ -34,7 +37,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 
 	// Déclaration des constantes
 	private final Color INK = new Color(255, 255, 255);
-	private final Color DOT = Color.BLACK;
+	private final Color DOT = Color.WHITE;
 
 	// Déclaration des tableaux/Listes
 	private boolean trues[] = new boolean[9];
@@ -233,14 +236,14 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 
 	public void paintComponent(Graphics g) {
 
-		/*
-		 * try { Image img = ImageIO.read(new File("wallpaper.jpg"));
-		 * g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-		 * 
-		 * 
-		 * } catch (IOException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 */
+		
+		 try { Image img = ImageIO.read(new File("Photo/wallpaper.jpg"));
+		 g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+		  
+		  
+		 } catch (IOException e) { // TODO Auto-generated catch block
+		 e.printStackTrace(); }
+		 
 	}
 
 	@Override
