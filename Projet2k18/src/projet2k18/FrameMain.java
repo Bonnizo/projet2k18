@@ -91,6 +91,7 @@ public class FrameMain extends JFrame {
 	
 	private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel,false);
 	private DotUnlockPanel changeCode = new DotUnlockPanel(cardLayout, contentPanel, true);
+	private SettingsPanel settings = new SettingsPanel(cardLayout, contentPanel);
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
 	// panel contact
@@ -130,7 +131,8 @@ public class FrameMain extends JFrame {
 		contentPanel.add(photoPanel,"photo" );
 		contentPanel.add(contactPanel,"contact" );
 		contentPanel.add(jeuPanel, "jeu");
-		contentPanel.add(changeCode,"settings");
+		contentPanel.add(changeCode,"changeCode");
+		contentPanel.add(settings,"settings");
 		
 		// placement menu
 		contentPanel.setPreferredSize(new Dimension(400, 670));
