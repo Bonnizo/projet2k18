@@ -5,15 +5,20 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Calendar;
 
 import javax.swing.JFrame;
@@ -21,6 +26,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.JButton;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class LockedScreenPanel extends JPanel implements Runnable {
 	private JLabel lblMinuteBig = new JLabel();	
@@ -53,6 +60,15 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    centerPanel.setLayout(null);
 	    
 	    lblMinuteBig.setText(String.format("%02d",now.get(Calendar.MINUTE)));;
+	    
+	    JLabel lblWallpaper = new JLabel();
+	    lblWallpaper.setIcon(new ImageIcon("Photo/wallpaper.jpg"));
+	    lblWallpaper.setForeground(Color.WHITE);
+	    lblWallpaper.setBackground(Color.RED);
+	    lblWallpaper.setBounds(0, -12, 450, 675); 
+	    centerPanel.add(lblWallpaper);
+	    
+	   
 	    lblMinuteBig.setFont(new Font("Tahoma", Font.BOLD, 70));
 	    lblMinuteBig.setForeground(Color.WHITE);
 	    lblMinuteBig.setBounds(160, 176, 108, 92);
@@ -83,9 +99,6 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    lblUnlock.setBounds(65, 520, 304, 110);
 	    centerPanel.add(lblUnlock);
 	    
-	    JPanel southPanel = new JPanel();
-	    add(southPanel, BorderLayout.SOUTH);
-	    southPanel.setBackground(Color.BLACK);
 	    
 	    JPanel northPanel = new JPanel();
 	    add(northPanel, BorderLayout.NORTH);
@@ -129,7 +142,7 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 					xEnd= me.getX();
 					yEnd = me.getY();
 					if(getDistance(xBegin, yBegin, xEnd, yEnd)>= 70){
-
+						
 						if(getCode().equals(""))
 							cardLayout.show(contentPanel, "menu");
 						else
@@ -139,7 +152,11 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 				}
 			};
 			addMouseListener(ml);
-	     
+	     centerPanel.setComponentZOrder(lblWallpaper, 2);
+	     centerPanel.setComponentZOrder(lblHourBig, 1);
+	     centerPanel.setComponentZOrder(lblMinuteBig, 0);
+	     centerPanel.setComponentZOrder(lblSamMai, 0);
+	     centerPanel.setComponentZOrder(lblUnlock, 0);
 	}
 	
 	private double getDistance(int xBegin, int yBegin, int xEnd, int yEnd) {
@@ -169,6 +186,7 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 		
 		return str;
 	}
+	
 	@Override
 	public void run() {
 		try {

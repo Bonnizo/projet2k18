@@ -7,7 +7,12 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.geom.RoundRectangle2D;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -59,14 +64,14 @@ public class FrameMain extends JFrame {
 	private BoutonMenu app3 = new BoutonMenu (jeu, 80, new boutonJeu());
 	private BoutonMenu app4= new BoutonMenu (reglage, 80, new boutonSettings());
 	
-	private BoutonMenu appfake1 =new BoutonMenu (fake1, 80);
-	private BoutonMenu appfake2 =new BoutonMenu (fake2, 80);
-	private BoutonMenu appfake3 =new BoutonMenu (fake3, 80);
-	private BoutonMenu appfake4 =new BoutonMenu (fake4, 80);
-	private BoutonMenu appfake5 =new BoutonMenu (fake5, 80);
-	private BoutonMenu appfake6 =new BoutonMenu (fake6, 80);
-	private BoutonMenu appfake7 =new BoutonMenu (fake7, 80);
-	private BoutonMenu appfake8 =new BoutonMenu (fake8, 80);
+	private BoutonMenu appfake1 =new BoutonMenu (fake1, 80, new btnsHome());
+	private BoutonMenu appfake2 =new BoutonMenu (fake2, 80, new btnsHome());
+	private BoutonMenu appfake3 =new BoutonMenu (fake3, 80, new btnsHome());
+	private BoutonMenu appfake4 =new BoutonMenu (fake4, 80, new btnsHome());
+	private BoutonMenu appfake5 =new BoutonMenu (fake5, 80, new btnsHome());
+	private BoutonMenu appfake6 =new BoutonMenu (fake6, 80, new btnsHome());
+	private BoutonMenu appfake7 =new BoutonMenu (fake7, 80, new btnsHome());
+	private BoutonMenu appfake8 =new BoutonMenu (fake8, 80, new btnsHome());
 	
 	
 
@@ -91,6 +96,7 @@ public class FrameMain extends JFrame {
 	
 	private DotUnlockPanel verou = new DotUnlockPanel(cardLayout, contentPanel,false);
 	private DotUnlockPanel changeCode = new DotUnlockPanel(cardLayout, contentPanel, true);
+	private SettingsPanel settings = new SettingsPanel(cardLayout, contentPanel);
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
 	// panel contact
@@ -130,7 +136,8 @@ public class FrameMain extends JFrame {
 		contentPanel.add(photoPanel,"photo" );
 		contentPanel.add(contactPanel,"contact" );
 		contentPanel.add(jeuPanel, "jeu");
-		contentPanel.add(changeCode,"settings");
+		contentPanel.add(changeCode,"changeCode");
+		contentPanel.add(settings,"settings");
 		
 		// placement menu
 		contentPanel.setPreferredSize(new Dimension(400, 670));
@@ -183,20 +190,40 @@ public class FrameMain extends JFrame {
 		photoPanel.setBackground(Color.RED);
 		photoPanel.setPreferredSize(new Dimension(400,670));
 		
-
-		
-
-		
-	
-		
-		
-		
-		
-		
-
-
 		
 	}
+	class btnsHome extends Listener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			URI uri = null;
+			if(e.getSource().equals(appfake4)){
+				try {
+					uri = new URI("https://www.youtube.com");
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if(e.getSource().equals(appfake5)){
+				try {
+					uri = new URI("http://www.meteosuisse.admin.ch/home.html?tab=overview");
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			try {
+				java.awt.Desktop.getDesktop().browse(uri);
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+	
 	// Creation action bouton
 	class boutonSettings extends Listener
 	{
@@ -220,7 +247,13 @@ public class FrameMain extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			cardLayout.show(contentPanel, "menu");
+			if(getCode().equals("")) {
+				cardLayout.show(contentPanel, "menu");
+			}
+			else {
+				cardLayout.show(contentPanel, "verouiller");
+			}
+				
 		}
 	}
 	class boutonJeu extends Listener
@@ -255,5 +288,27 @@ public class FrameMain extends JFrame {
 		System.exit(0);
 		}
 		
+	}
+	
+	private String getCode() {
+		File file = new File("scheme");
+		FileReader fr;
+		String str = "";
+
+		try {
+			fr = new FileReader(file);
+			int i = 0;
+
+			while ((i = fr.read()) != -1) {
+				str += (char) i;
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return str;
 	}
 }
