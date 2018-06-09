@@ -199,16 +199,16 @@ public class FrameMain extends JFrame {
 			// TODO Auto-generated method stub
 			
 			URI uri = null;
-			if(e.getSource().equals(appfake1)){
+			if(e.getSource().equals(appfake4)){
 				try {
 					uri = new URI("https://www.youtube.com");
 				} catch (URISyntaxException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}else if(e.getSource().equals(appfake2)){
+			}else if(e.getSource().equals(appfake5)){
 				try {
-					uri = new URI("https://www.youtube.com");
+					uri = new URI("http://www.meteosuisse.admin.ch/home.html?tab=overview");
 				} catch (URISyntaxException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
