@@ -21,6 +21,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JLabel;
@@ -32,6 +33,10 @@ import java.awt.BorderLayout;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import java.awt.Component;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class DotUnlockPanel extends JPanel implements Runnable {
 
@@ -61,6 +66,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	private CardLayout cardLayout;
 	private JPanel contentPanel;
 	private Boolean changeCode;
+	private JLabel lblTxt;
 
 	public DotUnlockPanel(CardLayout cardLayout, JPanel contentPanel, Boolean changeCode) {
 		this.cardLayout = cardLayout;
@@ -75,11 +81,26 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			oncw = incw + 40;
 			th = new Thread(this);
 			setOpaque(false);
-			setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+			setLayout(null);
+			
+			if(changeCode) {
+				lblTxt = new JLabel("Veuillez dessiner votre nouveau modèle");
+			}
+			else {
+				lblTxt = new JLabel("Dessiner le modèle de déverrouillage");
+			}
+			
+			lblTxt.setHorizontalAlignment(SwingConstants.CENTER);
+			lblTxt.setForeground(Color.WHITE);
+			lblTxt.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblTxt.setBounds(-11, 240, 430, 60);
+			add(lblTxt);
 
 			ActionListener al = new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
+					
+					
 					if (time == 0) {
 						
 						//Déverouillage
@@ -104,6 +125,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 						} 
 						//Changement de code
 						else {
+							
 							if (finalPattern.isEmpty()) {
 								for (int numDot : pattern) {
 
@@ -113,7 +135,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 									}
 								}
 							} else {
-								System.out.println("Confirm");
+								
 								for (int numDot : pattern) {
 
 									if (numDot > 0) {
@@ -279,8 +301,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 
 		// Affichage centré des points
 		for (int i = (getWidth() / 3) / 2; i < getWidth(); i += getWidth() / 3) {
-			for (int j = (getHeight() / 3) / 2; j < getHeight(); j += getHeight() / 3) {
-
+			for (int j = (getHeight() / 2); j < getHeight(); j += getHeight() / 5) {
 				// Dessine les points
 				g.fillOval(i - incw / 2, j - incw / 2, incw, incw); // i-incw /
 																	// 2 permet
@@ -369,6 +390,15 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	public void run() {
 		try {
 			while (true) {
+				if(changeCode) {
+					if(finalPattern.isEmpty()) {
+						lblTxt.setText("Veuillez dessiner votre nouveau modèle");
+					}
+					else if(finalPatternConfirm.isEmpty()) {
+						lblTxt.setText("Veuillez confirmer le nouveau modèle");
+					}
+					
+				}
 				Thread.sleep(10);
 				repaint();
 			}
