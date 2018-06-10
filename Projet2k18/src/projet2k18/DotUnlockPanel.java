@@ -120,6 +120,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 								resetScreen();
 							} else {
 								// Si le code ne correspond pas on reset l'écran
+								lblTxt.setText("Modèle incorrect dessiné");
 								resetScreen();
 							}
 						} 
