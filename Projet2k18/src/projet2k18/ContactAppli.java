@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedOutputStream;
@@ -20,6 +21,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -31,6 +33,9 @@ import projet2k18.PersonneInfo;
 
 public class ContactAppli extends JPanel{
 
+	
+	
+	
 
 	// panel contact
 	private JPanel contactPanel = new JPanel();
@@ -39,12 +44,7 @@ public class ContactAppli extends JPanel{
 	private JPanel imgPanel = new JPanel();
 	private JPanel espacePanel1 = new JPanel();
 	private JPanel espacePanel2 = new JPanel();
-	//Label
-	private JLabel prenomLabel = new JLabel("prenom",10);
-	private JLabel nomLabel  = new JLabel("nom");
-	private JLabel telephoneLabel  = new JLabel("telephone");
-	private JLabel adresseLabel  = new JLabel("adresse");
-	private JLabel emailLabel  = new JLabel("email");
+	
 	
 	
 	// Texfield
@@ -92,9 +92,22 @@ public class ContactAppli extends JPanel{
 	
 	
 	
-	//Personne cree
-	private PersonneInfo personne;
-	public  ContactAppli(CardLayout cardLayout2, JPanel contentPanel2){
+	
+
+
+		
+		
+		
+		
+		
+		
+		
+	private ArrayList<PersonneInfo> personne;	
+		
+		
+		
+		
+		public  ContactAppli(CardLayout cardLayout2, JPanel contentPanel2){
 		this.cardLayout2 = cardLayout2;
 		this.contentPanel2 = contentPanel2;
 		//caractristiques page
@@ -164,60 +177,65 @@ public class ContactAppli extends JPanel{
 		add(espacePanel2, BorderLayout.NORTH);
 		
 	
+	
+		
+		
 		
 		
 		
 		
 	}
 	
-	private void setFieldsText() 
-	{
-		prenom.setText(personne.getPrenom());
-		nom.setText(personne.getNom());
-		telephone.setText(personne.getTelephone());
-		adresse.setText(personne.getAdresse());
-		email.setText(personne.getEmail());
-	}
-	
-	public PersonneInfo getModifiedContact() 
-	{
-		personne.setPrenom(prenom.getText());
-		personne.setNom(nom.getText());
-		personne.setTelephone(telephone.getText());
-		personne.setAdresse(adresse.getText());
-		personne.setEmail(email.getText());
-		
-		
 
-		return personne;
-	}
 	
-	class AjouterContact extends Listener 
+	class AjouterContact  extends Listener
 	{
 		
 		public void actionPerformed(ActionEvent e) 
 		{
-			PersonneInfo contact = new PersonneInfo(prenomTxt,nomTxt, telephoneTxt, adresseTxt,emailTxt);
-			contact.setPrenom(prenom.getText());
-			contact.setNom(nom.getText());
-			contact.setTelephone(telephone.getText());
-			contact.setAdresse(adresse.getText());
-			contact.setEmail(email.getText());
+			 prenomTxt = prenom.getText();
+			 nomTxt= nom.getText();
+			 telephoneTxt =telephone.getText();
+			 adresseTxt = adresse.getText();
+			 emailTxt =email.getText();
+			
+			
+		personne.add(new PersonneInfo(prenomTxt,nomTxt, telephoneTxt,adresseTxt ,emailTxt));
+		try {
+			serializeObject(personne);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 
+		 JOptionPane.showInputDialog(this,"" + prenomTxt + nomTxt +emailTxt);
+		    cardLayout2.show(contentPanel2,  "contactPanel");
+	   
+	    
+	   
+	    
 		}
 		
-			public void serializeObject(ArrayList<PersonneInfo> contact) throws IOException 
-			{
-				FileOutputStream fichier = new FileOutputStream("Contacts/contacts.ser");
-				BufferedOutputStream bfichier = new BufferedOutputStream(fichier);
-				ObjectOutputStream obfichier = new ObjectOutputStream(bfichier);
-				obfichier.writeObject(contact);
-				obfichier.close();
-			}
-		}
+		
+		
+	}
+
+	public void serializeObject(ArrayList<PersonneInfo> personne) throws IOException 
+{
+	FileOutputStream fichier = new FileOutputStream("test.ser");
+	BufferedOutputStream bfichier = new BufferedOutputStream(fichier);
+	ObjectOutputStream obfichier = new ObjectOutputStream(bfichier);
+	obfichier.writeObject(personne);
+	obfichier.close();
+}
+
+
+
+			
+			
 		
 	
-
-		
+	
 	
 	class RetourContact extends Listener 
 	{
