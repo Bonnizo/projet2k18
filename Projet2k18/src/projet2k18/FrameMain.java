@@ -197,7 +197,7 @@ public class FrameMain extends JFrame implements Runnable{
 		photoPanel.setBackground(Color.RED);
 		photoPanel.setPreferredSize(new Dimension(400,670));
 		
-		
+		contactPanel.setBackground(Color.WHITE);
 	}
 	class btnsHome extends Listener {
 

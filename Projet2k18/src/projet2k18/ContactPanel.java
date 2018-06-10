@@ -16,18 +16,15 @@ import javax.swing.border.Border;
 
 public class ContactPanel extends JPanel {
 
-	// container
-
+	//image des boutons 
 	private ImageIcon rajouterContact = new ImageIcon("image/plus.png");
-
 	private ImageIcon effacerContact = new ImageIcon("image/close.png");
+	
+	
+	//image contact
 	private ImageIcon contactPhoto = new ImageIcon("image/close.png");
-	private JLabel contactPhotol = new JLabel(contactPhoto);
-	private JLabel contactPhotol2 = new JLabel(contactPhoto);
-	private JLabel contactPhotol3= new JLabel(contactPhoto);
-	private JLabel contactPhotol4= new JLabel(contactPhoto);
-	private JLabel contactPhotol5= new JLabel(contactPhoto);
-	private JLabel contactPhotol6= new JLabel(contactPhoto);
+	
+	
 	
 	// bouton contactPanel
 
@@ -37,15 +34,24 @@ public class ContactPanel extends JPanel {
 	// panel contactPanel
 	private JPanel contactPanel = new JPanel();
 
-	private JLabel contact = new JLabel("sadsadada");
-	private JLabel contact1 = new JLabel("saasdadada");
-	private JLabel contact2 = new JLabel("sadsadada");
-	private JLabel contact3 = new JLabel("sa23dada");
-	private JLabel contact4 = new JLabel("sa23dada");
-	private JLabel contact5 = new JLabel("sa23dada");
+	//creation du contact
+		private JLabel contact = new JLabel("sadsadada");
+		private JLabel contact1 = new JLabel("saasdadada");
+		private JLabel contact2 = new JLabel("sadsadada");
+		private JLabel contact3 = new JLabel("sa23dada");
+		private JLabel contact4 = new JLabel("sa23dada");
+		private JLabel contact5 = new JLabel("sa23dada");
 
-	// panel en plus
-	// panel liste contact
+	//creation label de l'image du contact 
+		private JLabel contactPhotol = new JLabel(contactPhoto);
+		private JLabel contactPhotol2 = new JLabel(contactPhoto);
+		private JLabel contactPhotol3= new JLabel(contactPhoto);
+		private JLabel contactPhotol4= new JLabel(contactPhoto);
+		private JLabel contactPhotol5= new JLabel(contactPhoto);
+		private JLabel contactPhotol6= new JLabel(contactPhoto);
+		
+	
+	// panel liste deroulante de contact 
 	private JPanel test = new JPanel();
 	private JScrollPane listeContacts = new JScrollPane(test);
 
@@ -53,21 +59,33 @@ public class ContactPanel extends JPanel {
 
 	private JPanel boutonContact = new JPanel();
 
+	
+
+	
+	
+	
 	// cardlayout contact
-	private CardLayout cardLayout2 = new CardLayout();
-	private JPanel contentPanel2 = new JPanel(cardLayout2);
+		private CardLayout cardLayout2 = new CardLayout();
+		private JPanel contentPanel2 = new JPanel(cardLayout2);
 
-	private GridLayout testlayout = new GridLayout(0,2);
-	// flow layout bouton
+		private ContactAppli contactAppli = new ContactAppli(cardLayout2, contentPanel2);
+		
+		
+		
+		
+		// grid layout, agencement colonne contact + photo
+		private GridLayout testlayout = new GridLayout(0,2);
 
-	private ContactAppli contactAppli = new ContactAppli(cardLayout2, contentPanel2);
 
+
+	
+	
+	
 	public ContactPanel() {
 
 		// caractristiques page
 
-		this.setBackground(Color.WHITE);
-		setOpaque(false);
+		
 		this.add(contentPanel2);
 
 		boutonContact.setBackground(Color.WHITE);

@@ -9,6 +9,11 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -19,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import projet2k18.FrameMain.boutonContact;
 import projet2k18.PersonneInfo;
@@ -49,6 +55,14 @@ public class ContactAppli extends JPanel{
 	private HintTextField email = new HintTextField("email");
 	
 	
+	//données
+	private String prenomTxt;
+	private  String nomTxt;
+	private  String telephoneTxt;
+	private  String adresseTxt;
+	private  String emailTxt;
+	
+	
 	//image
 	ImageIcon back = new ImageIcon("image/back.png");	
 	ImageIcon ok = new ImageIcon("image/correct.png");
@@ -57,7 +71,7 @@ public class ContactAppli extends JPanel{
 	
 	
 	private BoutonMenu annuler = new BoutonMenu(back, 40, new RetourContact());
-	private BoutonMenu correct = new BoutonMenu(ok, 40, new RetourContact());
+	private BoutonMenu correct = new BoutonMenu(ok, 40, new AjouterContact());
 
 	
 
@@ -178,22 +192,33 @@ public class ContactAppli extends JPanel{
 		return personne;
 	}
 	
-	public PersonneInfo getNewContact(int id) 
+	class AjouterContact extends Listener 
 	{
 		
-		return new PersonneInfo(id, prenom.getText(), nom.getText(), telephone.getText(), adresse.getText(),email.getText(), null);
-	}
-	//action bouton
-	class transfertData implements ActionListener 
-	{
-	
 		public void actionPerformed(ActionEvent e) 
 		{
-		System.out.println(PersonneInfo.prenom);
-		
+			PersonneInfo contact = new PersonneInfo(prenomTxt,nomTxt, telephoneTxt, adresseTxt,emailTxt);
+			contact.setPrenom(prenom.getText());
+			contact.setNom(nom.getText());
+			contact.setTelephone(telephone.getText());
+			contact.setAdresse(adresse.getText());
+			contact.setEmail(email.getText());
 		}
 		
-	}
+			public void serializeObject(ArrayList<PersonneInfo> contact) throws IOException 
+			{
+				FileOutputStream fichier = new FileOutputStream("Contacts/contacts.ser");
+				BufferedOutputStream bfichier = new BufferedOutputStream(fichier);
+				ObjectOutputStream obfichier = new ObjectOutputStream(bfichier);
+				obfichier.writeObject(contact);
+				obfichier.close();
+			}
+		}
+		
+	
+
+		
+	
 	class RetourContact extends Listener 
 	{
 		@Override
