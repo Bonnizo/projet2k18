@@ -20,13 +20,13 @@ public class NorthPanel extends JPanel{
 	private JLabel lblHour = new JLabel();
 	private Calendar now = Calendar.getInstance();
 	DateFormat hhmm = new SimpleDateFormat("HH:mm");
-	Timer timer = new Timer(0,new CurrentTime());
+	Timer timer = new Timer(5000,new CurrentTime());
 	
 	
 	public NorthPanel() {
 		// TODO Auto-generated constructor stub
 		
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout());
 		setBackground(Color.BLACK);
 		JPanel topRightPanel = new JPanel();
 		topRightPanel.setBackground(Color.BLACK);
@@ -51,14 +51,15 @@ public class NorthPanel extends JPanel{
 		lblOperator.setFont(new Font("Tahoma", Font.BOLD, 12));
 		topLeftPanel.add(lblOperator);
 		lblOperator.setForeground(Color.WHITE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.BLACK);
+		add(panel, BorderLayout.CENTER);
+		
+		JLabel lblEspacew = new JLabel("                                                                            ");
+		panel.add(lblEspacew);
 		timer.start();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.add(lblHour);
+		//add(lblHour);
 	}
 	
 	class CurrentTime implements ActionListener 
@@ -66,8 +67,8 @@ public class NorthPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			Calendar cal = Calendar.getInstance();
-			lblHour.setText(hhmm.format(cal.getTime()));
+			now = Calendar.getInstance();
+			lblHour.setText(hhmm.format(now.getTime()));
 		}
 	}
 

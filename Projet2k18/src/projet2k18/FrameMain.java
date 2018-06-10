@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
@@ -32,8 +33,7 @@ public class FrameMain extends JFrame implements Runnable{
 	// menu de navigation
 	private JPanel navigationPanel = new JPanel();
 
-	// panel photo
-	private JPanel photoPanel = new JPanel();
+	
 		
 	
 
@@ -101,6 +101,9 @@ public class FrameMain extends JFrame implements Runnable{
 	private SettingsPanel settings = new SettingsPanel(cardLayout, contentPanel);
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
+	// panel photo
+	private GalleryPanel photoPanel = new GalleryPanel(cardLayout, contentPanel);
+	
 	// panel contact
 	private ContactPanel contactPanel = new ContactPanel();
 	//jeu
@@ -113,12 +116,14 @@ public class FrameMain extends JFrame implements Runnable{
 	public FrameMain() {
 
 		// Frame
-
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double screenWidth = screenSize.getWidth();
+		double screenHeight = screenSize.getHeight();
 		// frame caractéristiques
 		setResizable(false);
 		setUndecorated(true);
 		setBackground(Color.BLACK);
-		setLocation(200, 100);
+		setLocation((int)(screenWidth/2)-240, (int)(screenHeight/2)-410);
 		//setSize(480, 800);
 		//setShape(new RoundRectangle2D.Double(20, 0, 440, 735, 20, 20));
 		setSize(480, 820);
@@ -194,7 +199,7 @@ public class FrameMain extends JFrame implements Runnable{
 		
 		//TESTER CARDLAYOUT
 		
-		photoPanel.setBackground(Color.RED);
+		//photoPanel.setBackground(Color.RED);
 		photoPanel.setPreferredSize(new Dimension(400,670));
 		
 		contactPanel.setBackground(Color.WHITE);
