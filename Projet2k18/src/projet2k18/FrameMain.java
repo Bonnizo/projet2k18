@@ -32,8 +32,7 @@ public class FrameMain extends JFrame implements Runnable{
 	// menu de navigation
 	private JPanel navigationPanel = new JPanel();
 
-	// panel photo
-	private JPanel photoPanel = new JPanel();
+	
 		
 	
 
@@ -101,6 +100,9 @@ public class FrameMain extends JFrame implements Runnable{
 	private SettingsPanel settings = new SettingsPanel(cardLayout, contentPanel);
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
+	// panel photo
+	private GalleryPanel photoPanel = new GalleryPanel(cardLayout, contentPanel);
+	
 	// panel contact
 	private ContactPanel contactPanel = new ContactPanel();
 	//jeu
@@ -194,7 +196,7 @@ public class FrameMain extends JFrame implements Runnable{
 		
 		//TESTER CARDLAYOUT
 		
-		photoPanel.setBackground(Color.RED);
+		//photoPanel.setBackground(Color.RED);
 		photoPanel.setPreferredSize(new Dimension(400,670));
 		
 		
