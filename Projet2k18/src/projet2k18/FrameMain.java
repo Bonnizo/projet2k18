@@ -1,5 +1,6 @@
 package projet2k18;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,12 +14,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class FrameMain extends JFrame {
+public class FrameMain extends JFrame implements Runnable{
 
 	// liste jPanel
 	// Smartphone solide (contour )
@@ -104,7 +106,7 @@ public class FrameMain extends JFrame {
 	//jeu
 	private JeuPanel jeuPanel = new JeuPanel();
 		
-	
+	private NorthPanel nPanel = new NorthPanel();
 	
 	
 
@@ -117,13 +119,18 @@ public class FrameMain extends JFrame {
 		setUndecorated(true);
 		setBackground(Color.BLACK);
 		setLocation(200, 100);
-		setSize(480, 800);
-		setShape(new RoundRectangle2D.Double(20, 0, 440, 735, 20, 20));
+		//setSize(480, 800);
+		//setShape(new RoundRectangle2D.Double(20, 0, 440, 735, 20, 20));
+		setSize(480, 820);
+		setShape(new RoundRectangle2D.Double(20, 0, 440, 765, 20, 20));
+		
 		
 		// Smartphone
-
+		//smartphonePanel.setLayout(new BorderLayout());
 		setContentPane(smartphonePanel);
 		smartphonePanel.setOpaque(false);
+		
+		smartphonePanel.add(nPanel);
 		smartphonePanel.add(contentPanel);
 		smartphonePanel.add(navigationPanel);
 
@@ -310,5 +317,19 @@ public class FrameMain extends JFrame {
 		}
 		
 		return str;
+	}
+
+	
+	@Override
+	public void run() {
+		try {
+			while (true) {
+				
+				Thread.sleep(5000);
+				System.out.println("test");
+			}
+		} catch (InterruptedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
