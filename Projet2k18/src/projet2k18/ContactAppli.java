@@ -11,8 +11,11 @@ import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -53,14 +56,14 @@ public class ContactAppli extends JPanel{
 	private HintTextField telephone = new HintTextField("telephone");
 	private HintTextField adresse = new HintTextField("adresse");
 	private HintTextField email = new HintTextField("email");
+	private HintTextField prenomDefaut = new HintTextField("prenom");
+	private HintTextField nomDefaut= new HintTextField("nom");
+	private HintTextField telephoneDefaut = new HintTextField("telephone");
+	private HintTextField adresseDefaut = new HintTextField("adresse");
+	private HintTextField emailDefaut = new HintTextField("email");
 	
 	
-	//données
-	private String prenomTxt;
-	private  String nomTxt;
-	private  String telephoneTxt;
-	private  String adresseTxt;
-	private  String emailTxt;
+	
 	
 	
 	//image
@@ -90,19 +93,12 @@ public class ContactAppli extends JPanel{
 	private CardLayout cardLayout2;
 	private JPanel contentPanel2; 
 	
+		
+	//Création des contacts
+	//liste utilisée pour la serialization
+	public ArrayList PersonneListe = new ArrayList();
 	
-	
-	
-
-
 		
-		
-		
-		
-		
-		
-		
-	private ArrayList<PersonneInfo> personne;	
 		
 		
 		
@@ -190,49 +186,42 @@ public class ContactAppli extends JPanel{
 	
 	class AjouterContact  extends Listener
 	{
-		
-		public void actionPerformed(ActionEvent e) 
-		{
-			 prenomTxt = prenom.getText();
-			 nomTxt= nom.getText();
-			 telephoneTxt =telephone.getText();
-			 adresseTxt = adresse.getText();
-			 emailTxt =email.getText();
-			
-			
-		personne.add(new PersonneInfo(prenomTxt,nomTxt, telephoneTxt,adresseTxt ,emailTxt));
-		try {
-			serializeObject(personne);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		public void actionPerformed(ActionEvent e) {
+			cardLayout2.show(contentPanel2, "contactPanel");
+			  
+			  
+			  try {
+				  
+				  ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerialisationContact/contact.zer"));
+				  
+				  
+				  PersonneInfo contactCree = new PersonneInfo(prenom.getText(), nom.getText(), telephone.getText(),adresse.getText(), email.getText());
+				  PersonneListe.add(contactCree);
+				  
+				  
+				  for(int i=0; i<PersonneListe.size(); i++){
+					 os.writeObject(PersonneListe.get(i));
+					 }
+				  
+				  os.close();
+			  }
+			  catch (FileNotFoundException f) {
+				  
+				  f.printStackTrace();
+			  }catch (IOException f) {
+			  f.printStackTrace();
+			  
+			  }	
+			  	prenom.setText(prenomDefaut.getText());
+				 nom.setText(nomDefaut.getText());
+				 telephone.setText(telephoneDefaut.getText()); 
+				 adresse.setText(adresseDefaut.getText()); 
+				email.setText(emailDefaut.getText()); 
+
 		}
-		 
-		 JOptionPane.showInputDialog(this,"" + prenomTxt + nomTxt +emailTxt);
-		    cardLayout2.show(contentPanel2,  "contactPanel");
-	   
-	    
-	   
-	    
-		}
-		
-		
-		
 	}
 
-	public void serializeObject(ArrayList<PersonneInfo> personne) throws IOException 
-{
-	FileOutputStream fichier = new FileOutputStream("test.ser");
-	BufferedOutputStream bfichier = new BufferedOutputStream(fichier);
-	ObjectOutputStream obfichier = new ObjectOutputStream(bfichier);
-	obfichier.writeObject(personne);
-	obfichier.close();
-}
-
-
-
-			
-			
+	
 		
 	
 	
@@ -243,6 +232,11 @@ public class ContactAppli extends JPanel{
 		public void actionPerformed(ActionEvent e) 
 		{
 			cardLayout2.show(contentPanel2,  "contactPanel");
+			 prenom.setText(prenomDefaut.getText()); 
+			 nom.setText(nomDefaut.getText());
+			 telephone.setText(telephoneDefaut.getText()); 
+			 adresse.setText(adresseDefaut.getText()); 
+			email.setText(emailDefaut.getText()); 
 		}
 	}
 	

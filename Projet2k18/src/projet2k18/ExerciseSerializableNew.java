@@ -14,8 +14,13 @@ public class ExerciseSerializableNew {
 	  
 	  
 	  ArrayList PersonneListe = new ArrayList();
+	
+	  
+	  
+	  
 	  PersonneInfo arthur = new PersonneInfo("prenom", "prenom", "prenom", "prenom", "prenom");
 
+	  
 
 	  PersonneInfo arthur2 = new PersonneInfo("prenom2","prenom2","prenom2","prenom2","prenom2");
 	 
@@ -23,12 +28,15 @@ public class ExerciseSerializableNew {
 	  PersonneListe.add(arthur);
 	  PersonneListe.add(arthur2);
 	 
+	  
+	  
 	  try {
 		  File text = new File ("SerialisationContact/contact.zer");
 		  ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerialisationContact/contact.zer"));
 		  
 		  for(int i=0; i<PersonneListe.size(); i++){
 			 os.writeObject(PersonneListe.get(i));
+			 
 			 }
 		  
 		  os.close();

@@ -18,7 +18,7 @@ public class PersonneInfo implements Serializable{
 
 	
 	
-	public PersonneInfo(String prenom, String nom, String adresse, String telephone,String email){
+	public PersonneInfo(String prenom, String nom, String telephone, String adresse,String email){
 		
 		this.prenom = prenom;
 		this.nom = nom ;
