@@ -32,7 +32,6 @@ import javax.swing.ImageIcon;
 public class LockedScreenPanel extends JPanel implements Runnable {
 	private JLabel lblMinuteBig = new JLabel();	
 	private JLabel lblHourBig = new JLabel();
-	private JLabel lblHour = new JLabel();
 	
 	private int xBegin = 0;
 	private int yBegin = 0;
@@ -43,6 +42,8 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	private Thread th;
 	private CardLayout cardLayout;
 	private JPanel contentPanel;
+	
+	private NorthPanel nPanel;
 	
 	
 	public LockedScreenPanel(CardLayout cardLayout, JPanel contentPanel) {
@@ -65,7 +66,7 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    lblWallpaper.setIcon(new ImageIcon("Photo/wallpaper.jpg"));
 	    lblWallpaper.setForeground(Color.WHITE);
 	    lblWallpaper.setBackground(Color.RED);
-	    lblWallpaper.setBounds(0, -12, 450, 675); 
+	    lblWallpaper.setBounds(0, 0, 470, 700); 
 	    centerPanel.add(lblWallpaper);
 	    
 	   
@@ -99,36 +100,9 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    lblUnlock.setBounds(65, 520, 304, 110);
 	    centerPanel.add(lblUnlock);
 	    
+	    /*nPanel = new NorthPanel();
+	    add(nPanel, BorderLayout.NORTH);*/
 	    
-	    JPanel northPanel = new JPanel();
-	    add(northPanel, BorderLayout.NORTH);
-	    northPanel.setBackground(Color.BLACK);
-	    northPanel.setLayout(new BorderLayout(0, 0));
-	    
-	    JPanel topRightPanel = new JPanel();
-	    topRightPanel.setBackground(Color.BLACK);
-	    northPanel.add(topRightPanel, BorderLayout.EAST);
-	    topRightPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
-	    
-	    lblHour.setText(String.format("%02d:%02d", now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE)));
-	    lblHour.setFont(new Font("Tahoma", Font.BOLD, 12));
-	    topRightPanel.add(lblHour);
-	    lblHour.setForeground(Color.WHITE);
-	    
-	    JLabel lblCharge = new JLabel("100%");
-	    lblCharge.setFont(new Font("Tahoma", Font.BOLD, 12));
-	    topRightPanel.add(lblCharge);
-	    lblCharge.setForeground(Color.WHITE);
-	    
-	    
-	     JPanel topLeftPanel = new JPanel();
-	     topLeftPanel.setBackground(Color.BLACK);
-	     northPanel.add(topLeftPanel, BorderLayout.WEST);
-	     
-	     JLabel lblOperator= new JLabel("Swisscom");
-	     lblOperator.setFont(new Font("Tahoma", Font.BOLD, 12));
-	     topLeftPanel.add(lblOperator);
-	     lblOperator.setForeground(Color.WHITE);
 	     
 	     MouseListener ml = new MouseAdapter() {
 				@Override
@@ -191,11 +165,16 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	public void run() {
 		try {
 			while (true) {
+				
 				Thread.sleep(5000);
 				now = Calendar.getInstance();
 				lblHourBig.setText(String.format("%02d", now.get(Calendar.HOUR_OF_DAY)));
 				lblMinuteBig.setText(String.format("%02d",now.get(Calendar.MINUTE)));
-				lblHour.setText(String.format("%02d:%02d", now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE)));
+				
+				/*remove(nPanel);
+				nPanel = new NorthPanel();
+				add(nPanel, BorderLayout.NORTH);
+				revalidate();*/
 				repaint();
 			}
 		} catch (InterruptedException e) {
