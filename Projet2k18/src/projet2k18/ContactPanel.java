@@ -85,7 +85,7 @@ public class ContactPanel extends JPanel {
 
 		// caractristiques page
 
-		
+		//
 		this.add(contentPanel2);
 
 		boutonContact.setBackground(Color.WHITE);
