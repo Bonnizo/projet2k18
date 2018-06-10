@@ -37,7 +37,7 @@ public class GalleryPanel extends JPanel{
 	private ImageIcon icon;
 	private CardLayout cardLayout;
 	private JPanel contentPanel;
-	
+	private Boolean isSelected = false;
 	
 	public GalleryPanel(CardLayout cardLayout, JPanel contentPanel) {
 		
@@ -69,6 +69,8 @@ public class GalleryPanel extends JPanel{
 		lblRetour.addMouseListener(new returnMenu());
 		lblRetour.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblSelect = new JLabel("Select");
+		lblSelect.addMouseListener(new returnMenu());
+		lblSelect.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel.add(lblSelect, BorderLayout.EAST);
 		    
 	}
@@ -76,7 +78,21 @@ public class GalleryPanel extends JPanel{
 	
 	class returnMenu extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
-			cardLayout.show(contentPanel, "menu");
+			if(e.getSource().equals(lblSelect)) {
+				if(!isSelected) {
+					isSelected = true;
+					lblSelect.setText("selection");
+				}
+				else if(isSelected) {
+					isSelected = false;
+					lblSelect.setText("select");
+				}
+			}
+			else if(e.getSource().equals(lblRetour)) {
+				cardLayout.show(contentPanel, "menu");
+				isSelected = false;
+			}
+			
 		}
 		
 	}
