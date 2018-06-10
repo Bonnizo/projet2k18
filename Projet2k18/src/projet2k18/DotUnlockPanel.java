@@ -150,7 +150,6 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 							//System.out.println(finalPatternConfirm);
 							if(!finalPattern.isEmpty() && !finalPatternConfirm.isEmpty()) {
 								if(finalPattern.equals(finalPatternConfirm)) {
-									System.out.println("code semblable");
 									
 									//ecriture du nouveau code dans le fichier scheme
 									//retour au panel menu
@@ -260,7 +259,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 
 		
-		 try { Image img = ImageIO.read(new File("Photo/wallpaper.jpg"));
+		 try { Image img = ImageIO.read(new File("image/wallpaper.jpg"));
 		 g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 		  
 		  

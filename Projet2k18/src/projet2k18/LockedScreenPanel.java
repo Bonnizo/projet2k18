@@ -63,7 +63,7 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 	    lblMinuteBig.setText(String.format("%02d",now.get(Calendar.MINUTE)));;
 	    
 	    JLabel lblWallpaper = new JLabel();
-	    lblWallpaper.setIcon(new ImageIcon("Photo/wallpaper.jpg"));
+	    lblWallpaper.setIcon(new ImageIcon("image/wallpaper.jpg"));
 	    lblWallpaper.setForeground(Color.WHITE);
 	    lblWallpaper.setBackground(Color.RED);
 	    lblWallpaper.setBounds(0, 0, 470, 700); 
@@ -171,10 +171,6 @@ public class LockedScreenPanel extends JPanel implements Runnable {
 				lblHourBig.setText(String.format("%02d", now.get(Calendar.HOUR_OF_DAY)));
 				lblMinuteBig.setText(String.format("%02d",now.get(Calendar.MINUTE)));
 				
-				/*remove(nPanel);
-				nPanel = new NorthPanel();
-				add(nPanel, BorderLayout.NORTH);
-				revalidate();*/
 				repaint();
 			}
 		} catch (InterruptedException e) {

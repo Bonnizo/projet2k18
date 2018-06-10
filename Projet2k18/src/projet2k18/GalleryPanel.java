@@ -64,6 +64,7 @@ public class GalleryPanel extends JPanel {
 		gImage = new GridImage();
 
 		scroll = new JScrollPane(gImage);
+		scroll.getVerticalScrollBar().setUnitIncrement(16);
 		container.add(scroll);
 		add(container, BorderLayout.CENTER);
 	}
