@@ -11,6 +11,7 @@ import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedOutputStream;
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -51,16 +52,16 @@ public class ContactAppli extends JPanel{
 	
 	
 	// Texfield
-	private HintTextField prenom = new HintTextField("prenom");
-	private HintTextField nom = new HintTextField("nom");
-	private HintTextField telephone = new HintTextField("telephone");
-	private HintTextField adresse = new HintTextField("adresse");
-	private HintTextField email = new HintTextField("email");
-	private HintTextField prenomDefaut = new HintTextField("prenom");
-	private HintTextField nomDefaut= new HintTextField("nom");
-	private HintTextField telephoneDefaut = new HintTextField("telephone");
-	private HintTextField adresseDefaut = new HintTextField("adresse");
-	private HintTextField emailDefaut = new HintTextField("email");
+	private static HintTextField prenom = new HintTextField("prenom");
+	private static HintTextField nom = new HintTextField("nom");
+	private static HintTextField telephone = new HintTextField("telephone");
+	private static HintTextField adresse = new HintTextField("adresse");
+	private static HintTextField email = new HintTextField("email");
+	private static HintTextField prenomDefaut = new HintTextField("prenom");
+	private static HintTextField nomDefaut= new HintTextField("nom");
+	private static HintTextField telephoneDefaut = new HintTextField("telephone");
+	private static HintTextField adresseDefaut = new HintTextField("adresse");
+	private static HintTextField emailDefaut = new HintTextField("email");
 	
 	
 	
@@ -96,7 +97,7 @@ public class ContactAppli extends JPanel{
 		
 	//Création des contacts
 	//liste utilisée pour la serialization
-	public ArrayList PersonneListe = new ArrayList();
+	public ArrayList <PersonneInfo> PersonneListe = new ArrayList<PersonneInfo>();
 	
 		
 		
@@ -176,7 +177,7 @@ public class ContactAppli extends JPanel{
 	
 		
 		
-		
+		 
 		
 		
 		
@@ -188,36 +189,7 @@ public class ContactAppli extends JPanel{
 	{
 		public void actionPerformed(ActionEvent e) {
 			cardLayout2.show(contentPanel2, "contactPanel");
-			  
-			  
-			  try {
-				  
-				  ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerialisationContact/contact.zer"));
-				  
-				  
-				  PersonneInfo contactCree = new PersonneInfo(prenom.getText(), nom.getText(), telephone.getText(),adresse.getText(), email.getText());
-				  PersonneListe.add(contactCree);
-				  
-				  
-				  for(int i=0; i<PersonneListe.size(); i++){
-					 os.writeObject(PersonneListe.get(i));
-					 }
-				  
-				  os.close();
-			  }
-			  catch (FileNotFoundException f) {
-				  
-				  f.printStackTrace();
-			  }catch (IOException f) {
-			  f.printStackTrace();
-			  
-			  }	
-			  	prenom.setText(prenomDefaut.getText());
-				 nom.setText(nomDefaut.getText());
-				 telephone.setText(telephoneDefaut.getText()); 
-				 adresse.setText(adresseDefaut.getText()); 
-				email.setText(emailDefaut.getText()); 
-
+			
 		}
 	}
 
@@ -232,12 +204,28 @@ public class ContactAppli extends JPanel{
 		public void actionPerformed(ActionEvent e) 
 		{
 			cardLayout2.show(contentPanel2,  "contactPanel");
-			 prenom.setText(prenomDefaut.getText()); 
+			 //prenom.setText(prenomDefaut.getText()); 
 			 nom.setText(nomDefaut.getText());
 			 telephone.setText(telephoneDefaut.getText()); 
 			 adresse.setText(adresseDefaut.getText()); 
 			email.setText(emailDefaut.getText()); 
+			
+			
 		}
 	}
-	
+
+	public static void infoTransfert(PersonneInfo info1) {
+		// TODO Auto-generated method stub
+		String prenomFinal = prenom.getText();
+		String nomFinal = nom.getText();
+		String telephoneFinal = telephone.getText();
+		String adresseFinal = adresse.getText();
+		String emailFinal = email.getText();
+		
+		info1.prenom = prenomFinal;
+		info1.nom = nomFinal ;
+		info1.telephone = telephoneFinal;
+		info1.adresse = adresseFinal ;
+		info1.email= emailFinal;
+	}
 }

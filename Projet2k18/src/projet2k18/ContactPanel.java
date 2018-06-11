@@ -6,17 +6,25 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
+
+import projet2k18.ContactAppli;
+import projet2k18.PersonneInfo;
 
 public class ContactPanel extends JPanel {
 
@@ -64,20 +72,22 @@ public class ContactPanel extends JPanel {
 		
 		
 		// grid layout, agencement colonne contact + photo
-		private GridLayout layoutContact = new GridLayout(0,2);
+		private GridLayout layoutContact = new GridLayout(0,1);
 	
 		
 		//document contact
-
-		//liste definitive
-		ArrayList PersonneListeFinale = new ArrayList();
-
 		
+		//liste definitive
+	 ArrayList <PersonneInfo> enCours = new ArrayList <PersonneInfo>();
+	 ArrayList <PersonneInfo> finale = new ArrayList <PersonneInfo>();
+		
+	 
 	
+		
 	public ContactPanel() {
 		//couleur base
 		contactPanel.setBackground(Color.WHITE);
-
+		annuaire.setLayout(layoutContact);
 		
 		
 		//panel organise cardlayout
@@ -127,43 +137,65 @@ public class ContactPanel extends JPanel {
 
 		
 		//ajouter contact list 
+
+		PersonneInfo info1 =new PersonneInfo(null,null,null,null,null);
+		ContactAppli.infoTransfert(info1);
+		PersonneInfo info2 =new PersonneInfo("bw333blba","blablba","blablba","blablba","blablba");
+		PersonneInfo info3 =new PersonneInfo("bw333blba","blablba","blablba","blablba","blablba");
+		PersonneInfo info4 =new PersonneInfo("bw333blba","blablba","blablba","blablba","blablba");
+		enCours.add(info1);
+		enCours.add(info2);	
+		enCours.add(info3);
+		enCours.add(info4);
 		
-		
-		
-		  try {
-			  ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerialisationContact/contact.zer"));
-			 
-			  while(true)
-				{
-				  
-				 
-				   PersonneInfo p = (PersonneInfo) is.readObject();
-				   System.out.println("Read name"+ p.prenom + " "+p.nom+" "+p.adresse+" "+p.telephone+" "+p.email);
-				} 
-	
-			 
-		  }
-		  catch (FileNotFoundException e) {
-			  
-			  e.printStackTrace();
-		  }catch (IOException e) {
-		  e.printStackTrace();
-		  
-		  }catch (ClassNotFoundException e) {
-			  e.printStackTrace();
-		  }
-		  
-		
-		
-		
-	
-		listeContacts.revalidate();
+		try {
+			 FileOutputStream out = new FileOutputStream("Contact.ser" );
+			 ObjectOutputStream oos = new ObjectOutputStream( out );
+			for(int i = 0; i<enCours.size();i++) {
+			 oos.writeObject(enCours.get(i) );}
+			
+			 oos.close();
+			} catch(IOException f) {
+			 // … 
 	}
+		try {
+			 FileInputStream in = new FileInputStream("Contact.ser" );
+			 ObjectInputStream ois = new ObjectInputStream( in );
+			
+			 for (int i = 0; i<enCours.size();i++) {
+			 PersonneInfo d = (PersonneInfo) ois.readObject();
+			 finale.add(d);
+			 }
+			 ois.close();
+			} catch(IOException e) {
+			 // …
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		for(int i =0 ; i<finale.size(); i++) {
+		JLabel test = new JLabel(finale.get(i).getPrenom()+" "+finale.get(i).getNom()+" "+finale.get(i).getTelephone()+" "+finale.get(i).getAdresse()+" "+finale.get(i).getEmail()+" ");
+		test.setPreferredSize(new Dimension(300,400));
+		annuaire.add(test);
+		}
+		
+		
+		
+		
+		listeContacts.revalidate();
+		
+		
+	}
+	
+
 
 	class boutonContact extends Listener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			cardLayout2.show(contentPanel2, "contactAppli");
+			
+			
 		}
 	}
 
