@@ -17,9 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
 /**
- * <b>LockedScreenPanel est un classe héritant de JPanel.</b>
+ * <b>LockedScreenPanel est une classe héritant de JPanel.</b>
  * <p>
- * C'est le premier panel afficher lors du démaragge de l'application: Ce panel
+ * C'est le premier panel afficher lors du démarrage de l'application: Ce panel
  * affiche l'heure, et un fond d'écran
  * </p>
  * <p>
@@ -28,7 +28,6 @@ import javax.swing.ImageIcon;
  * </p>
  * <p>
  * Si un modèle est enregistré, le Drag&Drop affichera le panel DotUnlockPanel
- * <br />
  * Sinon, le HomeScreenPanel sera affiché
  * </p>
  * 

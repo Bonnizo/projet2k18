@@ -21,23 +21,31 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.Timer;
-import java.awt.BorderLayout;
-
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import java.awt.Component;
 import java.awt.Font;
-
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+/**
+ * <b>DotUnlockPanel est une classe héritant de JPanel.</b>
+ * <p>
+ * C'est le panel permettant la gestion du schema de déverouillage.
+ * </p>
+ * <p>
+ * Il permet la comparaison entre le schema enregistré et le schema dessiné par l'utilisateur. 
+ * Si les deux codes correspondent, on affichera le HomeScreenPanel</p>
+ * <p>
+ * Si ce panel est généré à partir de SettingsPannel, il permet la modification du schema enregistré.
+ * </p>
+ * 
+ * @see SettingsPannel
+ * @see HomeScreenPanel
+ * @author Nathan Bovier
+ * @version 1.0
+ */
 public class DotUnlockPanel extends JPanel implements Runnable {
 
 	// Déclaration des constantes
