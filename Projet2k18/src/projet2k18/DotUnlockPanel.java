@@ -35,10 +35,13 @@ import javax.swing.SwingConstants;
  * C'est le panel permettant la gestion du schema de déverouillage.
  * </p>
  * <p>
- * Il permet la comparaison entre le schema enregistré et le schema dessiné par l'utilisateur. 
- * Si les deux codes correspondent, on affichera le HomeScreenPanel</p>
+ * Il permet la comparaison entre le schema enregistré et le schema dessiné par
+ * l'utilisateur. Si les deux codes correspondent, on affichera le
+ * HomeScreenPanel
+ * </p>
  * <p>
- * Si ce panel est généré à partir de SettingsPannel, il permet la modification du schema enregistré.
+ * Si ce panel est généré à partir de SettingsPannel, il permet la modification
+ * du schema enregistré.
  * </p>
  * 
  * @see SettingsPannel
@@ -48,26 +51,58 @@ import javax.swing.SwingConstants;
  */
 public class DotUnlockPanel extends JPanel implements Runnable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// Déclaration des constantes
+
+	/**
+	 * La couleur du trait de dessin.
+	 */
 	private final Color INK = new Color(255, 255, 255);
+
+	/**
+	 * La couleur des points.
+	 */
 	private final Color DOT = Color.WHITE;
 
 	// Déclaration des tableaux/Listes
+
+	/**
+	 * Tableau de points de dessin utilisés ou non.
+	 */
 	private boolean trues[] = new boolean[9];
+
+	/**
+	 * Tableau de zones permettant de savoir si le curseur passe proche d'un point.
+	 */
 	private Rectangle rect[] = new Rectangle[9];
+
+	/**
+	 * Tableau qui stock le code dessiné. Chaque point correspond a un entier de 1 à
+	 * 9. Quand la souris passe proche d'un point, on ajoute sa valeur au tableau.
+	 */
 	private int pattern[] = new int[9];
+
+	/**
+	 * Tableau qui stock les traits dessinés. Un trait correspond à la ligne
+	 * dessinée entre 2 points.
+	 */
 	private List<Line2D.Double> lines = new ArrayList<>();
 
 	// Déclaration des variables
+	/**
+	 * Thread de renouvellement du panel
+	 */
 	private Thread th;
 	private Graphics2D g;
 	private int startx, starty, endx, endy, enddx, enddy;
 	private int end, start, index = 1, stroke = 2, time = 5;
 	private int incw = 10, oncw;
 	private boolean drawing = false;
-	private String patt = "";
 	private Timer timer;
-	private JLabel output;
 	private String finalPattern = "";
 	private String finalPatternConfirm = "";
 
@@ -76,13 +111,27 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	private Boolean changeCode;
 	private JLabel lblTxt;
 
+	/**
+	 * Constructeur DotUnlockPanel.
+	 * <p>
+	 * A la construction d'un objet LockedScreenPanel, on créé un Thread qui
+	 * raffraichira l'heure. On créer les Labels d'affichage.
+	 * 
+	 * </p>
+	 *
+	 * @param cardLayout :
+	 *            L'objet CardLayout permet la navigation entre les panels
+	 * @param contentPanel :
+	 *            Le panel qui contiendra tous les autres panels
+	 * @param changeCode :
+	 * 			  Variable permettant de savoir si le panel ets en mode changement de code ou déverouillage.
+	 * 	
+	 */
 	public DotUnlockPanel(CardLayout cardLayout, JPanel contentPanel, Boolean changeCode) {
 		this.cardLayout = cardLayout;
 		this.contentPanel = contentPanel;
 		this.changeCode = changeCode;
-		
-		
-		
+
 		setBackground(Color.BLACK);
 
 		try {
@@ -90,14 +139,13 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			th = new Thread(this);
 			setOpaque(false);
 			setLayout(null);
-			
-			if(changeCode) {
+
+			if (changeCode) {
 				lblTxt = new JLabel("Veuillez dessiner votre nouveau modèle");
-			}
-			else {
+			} else {
 				lblTxt = new JLabel("Dessiner le modèle de déverrouillage");
 			}
-			
+
 			lblTxt.setHorizontalAlignment(SwingConstants.CENTER);
 			lblTxt.setForeground(Color.WHITE);
 			lblTxt.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -107,11 +155,10 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			ActionListener al = new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
-					
-					
+
 					if (time == 0) {
-						
-						//Déverouillage
+
+						// Déverouillage
 						if (!changeCode) {
 							// check si le modèle dessiné correspond au modèle
 							// enregistré
@@ -131,10 +178,10 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 								lblTxt.setText("Modèle incorrect dessiné");
 								resetScreen();
 							}
-						} 
-						//Changement de code
+						}
+						// Changement de code
 						else {
-							
+
 							if (finalPattern.isEmpty()) {
 								for (int numDot : pattern) {
 
@@ -144,7 +191,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 									}
 								}
 							} else {
-								
+
 								for (int numDot : pattern) {
 
 									if (numDot > 0) {
@@ -154,28 +201,26 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 									}
 								}
 							}
-							//System.out.println(finalPattern);
-							//System.out.println(finalPatternConfirm);
-							if(!finalPattern.isEmpty() && !finalPatternConfirm.isEmpty()) {
-								if(finalPattern.equals(finalPatternConfirm)) {
-									
-									//ecriture du nouveau code dans le fichier scheme
-									//retour au panel menu
+
+							if (!finalPattern.isEmpty() && !finalPatternConfirm.isEmpty()) {
+								if (finalPattern.equals(finalPatternConfirm)) {
+
+									// ecriture du nouveau code dans le fichier scheme
+									// retour au panel menu
 									FileWriter fw;
 									try {
 										fw = new FileWriter(new File("scheme"));
 										fw.write(finalPattern);
 										fw.close();
-										
+
 									} catch (IOException e1) {
 										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									}
 									cardLayout.show(contentPanel, "menu");
 									resetScreen();
-									
-								}
-								else {
+
+								} else {
 									finalPatternConfirm = "";
 									finalPattern = "";
 								}
@@ -214,7 +259,6 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 				@Override
 				public void mouseReleased(MouseEvent me) {
 					drawing = false;
-					printPattern();
 					time = 2;
 					timer.start();
 				}
@@ -263,19 +307,30 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	/**
+     * Affiche l'image de fond.
+     * 
+     * @param g
+     * 			composant Graphics par défaut.
+     * 
+     */
 	public void paintComponent(Graphics g) {
-
-		
-		 try { Image img = ImageIO.read(new File("image/wallpaper.jpg"));
-		 g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-		  
-		  
-		 } catch (IOException e) { // TODO Auto-generated catch block
-		 e.printStackTrace(); }
-		 
+		try {
+			Image img = ImageIO.read(new File("image/wallpaper.jpg"));
+			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+		} catch (IOException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
+	/**
+     * Affiche les points du modèle de déverouillage.
+     * 
+     * @param g2
+     * 			composant Graphics2D ammélioré.
+     * 
+     */
 	@Override
 	public void paint(Graphics g2) {
 		// Graphics2D est un enfant de Graphics qui permet de dessiner mieux
@@ -329,13 +384,25 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 			}
 		}
 	}
-	
-	
+
+	/**
+     * Fonction de comparaison entre code stocké et code dessiné.
+     * 
+     * @return true :
+     * 			Si les schémas sont identiques.
+     * <br />
+     * false:
+     * 			Si les schémas ne correspondent pas.
+     * 
+     * @see DotUnlockPanel#finalPattern
+     * 
+     */
 	private Boolean compareSchemeCode() {
 		File file = new File("scheme");
 		FileReader fr;
 		String str = "";
-
+		
+		//lecture du fichier scheme stocké
 		try {
 			fr = new FileReader(file);
 			int i = 0;
@@ -349,12 +416,24 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//Comparaison des 2 schemas
 		if (str.equals(finalPattern)) {
 			return true;
 		}
 		return false;
 	}
 
+	/**
+     * Fonction de réinitialisation de l'écran.<br />
+     * Le timer s'arrête, les variables du schema sont remises à zéro. <br />
+     * les lignes s'effacent.
+     * 
+     * 
+     * @see DotUnlockPanel#clearPattern()
+     * @see DotUnlockPanel#makeFalse()
+     * 
+     */
 	private void resetScreen() {
 		if (timer.isRunning()) {
 			timer.stop();
@@ -364,27 +443,24 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 		lines.clear();
 		makeFalse();
 	}
-
+	
+	/**
+     * Remet tous les points comme inutilisés.
+     * 
+     * @see DotUnlockPanel#trues
+     */
 	private void makeFalse() {
 		for (int i = 0; i < trues.length; ++i) {
 			trues[i] = false;
 		}
 	}
 
-	private void printPattern() {
-		String s = "";
-		for (int i = 0; i < pattern.length; ++i) {
-			s += "," + pattern[i];
-		}
-		patt = s.substring(1);
-
-		// output.setText("Pattern = " + patt);
-	}
-
-	public void setOutputComponent(JLabel l) {
-		output = l;
-	}
-
+	/**
+     * Réinitialise la valeur des patterns.
+     * 
+     * @see DotUnlockPanel#pattern
+     * @see DotUnlockPanel#finalPattern
+     */
 	private void clearPattern() {
 		if (!changeCode) {
 			finalPattern = "";
@@ -398,14 +474,13 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 	public void run() {
 		try {
 			while (true) {
-				if(changeCode) {
-					if(finalPattern.isEmpty()) {
+				if (changeCode) {
+					if (finalPattern.isEmpty()) {
 						lblTxt.setText("Veuillez dessiner votre nouveau modèle");
-					}
-					else if(finalPatternConfirm.isEmpty()) {
+					} else if (finalPatternConfirm.isEmpty()) {
 						lblTxt.setText("Veuillez confirmer le nouveau modèle");
 					}
-					
+
 				}
 				Thread.sleep(10);
 				repaint();
