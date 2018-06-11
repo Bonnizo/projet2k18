@@ -8,6 +8,10 @@ import java.io.Serializable;
 public class PersonneInfo implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String prenom;
 	public String nom;
 	public String adresse;

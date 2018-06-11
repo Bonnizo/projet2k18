@@ -143,11 +143,12 @@ public class ContactPanel extends JPanel {
 		PersonneInfo info2 =new PersonneInfo("bw333blba","blablba","blablba","blablba","blablba");
 		PersonneInfo info3 =new PersonneInfo("bw333blba","blablba","blablba","blablba","blablba");
 		PersonneInfo info4 =new PersonneInfo("bw333blba","blablba","blablba","blablba","blablba");
+		PersonneInfo info5 =new PersonneInfo("bw333blba","blablba","blablba","blablba","blablba");
 		enCours.add(info1);
 		enCours.add(info2);	
 		enCours.add(info3);
 		enCours.add(info4);
-		
+		enCours.add(info5);	
 		try {
 			 FileOutputStream out = new FileOutputStream("Contact.ser" );
 			 ObjectOutputStream oos = new ObjectOutputStream( out );
@@ -182,13 +183,14 @@ public class ContactPanel extends JPanel {
 		
 		
 		
-		
+		listeContacts.repaint();
 		listeContacts.revalidate();
-		
+		annuaire.repaint();
+		annuaire.revalidate();
 		
 	}
 	
-
+	
 
 	class boutonContact extends Listener {
 		@Override
@@ -197,6 +199,14 @@ public class ContactPanel extends JPanel {
 			
 			
 		}
+		public void actionPerformed2(ActionEvent f) {
+			PersonneInfo info5 =new PersonneInfo("bw344444","blablba","blablba","blablba","blablba");
+			enCours.add(info5);
+			
+			
+		}
+		
+		
 	}
 
 	class effacerContact extends Listener {
