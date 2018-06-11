@@ -56,8 +56,8 @@ public class NorthPanel extends JPanel{
 		panel.setBackground(Color.BLACK);
 		add(panel, BorderLayout.CENTER);
 		
-		JLabel lblEspacew = new JLabel("                                                                            ");
-		panel.add(lblEspacew);
+		JLabel lblEspace = new JLabel("                                                                            ");
+		panel.add(lblEspace);
 		timer.start();
 		//add(lblHour);
 	}
