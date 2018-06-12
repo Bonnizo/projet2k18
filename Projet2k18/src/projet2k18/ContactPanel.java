@@ -108,7 +108,7 @@ public class ContactPanel extends JPanel {
 		listeContacts.setBackground(Color.WHITE);
 		listeContacts.getVerticalScrollBar().setUnitIncrement(16);
 
-		Border panelBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK);
+		Border border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK);
 
 		// ajout de la liste de contact sur les boutons comme ça ils sont fixes meme si
 		// il y a un scroll
@@ -150,12 +150,15 @@ public class ContactPanel extends JPanel {
 		for (int i = 0; i < listPerson.length; i++) {
 			
 			JLabel test = new JLabel(
-					listPerson[i].getPrenom() + " " + listPerson[i].getNom() + " " + listPerson[i].getTelephone() + " "
-							+ listPerson[i].getAdresse() + " " + listPerson[i].getEmail() + " ");
-			test.setPreferredSize(new Dimension(300, 400 ));
+					"<html> Prénom :	"+listPerson[i].getPrenom()  +"<br> Nom :	"+ listPerson[i].getNom() +"<br> Téléphone :	"+ listPerson[i].getTelephone() +"<br> Adresse :	"+
+							 listPerson[i].getAdresse() +" <br> Email :   " +  listPerson[i].getEmail()+ "</htlm>");
+			test.setPreferredSize(new Dimension(380, 100 ));
+			test.setBorder(border);
+		
 			annuaire.add(test);
 		}
 		
+		annuaire.setBackground(Color.WHITE);
 		listeContacts.repaint();
 		listeContacts.revalidate();
 		annuaire.repaint();
