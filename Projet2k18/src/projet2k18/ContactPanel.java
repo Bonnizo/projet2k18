@@ -29,6 +29,21 @@ import projet2k18.ContactAppli;
 import projet2k18.PersonneInfo;
 import projet2k18.GalleryPanel.SelectImage;
 
+/**
+ * 
+ *  <b>ContactPanel permet de creer la liste de contact pour le smartphone.</b>
+ * <p>
+ * On récupère depuis la classe ContactAppli les différents contact sérializer afin de les deserializer ici et créer un fichier de contact
+ * </p>
+ * 
+ * 
+ * 
+ * 
+ * 
+ * @see ContactAppli
+ * @author Victor
+ * @author Nathan
+ */
 public class ContactPanel extends JPanel {
 
 	// image des boutons
@@ -155,11 +170,7 @@ public class ContactPanel extends JPanel {
 
 		}
 
-		public void actionPerformed2(ActionEvent f) {
-			PersonneInfo info5 = new PersonneInfo("bw344444", "blablba", "blablba", "blablba", "blablba");
-			//enCours.add(info5);
-
-		}
+		
 
 	}
 

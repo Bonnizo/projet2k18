@@ -38,6 +38,24 @@ import javax.swing.plaf.synth.SynthSeparatorUI;
 import projet2k18.FrameMain.boutonContact;
 import projet2k18.PersonneInfo;
 
+/**
+ * 
+ * 
+ * 
+ *  <b>ContactAppli permet de crer le contact qui sera ensuite rajouter aux autres dans ContactPanel.</b>
+ * <p>
+ * Les infos des contacts sont sérializés et récupérer sur ContactPanel dans SerialisationContact
+ * </p>
+ * 
+ * 
+ * 
+ * 
+ * @see ContactPanel
+ * @author Victor
+ * @author Nathan
+ * @author Victor
+ *
+ */
 public class ContactAppli extends JPanel {
 
 	// panel contact

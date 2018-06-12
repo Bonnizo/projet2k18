@@ -6,6 +6,21 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;  
 import javax.swing.JTextField;  
   
+/**
+ * 
+ *  <b>HintTextField permet de créer des indices prédéfinis qui disparaissent quand on rempli les labels où ils sont utilisés </b>
+ * <p>
+ * Les infos des contacts doivent être rempli dans ContactAppli, c'est pourquoi on a trouvé intéressant de laisser un indice pour savoir quelles infos 
+ * ils doivent remplir.
+ * </p>
+ * 
+ * 
+ * 
+ * 
+ * @see ContactAppli
+ * @author Victor
+ *
+ */
 public class HintTextField extends JTextField {  
   
 	
@@ -40,7 +55,7 @@ public class HintTextField extends JTextField {
           setFont(ecriture1);  
         }  
       }  
-  //des qu'on change de case si on garde le même indice avec couleur si aucun mot ecrit
+  //des qu'on change de case si on garde le même indice avec couleur si aucun mot ecrit sinon afficher text noir
       @Override  
       public void focusLost(FocusEvent e) {  
         if (getText().equals(hint)|| getText().length()==0) {  

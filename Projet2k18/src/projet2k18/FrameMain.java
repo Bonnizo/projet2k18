@@ -21,6 +21,27 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * @author Victor
+ *
+ *
+ *
+ * <b>Frame Main gère tout l'affichage des principales class du smartphone.</b>
+ * <p>
+ * Depuis cette class représente donc le menu du smartphone.
+ * </p>
+ * 
+ * 
+ * @see Main
+ * @see SettingsPannel
+ * @see HomeScreenPanel
+ * @see GamePanel
+ * @see ContactPanel
+ * @see GalleryPanel
+ * @author Victor Bonny
+ * @version 1.0
+ */
+ 
 public class FrameMain extends JFrame implements Runnable{
 
 	// liste jPanel

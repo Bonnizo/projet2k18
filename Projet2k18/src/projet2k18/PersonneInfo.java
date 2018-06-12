@@ -8,9 +8,22 @@ import java.io.Serializable;
 public class PersonneInfo implements Serializable{
 
 	
-	/**
-	 * 
-	 */
+/**
+ * 
+ *  <b>PersonneInfo permet de creer l'objet qui sera sérializé.</b>
+ * <p>
+ * L'objet PersonneInfo est la base qui permet la création des contacts 
+ * C'est ici qu'on a les infos des contacts qui devront être  inscrits dans ContactAppli
+ * </p>
+ * 
+ * 
+ * 
+ * 
+ * 
+ * @see ContactAppli
+ * @author Victor
+ */
+	 
 	private static final long serialVersionUID = 1L;
 	public String prenom;
 	public String nom;
