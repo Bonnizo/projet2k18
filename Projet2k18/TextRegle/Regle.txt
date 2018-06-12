@@ -1,0 +1,1 @@
+L’objectif est de réussir à aligner trois ronds ou trois croix dans une grille de 3 sur 3. Les joueurs choisissent un des éléments, et jouent en alternance. La partie s’arrête lorsque l’un des joueurs a réussi à aligner trois éléments, ou lorsque les 9 cases ont été remplies.

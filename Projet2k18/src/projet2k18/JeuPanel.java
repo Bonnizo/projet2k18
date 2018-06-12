@@ -9,7 +9,9 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -17,74 +19,90 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**Premier Panel du jeu Tic Tac Tao 
+ * on y rentre les noms des deux joeurs 
+ * et on accède au jeu. 
+ * 
+ * @see GamePanel 
+ * @See Regle 
+ * @see Ecriture 
+ * @author Zaychenko
+ *
+ */
 public class JeuPanel extends JPanel{
 
-	
-	private JPanel jeu = new JPanel();
-	private JLabel image, titre; 
+	/**
+	 * Les deux noms des joueurs
+	 */
+	private String name1, name2;
+	/**
+	 * le panel container des cardlayout
+	 */
+	private JPanel panelct = new JPanel();
+	private CardLayout cl = new CardLayout();
+	/**
+	 * Le premier panel du jeu
+	 */
+	private JPanel panel1 = new JPanel();
+	/** 
+	 * Le deuxième panel du jeu 
+	 */
+	private GamePanel panel2 = new GamePanel(panelct, cl, name1, name2);
+	private JLabel titre; 
+	/** 
+	 * Ou il faut rentrer le nom des joueurs
+	 */
 	private JTextField nom1, nom2;
 	private ImageIcon boxe = new ImageIcon("image/Boxe.jpg");
 
-	
 
+
+	/**
+	 * Constructeur du premier pannel JeuPanel
+	 * @see GamePanel
+	 * @ Regle
+	 * @ Ecriture 
+	 */
 	public JeuPanel(){
+		
+		//Ajout pour le CardLayout
+		panelct.setLayout(cl);
+		panelct.add(panel1, "jeu1");
+		panelct.add(panel2, "jeu2");
+		
 		this.setPreferredSize(new Dimension(400, 670));
-		jeu.setLayout(new BorderLayout(0, 0));
-		jeu.setPreferredSize(new Dimension(400, 670));
-		interfac();	
-	
-}
+		panel1.setPreferredSize(new Dimension(400, 670));
+		panelct.setPreferredSize(new Dimension(400, 670));
+		panel1.setBackground(Color.WHITE);
+		panel1.setLayout(new BorderLayout(0, 0));
 
-	private void interfac() {
-		
-		
-		
 		// titre 
-		JPanel paneltitre = new JPanel();
-//		paneltitre.setPreferredSize(new Dimension(390, 100));
-		paneltitre.setBackground(Color.WHITE);
 		titre= new JLabel("Tic Tac Tao");
 		titre.setHorizontalAlignment(SwingConstants.CENTER);
 		titre.setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 55));
-		paneltitre.add(titre);
 		
+
 		// image 
-		JPanel panImage = new JPanel();
 		JLabel labphoto= new JLabel(boxe);
-//		panImage.setPreferredSize(new Dimension(390, 400));
-		panImage.setBackground(Color.WHITE);
-		panImage.setLayout(new BorderLayout());
-		panImage.add(labphoto);
+		labphoto.setPreferredSize(new Dimension(390, 350));
 
 		// Joueur1
-		JPanel pjoueur1 = new JPanel();
-//		pjoueur1.setPreferredSize(new Dimension(390, 75));
-		pjoueur1.setBackground(Color.WHITE);
 		nom1 = new Ecriture("Nom joueur 1");
-		nom1.setPreferredSize(new Dimension(300, 50));
-		pjoueur1.add(nom1);
-	
-		
+		nom1.setPreferredSize(new Dimension(350, 50));
+
 		// Joueur2
-		JPanel pjoueur2 = new JPanel();
-//		pjoueur2.setPreferredSize(new Dimension(390, 75));
-		pjoueur2.setBackground(Color.WHITE);
 		nom2 = new Ecriture("Nom joueur 2");
-		nom2.setPreferredSize(new Dimension(300, 50));
-		pjoueur2.add(nom2);
+		nom2.setPreferredSize(new Dimension(350, 50));
 		
 		
+
 		//Panel central 
 		JPanel pcentral = new JPanel();
 		pcentral.setBackground(Color.WHITE);
-		pcentral.add(panImage);
-		pcentral.add(pjoueur1);
-		pcentral.add(pjoueur2);
-		
-		//Panel des boutons 
-		JPanel pbouton = new JPanel();
-		pbouton.setBackground(Color.WHITE);
+		pcentral.add(labphoto);
+		pcentral.add(nom1);
+		pcentral.add(nom2);
+			
 		
 		//Bouton Play
 		JButton playbouton = new JButton("Play");
@@ -102,39 +120,47 @@ public class JeuPanel extends JPanel{
 		reglebouton.setFont(new Font("Tahoma",Font.PLAIN, 35));
 		reglebouton.addActionListener(new BoutonRegle());
 		
-		
 		//Ajouter les boutons 
+		JPanel pbouton = new JPanel();
+		pbouton.setBackground(Color.WHITE);
+		pbouton.setPreferredSize(new Dimension(400, 100));
 		pbouton.add(reglebouton);
 		pbouton.add(playbouton);
 		
 		
-		jeu.add(paneltitre, BorderLayout.NORTH);
-		jeu.add(pcentral, BorderLayout.CENTER);
-		jeu.add(pbouton, BorderLayout.SOUTH);
-		this.add(jeu);
-		
-		
-	}
 	
+		
+		panel1.add(titre, BorderLayout.NORTH);
+		panel1.add(pcentral, BorderLayout.CENTER);
+		panel1.add(pbouton, BorderLayout.SOUTH);
+		this.add(panelct);
+	
+}
+	/**
+	 * Boutton pour affiche la JDialog avec les règles du jeu 
+	 * @see Regle
+	 * @author Zaychenko
+	 *
+	 */
 	class BoutonRegle implements ActionListener{
-
 		public void actionPerformed(ActionEvent arg0) {
 			Regle dialogregle = new Regle();
 			dialogregle.setModal(true);
 			dialogregle.setVisible(true);			
 		}
 	}
+	/**
+	 * Boutton pour accèder au panel du jeu
+	 * @see GamePanel
+	 * @author Zaychenko
+	 *
+	 */
 		class BoutonPlay implements ActionListener{
-
 		public void actionPerformed(ActionEvent arg0) {
-			String name1 = nom1.getText();
-			String name2 = nom2.getText();
-		//	setContentPane(new GamePanel(name1, name2));
-			repaint();
+			name1 = nom1.getText();
+			name2 = nom2.getText();
+			cl.show(panelct, "jeu2");
+
 		}
-
 	}
-	
-	
 }
-

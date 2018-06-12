@@ -1,6 +1,7 @@
 package projet2k18;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -16,38 +17,82 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import projet2k18.JeuPanel.BoutonRegle;
+
+/**
+ * Deuxième pannel du jeu Tic Tac Tao 
+ * c'est ici que nous allons jouer 
+ * 
+ *
+ * 
+ * @see JeuPanel 
+ * @author Zaychenko
+ *
+ */
 public class GamePanel extends JPanel {
+	/**
+	 * Panel ayant l'interface du jeu
+	 */
 	private JPanel panel2 = new JPanel();
 	private JLabel joueur1, joueur2, vs;
-	private JButton eff;
-	private String name1, name2;
+	private JButton changer;
 	private JTextField score1, score2;
 	private String alterner = "X";
+	/** 
+	 * compte le nombre de X
+	 */
 	private int cptX = 0;
+	/**
+	 * Compte le nombre de O
+	 */
 	private int cptO = 0;
+	/** 
+	 * Compte le nombre de click sur la grille
+	 */
 	private int cptclick = 0;
+	/**
+	 * Tableau recroupant les bouttons 
+	 */
 	private JButton[] b = new JButton[9];
+	private CardLayout cl;
+	private JPanel panelct;
+	private String name1; 
+	private String name2;
 
-	// voir pk taille change
-	// voir le bouton changer de joueurs
-	// commentaire java doc
 
-	public GamePanel(String name1, String name2) {
+/**
+ * Constructeur du deuxième JPanel du jeu 
+ * on y définie la taille,..
+ * 
+ * 
+ * @param panelct le pannel avec les différents JPanel
+ * @param cl le cardLaayout
+ * @param name1 le nom du premier joueur
+ * @param name2 le nom du deuxième joueur
+ */
+	public GamePanel(JPanel panelct, CardLayout cl, String name1, String name2) {
+		this.panelct=panelct;
+		this.cl=cl;
+		this.name1=name1;
+		this.name2=name2;
+		
+
 		setSize(460, 800);
 		setLayout(new BorderLayout(0, 0));
 		panel2.setLayout(new BorderLayout(0, 0));
 		panel2.setSize(460, 800);
 		panel2.setBackground(Color.WHITE);
 		add(panel2);
-		this.name1 = name1;
-		this.name2 = name2;
-
 		interface2();
+		
 
 	}
+	/**
+	 * On ajout tous les boutons ainsi que les informations des joueurs 
+	 */
 
 	private void interface2() {
-
+		
 		// titre
 		JPanel paneltitre = new JPanel();
 		JPanel titregauche = new JPanel();
@@ -63,7 +108,7 @@ public class GamePanel extends JPanel {
 
 		score1 = new JTextField("0");
 		score2 = new JTextField("0");
-
+		
 		joueur1 = new JLabel(name1);
 		joueur1.setHorizontalAlignment(SwingConstants.LEFT);
 		joueur2 = new JLabel(name2);
@@ -94,7 +139,7 @@ public class GamePanel extends JPanel {
 
 		for (int i = 0; i < b.length; i++) {
 			b[i] = new JButton("");
-			b[i].setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 99));
+			b[i].setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 90));
 			b[i].setBackground(Color.BLACK);
 			b[i].addActionListener(new boutonjeu());
 			panelgrille.add(b[i]);
@@ -104,20 +149,30 @@ public class GamePanel extends JPanel {
 		JPanel panelbout = new JPanel();
 		panelbout.setBackground(Color.WHITE);
 		panelbout.setPreferredSize(new Dimension(390, 100));
-		eff = new JButton("Effacer");
-		// eff.addActionListener(new boutoneffacer());
-		panelbout.add(eff);
+		changer = new JButton("Changer joueur");
+		changer.setForeground(Color.WHITE);
+		changer.setBackground(Color.BLACK);
+		changer.setFont(new Font("Tahoma",Font.PLAIN, 25));
+		changer.addActionListener(new boutonchanger());
+		panelbout.add(changer);
+	
 
 		panel2.add(paneltitre, BorderLayout.NORTH);
 		panel2.add(panelgrille, BorderLayout.CENTER);
 		panel2.add(panelbout, BorderLayout.SOUTH);
 	}
-
+	
+	/**
+	 * calcule le score du jeu
+	 */
 	private void scorejeu() {
 		score1.setText(String.valueOf(cptX));
 		score2.setText(String.valueOf(cptO));
 	}
-
+	
+/**
+ * Veille à ce que l'affichage des X et O soit alterner
+ */
 	private void debutalterner() {
 		if (alterner.equalsIgnoreCase("X")) {
 			alterner = "O";
@@ -125,14 +180,23 @@ public class GamePanel extends JPanel {
 			alterner = "X";
 		}
 	}
-
+	
+	/**
+	 * Lorsqu'il y'a 3 X ou O à la suite, la méthode colorie les cases en blanc
+	 * @param ba premier bouton
+	 * @param bb deuxième bouton
+	 * @param bc troisième bouton
+	 */
 	private void coloriercase(JButton ba, JButton bb, JButton bc) {
 		ba.setBackground(Color.WHITE);
 		bb.setBackground(Color.WHITE);
 		bc.setBackground(Color.WHITE);
 
 	}
-
+	
+	/** 
+	 * Efface le contenu des boutons pour refaire une partie
+	 */
 	private void effacergame() {
 
 		for (int i = 0; i < b.length; i++) {
@@ -143,7 +207,10 @@ public class GamePanel extends JPanel {
 		cptclick = 0;
 
 	}
-
+	
+	/** 
+	 * Vérifie si il y'a une suite de 3 même caracctères (X ou O)
+	 */
 	private void victoire() {
 		cptclick++;
 
@@ -262,6 +329,11 @@ public class GamePanel extends JPanel {
 
 	}
 
+	/**
+	 * L'action listener des 9 boutons du jeu ou s'affiche les X ou les O
+	 * @author Zaychenko
+	 *
+	 */
 	class boutonjeu implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Object bsource = e.getSource();
@@ -275,6 +347,20 @@ public class GamePanel extends JPanel {
 
 			debutalterner();
 			victoire();
+		}
+
+	}
+	
+	/**
+	 * Bouton servant à revenir au premier pannel pour changer le nom d'un ou des deux joueurs.
+	 * @see JeuPanel
+	 * @author Zaychenko
+	 *
+	 */
+	class boutonchanger implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			cl.show(panelct, "jeu1");
+
 		}
 
 	}
