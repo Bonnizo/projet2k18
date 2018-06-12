@@ -38,18 +38,5 @@ public BoutonMenu(ImageIcon img, int side){
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 	
 	}
-public BoutonMenu(int side, Listener listener){
-	
-	
-	
-	this.setBorder(null);
-	this.setOpaque(false);
-	this.setContentAreaFilled(false);
-	this.setBorderPainted(false);
-	this.setFocusPainted(false);
-	this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	this.addActionListener( listener);
-      
-}
 
 }
