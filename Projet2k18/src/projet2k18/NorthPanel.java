@@ -24,8 +24,6 @@ public class NorthPanel extends JPanel{
 	
 	
 	public NorthPanel() {
-		// TODO Auto-generated constructor stub
-		
 		setLayout(new BorderLayout());
 		setBackground(Color.BLACK);
 		JPanel topRightPanel = new JPanel();
@@ -59,7 +57,6 @@ public class NorthPanel extends JPanel{
 		JLabel lblEspace = new JLabel("                                                                            ");
 		panel.add(lblEspace);
 		timer.start();
-		//add(lblHour);
 	}
 	
 	class CurrentTime implements ActionListener 

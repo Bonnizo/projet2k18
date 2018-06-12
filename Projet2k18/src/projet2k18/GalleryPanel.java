@@ -78,34 +78,32 @@ public class GalleryPanel extends JPanel {
 		lblGalerie.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGalerie.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel.add(lblGalerie, BorderLayout.CENTER);
+		
 		icon = new ImageIcon("image/back.png");
 		lblRetour = new JLabel(icon);
-		panel.add(lblRetour, BorderLayout.WEST);
 		lblRetour.addMouseListener(new Menu());
 		lblRetour.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
+		panel.add(lblRetour, BorderLayout.WEST);
+		
+		
 		panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.EAST);
-
 		lblTrash = new JLabel("");
 		lblTrash.addMouseListener(new Menu());
 		panel_1.add(lblTrash);
 		lblSelect = new JLabel("Select  ");
 		panel_1.add(lblSelect);
 		lblSelect.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
+		panel.add(panel_1, BorderLayout.EAST);
+		
 		SouthPanelGallery = new JPanel();
-		add(SouthPanelGallery, BorderLayout.SOUTH);
-
 		icon = new ImageIcon("image/plus.png");
 		lblAdd = new JLabel(icon);
 		lblAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblAdd.addMouseListener(new Menu());
 		SouthPanelGallery.add(lblAdd);
-
 		lblSelect.addMouseListener(new Menu());
-
+		add(SouthPanelGallery, BorderLayout.SOUTH);
 	}
 
 	class SelectImage extends MouseAdapter {
@@ -121,7 +119,18 @@ public class GalleryPanel extends JPanel {
 				temp.setForeground(Color.BLACK);
 				temp.setText("Deleted");
 			} else {
-
+				
+				
+				container.remove(scroll);
+				remove(container);
+				SouthPanelGallery.remove(lblAdd);
+				panel_1.remove(lblSelect);
+				//appel panel diapo avec comme param le filename selectionné
+				/*JLabel temp = ()
+				System.out.println();*/
+				
+				revalidate();
+				repaint();
 			}
 		}
 	}
@@ -257,6 +266,7 @@ public class GalleryPanel extends JPanel {
 					imagesList[i] = new JLabel();
 					imagesList[i].setPreferredSize(new Dimension(120, 120));
 					imagesList[i].addMouseListener(new SelectImage());
+					imagesList[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
 					add(imagesList[i]);
 				}
 			}
