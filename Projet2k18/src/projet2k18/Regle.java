@@ -33,10 +33,7 @@ public class Regle extends JDialog {
 	 * Constructeur de la JDialog 
 	 */
 	public Regle() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		double screenWidth = screenSize.getWidth();
-		double screenHeight = screenSize.getHeight();
-		setLocation((int)(screenWidth/2)-200, (int)(screenHeight/2)-150);
+		
 		getContentPane().setBackground(Color.BLACK);
 		setUndecorated(true);
 		setResizable(false);
