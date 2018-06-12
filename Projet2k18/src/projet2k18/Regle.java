@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +20,10 @@ public class Regle extends JDialog {
 	private JLabel texteregle, textetitre;
 	
 	public Regle() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double screenWidth = screenSize.getWidth();
+		double screenHeight = screenSize.getHeight();
+		setLocation((int)(screenWidth/2)-200, (int)(screenHeight/2)-150);
 		getContentPane().setBackground(Color.BLACK);
 		setUndecorated(true);
 		setResizable(false);
