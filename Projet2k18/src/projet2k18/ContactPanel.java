@@ -72,7 +72,7 @@ public class ContactPanel extends JPanel {
 	private JPanel contentPanel2 = new JPanel(cardLayout2);
 
 	private ContactAppli contactAppli = new ContactAppli(cardLayout2, contentPanel2);
-	private ContactModification contactModification = new ContactModification(cardLayout2, contentPanel2);
+	private ContactModification contactModification;// = new ContactModification(cardLayout2, contentPanel2, "");
 
 	// grid layout, agencement colonne contact + photo
 	private GridLayout layoutContact = new GridLayout(0, 1);
@@ -96,7 +96,7 @@ public class ContactPanel extends JPanel {
 		// ajoute du panel des contacts et pour ajouter des contacts
 		contentPanel2.add(contactPanel, "contactPanel");
 		contentPanel2.add(contactAppli, "contactAppli");
-		contentPanel2.add(contactModification, "contactModif");
+		//contentPanel2.add(contactModification, "contactModif");
 		// panel des boutons
 		boutonContact.setBackground(Color.WHITE);
 		boutonContact.setPreferredSize(new Dimension(400, 670));
@@ -122,7 +122,7 @@ public class ContactPanel extends JPanel {
 		listPerson = new PersonneInfo[listOfFiles.length];
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
-				System.out.println(listOfFiles[i]);
+				//System.out.println(listOfFiles[i]);
 				try {
 					FileInputStream in = new FileInputStream(listOfFiles[i]);
 					ObjectInputStream ois = new ObjectInputStream(in);
@@ -151,30 +151,25 @@ public class ContactPanel extends JPanel {
 			
 			Font myFont = new Font ("Courier New", 1, 15);
 			
-			String texte = "<html> "+listPerson[i].getPrenom()  +"<br>"+ listPerson[i].getNom() +"<br>"+ listPerson[i].getTelephone() +"<br>"+
+			String texte = "<html>"+listPerson[i].getPrenom()  +"<br>"+ listPerson[i].getNom() +"<br>"+ listPerson[i].getTelephone() +"<br>"+
 					 listPerson[i].getAdresse() +" <br>" +  listPerson[i].getEmail()+ "</htlm>";
 			
 	    	
 			
 			JLabel labelContact = new JLabel(texte,SwingConstants.CENTER);
 			labelContact.setFont(myFont);
-			
+			labelContact.setName(listOfFiles[i].toString());
 			
 			labelContact.addMouseListener(new MouseAdapter() {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
-
+			    	JLabel temp = (JLabel)e.getSource();
+			    	System.out.println(temp.getName());
+			    	contactModification = new ContactModification(cardLayout2, contentPanel2, temp.getName());
+			    	contentPanel2.add(contactModification, "contactModif");
 			    	cardLayout2.show(contentPanel2, "contactModif");
-			    	
-			    
-			  
 			    }
 			});
-			
-			
-			
-			
-			
 			
 			ImageIcon profile = new ImageIcon("image/profile.png");
 			
@@ -193,8 +188,6 @@ public class ContactPanel extends JPanel {
 			panelContact.add(profil);
 			panelContact.add(labelContact);
 			
-			
-			
 			annuaire.add(panelContact);
 		}
 
@@ -206,7 +199,16 @@ public class ContactPanel extends JPanel {
 		annuaire.revalidate();
 
 	}
-
+	/*class clicContact extends MouseAdapter {
+		@Override
+	    public void mouseClicked(MouseEvent e) {
+	    	System.out.println("test");
+	    	cardLayout2.show(contentPanel2, "contactModif");
+	    	
+	    
+	  
+	    }
+	}*/
 	class boutonContact extends Listener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

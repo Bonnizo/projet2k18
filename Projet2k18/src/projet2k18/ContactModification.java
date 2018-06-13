@@ -95,8 +95,9 @@ import javax.xml.bind.Marshaller.Listener;
 	// Création des contacts
 	// liste utilisée pour la serialization
 	public ArrayList<PersonneInfo> PersonneListe = new ArrayList<PersonneInfo>();
-	private PersonneInfo[] listPerson;
-	public ContactModification(CardLayout cardLayout2, JPanel contentPanel2) {
+	private PersonneInfo person;
+	
+	public ContactModification(CardLayout cardLayout2, JPanel contentPanel2, String filename) {
 		this.cardLayout2 = cardLayout2;
 		this.contentPanel2 = contentPanel2;
 		// caractristiques page
@@ -152,7 +153,7 @@ import javax.xml.bind.Marshaller.Listener;
 		add(espacePanel2, BorderLayout.NORTH);
 
 	
-	File folder = new File("SerialisationContact");
+	/*File folder = new File("SerialisationContact");
 	File[] listOfFiles = folder.listFiles();
 	
 	listPerson = new PersonneInfo[listOfFiles.length];
@@ -181,9 +182,30 @@ import javax.xml.bind.Marshaller.Listener;
 			}
 			
 		}
-	}
+	}*/
+		
+		try {
+			FileInputStream in = new FileInputStream(filename);
+			ObjectInputStream ois = new ObjectInputStream(in);
+			try {
+				PersonneInfo temp = (PersonneInfo)ois.readObject();
+				person = temp;
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				person = (PersonneInfo)ois.readObject();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ois.close();
+		} catch (IOException e) {
+			// …
+		}
 	
-	for (int i = 0; i < listPerson.length; i++) {
+	/*for (int i = 0; i < listPerson.length; i++) {
 	
 		String prenomC = listPerson[i].getPrenom().toString();
 		String nomC = listPerson[i].getNom().toString();
@@ -198,7 +220,19 @@ import javax.xml.bind.Marshaller.Listener;
 		adresse.setText(adresseC);
 		email.setText(emailC);
 	
-	}
+	}*/
+		String prenomC = person.getPrenom().toString();
+		String nomC = person.getNom().toString();
+		String telephoneC = person.getTelephone().toString();
+		String adresseC = person.getAdresse().toString();
+		String emailC = person.getEmail().toString();
+	
+	
+		prenom.setText(prenomC);
+		nom.setText(nomC);
+		telephone.setText(telephoneC);
+		adresse.setText(adresseC);
+		email.setText(emailC);
 	}
 	class AjouterContact extends Listener {
 		public void actionPerformed(ActionEvent e) {
