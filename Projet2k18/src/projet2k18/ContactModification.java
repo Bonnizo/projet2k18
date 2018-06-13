@@ -1,5 +1,8 @@
-
 package projet2k18;
+
+
+
+
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -7,16 +10,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.List;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedOutputStream;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,19 +20,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-import javax.swing.plaf.synth.SynthSeparatorUI;
+import javax.xml.bind.Marshaller.Listener;
 
-import projet2k18.FrameMain.boutonContact;
-import projet2k18.PersonneInfo;
 
 /**
  * 
@@ -54,9 +43,10 @@ import projet2k18.PersonneInfo;
  * @author Victor
  * @author Nathan
  * @author Victor
+ * 
  *
  */
-public class ContactAppli extends JPanel {
+	public class ContactModification extends JPanel {
 
 	// panel contact
 	private JPanel contactPanel = new JPanel();
@@ -67,12 +57,13 @@ public class ContactAppli extends JPanel {
 	private JPanel espacePanel2 = new JPanel();
 
 	// Texfield
-	private static HintTextField prenom = new HintTextField("prenom");
-	private static HintTextField nom = new HintTextField("nom");
-	private static HintTextField telephone = new HintTextField("telephone");
-	private static HintTextField adresse = new HintTextField("adresse");
-	private static HintTextField email = new HintTextField("email");
-
+	private JTextField prenom = new JTextField("prenom");
+	private JTextField nom = new JTextField("nom");
+	private JTextField telephone = new JTextField("telephone");
+	private JTextField adresse = new JTextField("adresse");
+	private JTextField email = new JTextField("email");
+	
+	
 	private Calendar now = Calendar.getInstance();
 	DateFormat hhmm = new SimpleDateFormat("HH:mm");
 
@@ -81,8 +72,8 @@ public class ContactAppli extends JPanel {
 	ImageIcon ok = new ImageIcon("image/correct.png");
 
 	// bouton
-	private BoutonMenu annuler = new BoutonMenu(back, 40, new RetourContact());
-	private BoutonMenu correct = new BoutonMenu(ok, 40, new AjouterContact());
+	private BoutonMenu annuler = new BoutonMenu(back, 40);
+	private BoutonMenu correct = new BoutonMenu(ok, 40);
 
 	// layout
 	private GridLayout grille = new GridLayout(0, 1, 20, 20);
@@ -97,7 +88,7 @@ public class ContactAppli extends JPanel {
 	// liste utilisée pour la serialization
 	public ArrayList<PersonneInfo> PersonneListe = new ArrayList<PersonneInfo>();
 
-	public ContactAppli(CardLayout cardLayout2, JPanel contentPanel2) {
+	public ContactModification(CardLayout cardLayout2, JPanel contentPanel2) {
 		this.cardLayout2 = cardLayout2;
 		this.contentPanel2 = contentPanel2;
 		// caractristiques page
@@ -153,9 +144,11 @@ public class ContactAppli extends JPanel {
 		add(espacePanel2, BorderLayout.NORTH);
 
 	}
+	
 
 	class AjouterContact extends Listener {
 		public void actionPerformed(ActionEvent e) {
+			
 			PersonneInfo person = new PersonneInfo(prenom.getText(), nom.getText(), telephone.getText(), adresse.getText(), email.getText());
 			try {
 				FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
@@ -172,26 +165,13 @@ public class ContactAppli extends JPanel {
 	}
 
 	class RetourContact extends Listener {
-		@Override
+	
 		public void actionPerformed(ActionEvent e) {
 			cardLayout2.show(contentPanel2, "contactPanel");
 			// prenom.setText(prenomDefaut.getText());
-	
+			
+
 		}
 	}
-	/*
-	public static void infoTransfert(PersonneInfo info1) {
-		// TODO Auto-generated method stub
-		String prenomFinal = prenom.getText();
-		String nomFinal = nom.getText();
-		String telephoneFinal = telephone.getText();
-		String adresseFinal = adresse.getText();
-		String emailFinal = email.getText();
-
-		info1.prenom = prenomFinal;
-		info1.nom = nomFinal;
-		info1.telephone = telephoneFinal;
-		info1.adresse = adresseFinal;
-		info1.email = emailFinal;
-	}*/
-}
+	
+	}

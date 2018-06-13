@@ -3,31 +3,23 @@ package projet2k18;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-
-import projet2k18.ContactAppli;
-import projet2k18.PersonneInfo;
-import projet2k18.GalleryPanel.SelectImage;
 
 /**
  * 
@@ -48,15 +40,15 @@ public class ContactPanel extends JPanel {
 
 	// image des boutons
 	private ImageIcon rajouterContact = new ImageIcon("image/plus.png");
-	private ImageIcon effacerContact = new ImageIcon("image/close.png");
-
+	
 	// image contact
 	private ImageIcon contactPhoto = new ImageIcon("image/close.png");
 
 	// bouton contactPanel
 
 	private BoutonMenu plus = new BoutonMenu(rajouterContact, 40, new boutonContact());
-	private BoutonMenu supprimer = new BoutonMenu(effacerContact, 30, new effacerContact());
+
+
 
 	// panel contactPanel
 	private JPanel contactPanel = new JPanel();
@@ -74,11 +66,13 @@ public class ContactPanel extends JPanel {
 	private JPanel contentPanel2 = new JPanel(cardLayout2);
 
 	private ContactAppli contactAppli = new ContactAppli(cardLayout2, contentPanel2);
+	private ContactModification contactModification = new ContactModification(cardLayout2, contentPanel2);
 
 	// grid layout, agencement colonne contact + photo
 	private GridLayout layoutContact = new GridLayout(0, 1);
 
-	// document contact
+	// taille 
+	private int size = 0;
 
 	// liste definitive
 	/*ArrayList<PersonneInfo> enCours = new ArrayList<PersonneInfo>();
@@ -96,12 +90,12 @@ public class ContactPanel extends JPanel {
 		// ajoute du panel des contacts et pour ajouter des contacts
 		contentPanel2.add(contactPanel, "contactPanel");
 		contentPanel2.add(contactAppli, "contactAppli");
-
+		contentPanel2.add(contactModification, "contactModif");
 		// panel des boutons
 		boutonContact.setBackground(Color.WHITE);
 		boutonContact.setPreferredSize(new Dimension(400, 670));
 		boutonContact.add(plus);
-		boutonContact.add(supprimer);
+	
 
 		// panel avec scrollbar pour liste contact
 		listeContacts.setPreferredSize(new Dimension(400, 670));
@@ -149,16 +143,39 @@ public class ContactPanel extends JPanel {
 		
 		for (int i = 0; i < listPerson.length; i++) {
 			
-			JLabel test = new JLabel(
-					"<html> Prénom :	"+listPerson[i].getPrenom()  +"<br> Nom :	"+ listPerson[i].getNom() +"<br> Téléphone :	"+ listPerson[i].getTelephone() +"<br> Adresse :	"+
-							 listPerson[i].getAdresse() +" <br> Email :   " +  listPerson[i].getEmail()+ "</htlm>");
-			test.setPreferredSize(new Dimension(380, 100 ));
-			test.setBorder(border);
+			Font myFont = new Font ("Courier New", 1, 15);
+			
+			String texte = "<html> "+listPerson[i].getPrenom()  +"<br>"+ listPerson[i].getNom() +"<br>"+ listPerson[i].getTelephone() +"<br>"+
+					 listPerson[i].getAdresse() +" <br>" +  listPerson[i].getEmail()+ "</htlm>";
 		
-			annuaire.add(test);
+			
+			
+			JLabel labelContact = new JLabel(texte,SwingConstants.CENTER);
+			labelContact.setFont(myFont);
+			ImageIcon profile = new ImageIcon("image/profile.png");
+			
+			BoutonMenu profil = new BoutonMenu(profile, 40, new boutonModifier());
+			
+			
+			JPanel panelContact = new JPanel();
+			labelContact.setSize(300,100);
+			
+			
+			panelContact.setLayout(new FlowLayout(0,30,100));
+			panelContact.setSize(new Dimension(400, 200));
+			panelContact.setBorder(border);
+			panelContact.setBackground(Color.WHITE);
+			
+			panelContact.add(profil);
+			panelContact.add(labelContact);
+			
+			
+			
+			annuaire.add(panelContact);
 		}
-		
+
 		annuaire.setBackground(Color.WHITE);
+	
 		listeContacts.repaint();
 		listeContacts.revalidate();
 		annuaire.repaint();
@@ -172,15 +189,15 @@ public class ContactPanel extends JPanel {
 			cardLayout2.show(contentPanel2, "contactAppli");
 
 		}
+	}
+		class boutonModifier extends Listener {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout2.show(contentPanel2, "contactModif");
 
+			}
 		
 
 	}
-
-	class effacerContact extends Listener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			cardLayout2.show(contentPanel2, "contactAppli");
-		}
 	}
-}
+
