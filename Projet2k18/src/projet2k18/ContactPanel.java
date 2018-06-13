@@ -8,6 +8,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,6 +28,7 @@ import javax.swing.border.Border;
  *  <b>ContactPanel permet de creer la liste de contact pour le smartphone.</b>
  * <p>
  * On récupère depuis la classe ContactAppli les différents contact sérializer afin de les deserializer ici et créer un fichier de contact
+ * 
  * </p>
  * 
  * 
@@ -37,6 +40,9 @@ import javax.swing.border.Border;
  * @author Nathan
  */
 public class ContactPanel extends JPanel {
+	
+	
+	
 
 	// image des boutons
 	private ImageIcon rajouterContact = new ImageIcon("image/plus.png");
@@ -147,14 +153,32 @@ public class ContactPanel extends JPanel {
 			
 			String texte = "<html> "+listPerson[i].getPrenom()  +"<br>"+ listPerson[i].getNom() +"<br>"+ listPerson[i].getTelephone() +"<br>"+
 					 listPerson[i].getAdresse() +" <br>" +  listPerson[i].getEmail()+ "</htlm>";
-		
 			
+	    	
 			
 			JLabel labelContact = new JLabel(texte,SwingConstants.CENTER);
 			labelContact.setFont(myFont);
+			
+			
+			labelContact.addMouseListener(new MouseAdapter() {
+			    @Override
+			    public void mouseClicked(MouseEvent e) {
+
+			    	cardLayout2.show(contentPanel2, "contactModif");
+			    	
+			    
+			  
+			    }
+			});
+			
+			
+			
+			
+			
+			
 			ImageIcon profile = new ImageIcon("image/profile.png");
 			
-			BoutonMenu profil = new BoutonMenu(profile, 40, new boutonModifier());
+			BoutonMenu profil = new BoutonMenu(profile, 40);
 			
 			
 			JPanel panelContact = new JPanel();
@@ -190,14 +214,8 @@ public class ContactPanel extends JPanel {
 
 		}
 	}
-		class boutonModifier extends Listener {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout2.show(contentPanel2, "contactModif");
-
-			}
+		
 		
 
 	}
-	}
-
+	

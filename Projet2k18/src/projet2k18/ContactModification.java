@@ -11,8 +11,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -40,7 +43,7 @@ import javax.xml.bind.Marshaller.Listener;
  * 
  * 
  * @see ContactPanel
- * @author Victor
+ *
  * @author Nathan
  * @author Victor
  * 
@@ -48,6 +51,7 @@ import javax.xml.bind.Marshaller.Listener;
  */
 	public class ContactModification extends JPanel {
 
+	
 	// panel contact
 	private JPanel contactPanel = new JPanel();
 	private JPanel infoPanel = new JPanel();
@@ -56,8 +60,12 @@ import javax.xml.bind.Marshaller.Listener;
 	private JPanel espacePanel1 = new JPanel();
 	private JPanel espacePanel2 = new JPanel();
 
+	
+	//image 
+	
+	
 	// Texfield
-	private JTextField prenom = new JTextField("prenom");
+	public JTextField prenom = new JTextField("prenom");
 	private JTextField nom = new JTextField("nom");
 	private JTextField telephone = new JTextField("telephone");
 	private JTextField adresse = new JTextField("adresse");
@@ -87,7 +95,7 @@ import javax.xml.bind.Marshaller.Listener;
 	// Création des contacts
 	// liste utilisée pour la serialization
 	public ArrayList<PersonneInfo> PersonneListe = new ArrayList<PersonneInfo>();
-
+	private PersonneInfo[] listPerson;
 	public ContactModification(CardLayout cardLayout2, JPanel contentPanel2) {
 		this.cardLayout2 = cardLayout2;
 		this.contentPanel2 = contentPanel2;
@@ -143,9 +151,55 @@ import javax.xml.bind.Marshaller.Listener;
 		add(espacePanel1, BorderLayout.EAST);
 		add(espacePanel2, BorderLayout.NORTH);
 
+	
+	File folder = new File("SerialisationContact");
+	File[] listOfFiles = folder.listFiles();
+	
+	listPerson = new PersonneInfo[listOfFiles.length];
+	for (int i = 0; i < listOfFiles.length; i++) {
+		if (listOfFiles[i].isFile()) {
+			System.out.println(listOfFiles[i]);
+			try {
+				FileInputStream in = new FileInputStream(listOfFiles[i]);
+				ObjectInputStream ois = new ObjectInputStream(in);
+				try {
+					PersonneInfo temp = (PersonneInfo)ois.readObject();
+					listPerson[i] = temp;
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					listPerson[i] = (PersonneInfo)ois.readObject();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				ois.close();
+			} catch (IOException e) {
+				// …
+			}
+			
+		}
 	}
 	
-
+	for (int i = 0; i < listPerson.length; i++) {
+	
+		String prenomC = listPerson[i].getPrenom().toString();
+		String nomC = listPerson[i].getNom().toString();
+		String telephoneC = listPerson[i].getTelephone().toString();
+		String adresseC = listPerson[i].getAdresse().toString();
+		String emailC = listPerson[i].getEmail().toString();
+	
+	
+		prenom.setText(prenomC);
+		nom.setText(nomC);
+		telephone.setText(telephoneC);
+		adresse.setText(adresseC);
+		email.setText(emailC);
+	
+	}
+	}
 	class AjouterContact extends Listener {
 		public void actionPerformed(ActionEvent e) {
 			

@@ -151,6 +151,9 @@ public class ContactAppli extends JPanel {
 		add(imgPanel, BorderLayout.WEST);
 		add(espacePanel1, BorderLayout.EAST);
 		add(espacePanel2, BorderLayout.NORTH);
+		
+		
+		
 
 	}
 
@@ -179,7 +182,7 @@ public class ContactAppli extends JPanel {
 	
 		}
 	}
-	/*
+	
 	public static void infoTransfert(PersonneInfo info1) {
 		// TODO Auto-generated method stub
 		String prenomFinal = prenom.getText();
@@ -188,10 +191,5 @@ public class ContactAppli extends JPanel {
 		String adresseFinal = adresse.getText();
 		String emailFinal = email.getText();
 
-		info1.prenom = prenomFinal;
-		info1.nom = nomFinal;
-		info1.telephone = telephoneFinal;
-		info1.adresse = adresseFinal;
-		info1.email = emailFinal;
-	}*/
+		}
 }
