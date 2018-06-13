@@ -1,4 +1,4 @@
-package projet2k18;
+package Jeu;
 
 
 import java.awt.Color;  

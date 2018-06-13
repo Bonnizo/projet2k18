@@ -21,6 +21,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Jeu.GamePanel;
+import Jeu.JeuPanel;
+
 /**
  * @author Victor
  *
@@ -55,7 +58,7 @@ public class FrameMain extends JFrame implements Runnable{
 	private JPanel navigationPanel = new JPanel();
 
 	
-		
+	
 	
 
 	

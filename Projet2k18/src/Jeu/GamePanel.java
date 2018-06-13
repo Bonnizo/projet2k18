@@ -1,4 +1,4 @@
-package projet2k18;
+package Jeu;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import projet2k18.JeuPanel.BoutonRegle;
+import Jeu.JeuPanel.BoutonRegle;
 
 /**
  * Deuxième pannel du jeu Tic Tac Tao 
@@ -63,35 +63,27 @@ public class GamePanel extends JPanel {
 /**
  * Constructeur du deuxième JPanel du jeu 
  * on y définie la taille,..
- * 
+ * On ajout tous les boutons ainsi que les informations des joueurs 
  * 
  * @param panelct le pannel avec les différents JPanel
  * @param cl le cardLaayout
  * @param name1 le nom du premier joueur
  * @param name2 le nom du deuxième joueur
  */
+	
 	public GamePanel(JPanel panelct, CardLayout cl, String name1, String name2) {
+		
 		this.panelct=panelct;
 		this.cl=cl;
 		this.name1=name1;
 		this.name2=name2;
 		
-
 		setSize(460, 800);
 		setLayout(new BorderLayout(0, 0));
 		panel2.setLayout(new BorderLayout(0, 0));
 		panel2.setSize(460, 800);
 		panel2.setBackground(Color.WHITE);
 		add(panel2);
-		interface2();
-		
-
-	}
-	/**
-	 * On ajout tous les boutons ainsi que les informations des joueurs 
-	 */
-
-	private void interface2() {
 		
 		// titre
 		JPanel paneltitre = new JPanel();
@@ -170,9 +162,9 @@ public class GamePanel extends JPanel {
 		score2.setText(String.valueOf(cptO));
 	}
 	
-/**
- * Veille à ce que l'affichage des X et O soit alterner
- */
+	/**
+	 * Veille à ce que l'affichage des X et O soit alterner
+	 */
 	private void debutalterner() {
 		if (alterner.equalsIgnoreCase("X")) {
 			alterner = "O";

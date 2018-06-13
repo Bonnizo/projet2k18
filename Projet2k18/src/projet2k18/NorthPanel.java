@@ -14,6 +14,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * Cette classe permet de toujours afficher le Panel qui se trouve au Nord avec le reseau "Swisscom" 
+ * l'heuer et le pourcentage de batterie. 
+ * 
+ * 
+ * @author Victor
+ * @author Nathan
+ * @author Zaychenko
+ *
+ */
 
 public class NorthPanel extends JPanel{
 

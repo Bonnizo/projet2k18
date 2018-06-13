@@ -21,6 +21,18 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+
+/**
+ * Cette classe permet d'ajouter un code à notre smartphone ou bien de l'enlever
+ * avec deux boutons un pour ajouter et l'autre pour enlever le code 
+ * 
+ * @see changeCode 
+ * @see menu
+ * @author Victor
+ * @author Nathan
+ * @author Zaychenko
+ *
+ */
 public class SettingsPanel extends JPanel {
 
 	private CardLayout cardLayout;

@@ -23,6 +23,19 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JFileChooser;
 
+
+/**
+ * Cette classe est l'application Photo on y retrouve les différentes photos 
+ * 
+ * La possibilité de séléctionner les photos, les supprmiers, ou les afficher à l'écran.
+ * 
+ * @see menu
+ * 
+ * @author Victor 
+ * @author Nathan
+ * @author Zaychenko
+ *
+ */
 public class GalleryPanel extends JPanel {
 
 	private ImageIcon imgIcon;
