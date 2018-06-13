@@ -47,7 +47,7 @@ public class JeuPanel extends JPanel{
 	/** 
 	 * Le deuxième panel du jeu 
 	 */
-	private GamePanel panel2 = new GamePanel(panelct, cl, name1, name2);
+	//private GamePanel panel2 = new GamePanel(panelct, cl, name1, name2);
 	private JLabel titre; 
 	/** 
 	 * Ou il faut rentrer le nom des joueurs
@@ -68,7 +68,7 @@ public class JeuPanel extends JPanel{
 		//Ajout pour le CardLayout
 		panelct.setLayout(cl);
 		panelct.add(panel1, "jeu1");
-		panelct.add(panel2, "jeu2");
+		
 		
 		this.setPreferredSize(new Dimension(400, 670));
 		panel1.setPreferredSize(new Dimension(400, 670));
@@ -159,6 +159,8 @@ public class JeuPanel extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			name1 = nom1.getText();
 			name2 = nom2.getText();
+			GamePanel panel2 = new GamePanel(panelct, cl, name1, name2);
+			panelct.add(panel2, "jeu2");
 			cl.show(panelct, "jeu2");
 
 		}
