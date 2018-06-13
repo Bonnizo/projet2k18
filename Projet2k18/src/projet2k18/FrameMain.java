@@ -232,7 +232,36 @@ public class FrameMain extends JFrame implements Runnable{
 			// TODO Auto-generated method stub
 			
 			URI uri = null;
-			if(e.getSource().equals(appfake4)){
+			 if(e.getSource().equals(appfake1)){
+				try {
+					uri = new URI("https://web.whatsapp.com/");
+					
+					
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if(e.getSource().equals(appfake2)){
+				try {
+					uri = new URI("https://www.skype.com/fr/");
+					
+					
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else if(e.getSource().equals(appfake3)){
+				try {
+					uri = new URI("https://www.spotify.com/ch-fr/");
+					
+					
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else if(e.getSource().equals(appfake4)){
 				try {
 					uri = new URI("https://www.youtube.com");
 				} catch (URISyntaxException e1) {
@@ -242,11 +271,44 @@ public class FrameMain extends JFrame implements Runnable{
 			}else if(e.getSource().equals(appfake5)){
 				try {
 					uri = new URI("http://www.meteosuisse.admin.ch/home.html?tab=overview");
+					
+					
 				} catch (URISyntaxException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
+			else if(e.getSource().equals(appfake6)){
+				try {
+					uri = new URI("https://www.facebook.com/");
+					
+					
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else if(e.getSource().equals(appfake7)){
+				try {
+					uri = new URI("https://www.instagram.com/?hl=fr");
+					
+					
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else if(e.getSource().equals(appfake8)){
+				try {
+					uri = new URI("https://www.horlogeparlante.com/horloge-mondiale.html");
+					
+					
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
 			try {
 				java.awt.Desktop.getDesktop().browse(uri);
 			} catch (IOException e2) {
