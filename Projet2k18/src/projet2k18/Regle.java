@@ -85,6 +85,7 @@ public class Regle extends JDialog {
 		getContentPane().add(textetitre, BorderLayout.NORTH);
 		getContentPane().add(text, BorderLayout.CENTER);
 		getContentPane().add(cancelbouton, BorderLayout.SOUTH);
+		
 	}
 	
 	/**
