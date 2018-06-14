@@ -30,6 +30,8 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.xml.bind.Marshaller.Listener;
 
+import AppliGallery.DiapoPanel;
+
 
 /**
  * 
@@ -245,7 +247,10 @@ import javax.xml.bind.Marshaller.Listener;
 				// …
 			}
 			
-			cardLayout2.show(contentPanel2, "contactPanel");
+			ContactPanel cPanel = new ContactPanel();
+	    	contentPanel2.add(cPanel, "conatct");
+	    	cardLayout2.show(contentPanel2, "conatct");
+			//cardLayout2.show(contentPanel2, "contactPanel");
 			
 			
 		}
