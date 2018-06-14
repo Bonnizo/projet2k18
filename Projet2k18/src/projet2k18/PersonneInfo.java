@@ -30,13 +30,25 @@ public class PersonneInfo implements Serializable{
 	public String adresse;
 	public String telephone;
 	public String email;
+	public String photo;
 
 
 
 
 	
 	
-	public PersonneInfo(String prenom, String nom, String telephone, String adresse,String email){
+	public PersonneInfo(String prenom, String nom, String telephone, String adresse,String email, String photo){
+		
+		this.prenom = prenom;
+		this.nom = nom ;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.email = email;
+		this.photo = photo;
+		
+		
+	}
+public PersonneInfo(String prenom, String nom, String telephone, String adresse,String email){
 		
 		this.prenom = prenom;
 		this.nom = nom ;
@@ -46,7 +58,6 @@ public class PersonneInfo implements Serializable{
 		
 		
 	}
-	
 
 	public String getPrenom() {
 		return prenom;
@@ -93,5 +104,16 @@ public class PersonneInfo implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
 
 }

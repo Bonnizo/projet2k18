@@ -7,6 +7,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -287,7 +288,11 @@ public class GalleryPanel extends JPanel {
 			super.paintComponent(g);
 			for (int i = 0; i < listOfFiles.length; i++) {
 				imgIcon = new ImageIcon(listOfFiles[i].getPath());
-				imagesList[i].setIcon(imgIcon);
+				ImageIcon icon = new ImageIcon(listOfFiles[i].getPath());
+				
+				ImageIcon tmp = new ImageIcon(icon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH));
+				imagesList[i].setIcon(tmp);
+				//imagesList[i].setIcon(imgIcon);
 			}
 		}
 	}

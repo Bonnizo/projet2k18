@@ -11,7 +11,9 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -22,6 +24,12 @@ import javax.swing.JScrollPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import AppliGallery.DiapoPanel.GridImage;
+import projet2k18.ContactModification;
+import projet2k18.ContactPanel;
+import projet2k18.PersonneInfo;
+
 import javax.swing.JFileChooser;
 
 
@@ -64,12 +72,17 @@ public class GalleryPanelProfil extends JPanel {
 	private ImageIcon image ;
 	private CardLayout cardLayout2;
 	private JPanel contentPanel2;
-	
-	public GalleryPanelProfil(CardLayout cardLayout2, JPanel contentPanel2) {
+	private Boolean isProfilePicture = false;
+	PersonneInfo p;
+	private String filenameZ;
+	public GalleryPanelProfil(CardLayout cardLayout2, JPanel contentPanel2, Boolean isProfilePicture, PersonneInfo p, String filename) {
 
 		this.cardLayout2 = cardLayout2;
 		this.contentPanel2= contentPanel2;
-	
+		this.isProfilePicture = isProfilePicture;
+		this.p = p;
+		this.filenameZ = filename;
+		
 		setLayout(new BorderLayout());
 		container.setLayout(clGalerie);
 		refillGrid();
@@ -77,11 +90,6 @@ public class GalleryPanelProfil extends JPanel {
 		setGalleryMenuPanel();
 
 	}
-
-	
-
-	
-
 
 	private void refillGrid() {
 		// TODO Auto-generated constructor stub
@@ -103,71 +111,46 @@ public class GalleryPanelProfil extends JPanel {
 		lblGalerie.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel.add(lblGalerie, BorderLayout.CENTER);
 		
-		icon = new ImageIcon("image/back.png");
-		lblRetour = new JLabel(icon);
-		lblRetour.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		panel.add(lblRetour, BorderLayout.WEST);
-		
-		lblRetour.addMouseListener(new Menu());
 	
 	}
 
 	class SelectImage extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
-			if (isSelected) {
+			/*if (isProfilePicture) {
+					JLabel temp = (JLabel)e.getSource();
+					cardLayout2.show(contentPanel2, "contactPanel");
+				}*/
+			PersonneInfo person = p;
+			JLabel test = (JLabel)e.getSource();
+			//System.out.println(test.getName());
+			String filename = test.getIcon().toString();
+			p.setPhoto(filename);
+			
+			try {
+				FileOutputStream out = new FileOutputStream(filenameZ);
+				//FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
+				ObjectOutputStream oos = new ObjectOutputStream(out);
+				oos.writeObject(p);
 
-				temp = (JLabel) e.getSource();
-				if (temp.isEnabled()) {
-					temp.setEnabled(false);
-				} else {
-					temp.setEnabled(true);
-				}
-				temp.setForeground(Color.BLACK);
-				temp.setText("Deleted");
-			} else {
-				//appel panel diapo avec comme param le filename selectionné
-				JLabel temp = (JLabel)e.getSource();
-				
-				diapoPanel = new DiapoPanel(cardLayout, contentPanel, temp.getIcon().toString());
-		    	contentPanel.add(diapoPanel, "diapo");
-		    	cardLayout.show(contentPanel, "diapo");
-				
-				revalidate();
-				repaint();
+				oos.close();
+			} catch (IOException f) {
+				// …
 			}
+			System.out.println(p.getPhoto());
+			ContactPanel cPanel = new ContactPanel();
+	    	contentPanel2.add(cPanel, "addProfilePicture");
+	    	cardLayout2.show(contentPanel2, "addProfilePicture");
 		}
 	}
 
 	class Menu extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
 			if (e.getSource().equals(lblRetour)) {
-			
 				cardLayout2.show(contentPanel2, "contactPanel");
 				isSelected = false;
 			} 
 			
-			
-			
-			}
-
 		}
-
-	
-
-	private String getFileExtension(File file) {
-		String fileName = file.getName();
-		if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-			return fileName.substring(fileName.lastIndexOf(".") + 1);
-		else
-			return "";
-	}
-
-	private boolean checkExtension(File fichier) {
-		String ext = getFileExtension(fichier);
-		if (ext.toLowerCase().equals("jpeg") || ext.toLowerCase().equals("jpg") || ext.toLowerCase().equals("png"))
-			return true;
-		else
-			return false;
 	}
 
 	class GridImage extends JPanel {
@@ -200,5 +183,4 @@ public class GalleryPanelProfil extends JPanel {
 			}
 		}
 	}
-
 }

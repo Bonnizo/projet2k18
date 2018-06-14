@@ -170,8 +170,10 @@ public class ContactAppli extends JPanel {
 			} catch (IOException f) {
 				// …
 			}
-			
-			cardLayout2.show(contentPanel2, "contactPanel");
+			ContactPanel cPanel = new ContactPanel();
+	    	contentPanel2.add(cPanel, "addProfilePicture");
+	    	cardLayout2.show(contentPanel2, "addProfilePicture");
+			//cardLayout2.show(contentPanel2, "contactPanel");
 		}
 	}
 
