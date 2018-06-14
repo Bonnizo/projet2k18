@@ -59,6 +59,7 @@ public class GalleryPanel extends JPanel {
 	private JPanel SouthPanelGallery;
 	private JLabel lblAdd;
 	private JFileChooser fileChooser = new JFileChooser();
+	private DiapoPanel diapoPanel;
 
 	public GalleryPanel(CardLayout cardLayout, JPanel contentPanel) {
 
@@ -134,13 +135,20 @@ public class GalleryPanel extends JPanel {
 			} else {
 				
 				
-				container.remove(scroll);
+				/*container.remove(scroll);
 				remove(container);
 				SouthPanelGallery.remove(lblAdd);
-				panel_1.remove(lblSelect);
+				panel_1.remove(lblSelect);*/
 				//appel panel diapo avec comme param le filename selectionné
-				/*JLabel temp = ()
-				System.out.println();*/
+				JLabel temp = (JLabel)e.getSource();
+				/*add(container);
+				SouthPanelGallery.add(lblTrash);
+				add(SouthPanelGallery, BorderLayout.SOUTH);
+				container.add(temp);*/
+				
+				diapoPanel = new DiapoPanel(cardLayout, contentPanel, temp.getIcon().toString());
+		    	contentPanel.add(diapoPanel, "diapo");
+		    	cardLayout.show(contentPanel, "diapo");
 				
 				revalidate();
 				repaint();
