@@ -133,18 +133,8 @@ public class GalleryPanel extends JPanel {
 				temp.setForeground(Color.BLACK);
 				temp.setText("Deleted");
 			} else {
-				
-				
-				/*container.remove(scroll);
-				remove(container);
-				SouthPanelGallery.remove(lblAdd);
-				panel_1.remove(lblSelect);*/
 				//appel panel diapo avec comme param le filename selectionné
 				JLabel temp = (JLabel)e.getSource();
-				/*add(container);
-				SouthPanelGallery.add(lblTrash);
-				add(SouthPanelGallery, BorderLayout.SOUTH);
-				container.add(temp);*/
 				
 				diapoPanel = new DiapoPanel(cardLayout, contentPanel, temp.getIcon().toString());
 		    	contentPanel.add(diapoPanel, "diapo");

@@ -170,7 +170,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 							}
 							// Test conditionnel si le schema dessiné correspond
 							// au schéma sauvegardé
-							if (compareSchemeCode()) {
+							if (compareSchemeCode(new File("scheme"), finalPattern)) {
 								cardLayout.show(contentPanel, "menu");
 								resetScreen();
 							} else {
@@ -397,8 +397,8 @@ public class DotUnlockPanel extends JPanel implements Runnable {
      * @see DotUnlockPanel#finalPattern
      * 
      */
-	private Boolean compareSchemeCode() {
-		File file = new File("scheme");
+	private Boolean compareSchemeCode(File file, String pattern) {
+		//File file = new File("scheme");
 		FileReader fr;
 		String str = "";
 		
@@ -418,7 +418,7 @@ public class DotUnlockPanel extends JPanel implements Runnable {
 		}
 		
 		//Comparaison des 2 schemas
-		if (str.equals(finalPattern)) {
+		if (str.equals(pattern)) {
 			return true;
 		}
 		return false;
