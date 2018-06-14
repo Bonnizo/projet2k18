@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -72,8 +73,8 @@ public class ContactPanel extends JPanel {
 	private JPanel contentPanel2 = new JPanel(cardLayout2);
 
 	private ContactAppli contactAppli = new ContactAppli(cardLayout2, contentPanel2);
-	private ContactModification contactModification;// = new ContactModification(cardLayout2, contentPanel2, "");
-
+	private ContactModification contactModification ;
+	private GalleryPanelProfil galerieProfil;
 	// grid layout, agencement colonne contact + photo
 	private GridLayout layoutContact = new GridLayout(0, 1);
 
@@ -174,7 +175,7 @@ public class ContactPanel extends JPanel {
 			ImageIcon profile = new ImageIcon("image/profile.png");
 			
 			BoutonMenu profil = new BoutonMenu(profile, 40);
-			
+			profil.addActionListener(new changePhoto());
 			
 			JPanel panelContact = new JPanel();
 			labelContact.setSize(300,100);
@@ -208,7 +209,18 @@ public class ContactPanel extends JPanel {
 	    
 	  
 	    }
-	}*/
+	}*/class changePhoto implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			
+			galerieProfil = new GalleryPanelProfil(cardLayout2, contentPanel2);
+	    	contentPanel2.add(galerieProfil, "galerie");
+	    	cardLayout2.show(contentPanel2, "galerie");
+		
+
+		}
+	}
 	class boutonContact extends Listener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

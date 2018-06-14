@@ -7,6 +7,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -36,7 +37,7 @@ import javax.swing.JFileChooser;
  * @author Zaychenko
  *
  */
-public class GalleryPanel extends JPanel {
+public class GalleryPanelProfil extends JPanel {
 
 	private ImageIcon imgIcon;
 	private File[] listOfFiles;
@@ -60,18 +61,27 @@ public class GalleryPanel extends JPanel {
 	private JLabel lblAdd;
 	private JFileChooser fileChooser = new JFileChooser();
 	private DiapoPanel diapoPanel;
+	private ImageIcon image ;
+	private CardLayout cardLayout2;
+	private JPanel contentPanel2;
+	
+	public GalleryPanelProfil(CardLayout cardLayout2, JPanel contentPanel2) {
 
-	public GalleryPanel(CardLayout cardLayout, JPanel contentPanel) {
-
-		this.cardLayout = cardLayout;
-		this.contentPanel = contentPanel;
+		this.cardLayout2 = cardLayout2;
+		this.contentPanel2= contentPanel2;
+	
 		setLayout(new BorderLayout());
 		container.setLayout(clGalerie);
 		refillGrid();
 
 		setGalleryMenuPanel();
-		this.setBackground(Color.WHITE);
+
 	}
+
+	
+
+	
+
 
 	private void refillGrid() {
 		// TODO Auto-generated constructor stub
@@ -81,7 +91,6 @@ public class GalleryPanel extends JPanel {
 		scroll.getVerticalScrollBar().setUnitIncrement(16);
 		container.add(scroll);
 		add(container, BorderLayout.CENTER);
-		
 	}
 
 	private void setGalleryMenuPanel() {
@@ -92,34 +101,15 @@ public class GalleryPanel extends JPanel {
 		lblGalerie = new JLabel("Galerie");
 		lblGalerie.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGalerie.setFont(new Font("Tahoma", Font.BOLD, 18));
-		
 		panel.add(lblGalerie, BorderLayout.CENTER);
 		
 		icon = new ImageIcon("image/back.png");
 		lblRetour = new JLabel(icon);
-		lblRetour.addMouseListener(new Menu());
 		lblRetour.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel.add(lblRetour, BorderLayout.WEST);
 		
-		
-		panel_1 = new JPanel();
-		lblTrash = new JLabel("");
-		lblTrash.addMouseListener(new Menu());
-		panel_1.add(lblTrash);
-		lblSelect = new JLabel("Select  ");
-		panel_1.add(lblSelect);
-		lblSelect.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		panel.add(panel_1, BorderLayout.EAST);
-		
-		SouthPanelGallery = new JPanel();
-		icon = new ImageIcon("image/plus.png");
-		lblAdd = new JLabel(icon);
-		lblAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		lblAdd.addMouseListener(new Menu());
-		SouthPanelGallery.add(lblAdd);
-		lblSelect.addMouseListener(new Menu());
-		add(SouthPanelGallery, BorderLayout.SOUTH);
+		lblRetour.addMouseListener(new Menu());
+	
 	}
 
 	class SelectImage extends MouseAdapter {
@@ -150,102 +140,19 @@ public class GalleryPanel extends JPanel {
 
 	class Menu extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
-			if (e.getSource().equals(lblSelect)) {
-				if (!isSelected) {
-					isSelected = true;
-					lblSelect.setText("selection  ");
-					icon = new ImageIcon("image/trash.png");
-					lblTrash.setIcon(icon);
-					lblTrash.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				} else if (isSelected) {
-					isSelected = false;
-					lblSelect.setText("select  ");
-					lblTrash.setIcon(null);
-					for (int i = 0; i < imagesList.length; i++) {
-						if (!imagesList[i].isEnabled()) {
-							imagesList[i].setEnabled(true);
-						}
-					}
-
-				}
-			} else if (e.getSource().equals(lblRetour)) {
-				cardLayout.show(contentPanel, "menu");
+			if (e.getSource().equals(lblRetour)) {
+			
+				cardLayout2.show(contentPanel2, "contactPanel");
 				isSelected = false;
-			} else if (e.getSource().equals(lblTrash)) {
-				for (int i = 0; i < imagesList.length; i++) {
-					if (!imagesList[i].isEnabled()) {
-						File deletedFile = new File(imagesList[i].getIcon().toString());
-						deletedFile.delete();
-					}
-				}
-				gImage = null;
-				container.remove(scroll);
-				remove(container);
-				refillGrid();
-				revalidate();
-				repaint();
-			} else if (e.getSource().equals(lblAdd)) {
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "jpeg", "png");
-
-				fileChooser.setFileFilter(filter);
-				fileChooser.setMultiSelectionEnabled(true);
-				int reponse = fileChooser.showOpenDialog(null);
-				if (reponse == fileChooser.APPROVE_OPTION) {
-
-					File[] fs = fileChooser.getSelectedFiles();
-					String location = "Photo\\";
-					int cptExistantImage = 0;
-					for (int i = 0; i < fs.length; i++) {
-						String path = location + fs[i].getName();
-						File destination;
-
-						Path source = fs[i].toPath();
-
-						if (checkExtension(fs[i]) == true) {
-							String choosedFile = fs[i].getName().substring(0, fs[i].getName().lastIndexOf("."));
-							for (int j = 0; j < imagesList.length; j++) {
-								String existingFilename = imagesList[j].getIcon().toString();
-								existingFilename = existingFilename.substring(location.length(),
-										existingFilename.lastIndexOf("."));
-								if (choosedFile.equals(existingFilename) == true) {
-									cptExistantImage++;
-								}
-
-							}
-							if (cptExistantImage > 0) {
-								String choosedFileExt = getFileExtension(fs[i]);
-								destination = new File(
-										location + choosedFile + "(" + cptExistantImage + ")." + choosedFileExt);
-							} else {
-								destination = new File(path);
-							}
-							try {
-								System.out.println(source);
-								Files.copy(source, destination.toPath());
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-
-						} else {
-							break;
-						}
-					}
-					gImage = null;
-					container.remove(scroll);
-					remove(container);
-					refillGrid();
-					revalidate();
-					repaint();
-				}
-				if (reponse == fileChooser.CANCEL_OPTION) {
-					fileChooser.cancelSelection();
-					return;
-				}
+			} 
+			
+			
+			
 			}
 
 		}
 
-	}
+	
 
 	private String getFileExtension(File file) {
 		String fileName = file.getName();
