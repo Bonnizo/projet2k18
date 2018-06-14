@@ -213,7 +213,7 @@ public class ContactPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			
+		 
 			galerieProfil = new GalleryPanelProfil(cardLayout2, contentPanel2);
 	    	contentPanel2.add(galerieProfil, "galerie");
 	    	cardLayout2.show(contentPanel2, "galerie");

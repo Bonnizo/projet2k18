@@ -70,7 +70,7 @@ public class GalleryPanel extends JPanel {
 		refillGrid();
 
 		setGalleryMenuPanel();
-		this.setBackground(Color.WHITE);
+
 	}
 
 	private void refillGrid() {
@@ -81,7 +81,6 @@ public class GalleryPanel extends JPanel {
 		scroll.getVerticalScrollBar().setUnitIncrement(16);
 		container.add(scroll);
 		add(container, BorderLayout.CENTER);
-		
 	}
 
 	private void setGalleryMenuPanel() {
@@ -92,7 +91,6 @@ public class GalleryPanel extends JPanel {
 		lblGalerie = new JLabel("Galerie");
 		lblGalerie.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGalerie.setFont(new Font("Tahoma", Font.BOLD, 18));
-		
 		panel.add(lblGalerie, BorderLayout.CENTER);
 		
 		icon = new ImageIcon("image/back.png");
