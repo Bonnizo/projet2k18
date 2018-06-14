@@ -88,7 +88,7 @@ import javax.xml.bind.Marshaller.Listener;
 	private GridLayout grille = new GridLayout(0, 1, 20, 20);
 	private FlowLayout boutonPlacer = new FlowLayout(100, 72, 70);
 	private BorderLayout centre = new BorderLayout();
-
+	private String filename;
 	// cardlayout
 	private CardLayout cardLayout2;
 	private JPanel contentPanel2;
@@ -101,6 +101,7 @@ import javax.xml.bind.Marshaller.Listener;
 	public ContactModification(CardLayout cardLayout2, JPanel contentPanel2, String filename) {
 		this.cardLayout2 = cardLayout2;
 		this.contentPanel2 = contentPanel2;
+		this.filename = filename;
 		// caractristiques page
 
 		setLayout(centre);
@@ -165,17 +166,14 @@ import javax.xml.bind.Marshaller.Listener;
 			try {
 				PersonneInfo temp = (PersonneInfo)ois.readObject();
 				person = temp;
+				temp = null;
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			try {
-				person = (PersonneInfo)ois.readObject();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			
 			}
 			ois.close();
+			in.close();
 		} catch (IOException e) {
 			// …
 		}
@@ -237,7 +235,8 @@ import javax.xml.bind.Marshaller.Listener;
 			
 			PersonneInfo person = new PersonneInfo(prenom.getText(), nom.getText(), telephone.getText(), adresse.getText(), email.getText());
 			try {
-				FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
+				FileOutputStream out = new FileOutputStream(filename);
+				//FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
 				ObjectOutputStream oos = new ObjectOutputStream(out);
 				oos.writeObject(person);
 

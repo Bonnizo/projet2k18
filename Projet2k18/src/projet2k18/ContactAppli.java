@@ -164,8 +164,9 @@ public class ContactAppli extends JPanel {
 				FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
 				ObjectOutputStream oos = new ObjectOutputStream(out);
 				oos.writeObject(person);
-
+				
 				oos.close();
+				out.close();
 			} catch (IOException f) {
 				// …
 			}
