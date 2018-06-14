@@ -89,8 +89,7 @@ public class ContactPanel extends JPanel {
 	private int size = 0;
 
 	// liste definitive
-	/*ArrayList<PersonneInfo> enCours = new ArrayList<PersonneInfo>();
-	ArrayList<PersonneInfo> finale = new ArrayList<PersonneInfo>();*/
+
 	private PersonneInfo[] listPerson;
 
 	public ContactPanel() {
@@ -104,7 +103,7 @@ public class ContactPanel extends JPanel {
 		// ajoute du panel des contacts et pour ajouter des contacts
 		contentPanel2.add(contactPanel, "contactPanel");
 		contentPanel2.add(contactAppli, "contactAppli");
-		//contentPanel2.add(contactModification, "contactModif");
+
 		// panel des boutons
 		boutonContact.setBackground(Color.WHITE);
 		boutonContact.setPreferredSize(new Dimension(400, 670));
@@ -130,7 +129,7 @@ public class ContactPanel extends JPanel {
 		listPerson = new PersonneInfo[listOfFiles.length];
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
-				//System.out.println(listOfFiles[i]);
+
 				try {
 					FileInputStream in = new FileInputStream(listOfFiles[i]);
 					ObjectInputStream ois = new ObjectInputStream(in);
@@ -188,14 +187,13 @@ public class ContactPanel extends JPanel {
 			
 			
 			
-			//BoutonMenu profil = new BoutonMenu(profile, 40);
+
 			JLabel profil = new JLabel();
 			System.out.println(listPerson[i].getPhoto());
 			if(listPerson[i].getPhoto()==null)
 			{
-				System.out.println("teefhgjezs");
-				//System.out.println(listPerson[i].getPhoto());
-				//profile = new ImageIcon(listPerson[i].getPhoto());
+
+
 				profile = new ImageIcon("image/profile.png");
 				profil.setIcon(profile);
 			}
@@ -207,7 +205,7 @@ public class ContactPanel extends JPanel {
 				ImageIcon tmp = new ImageIcon(icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
 				profil.setIcon(tmp);
 			}
-			//profil.addMouseMotionListener(new changePhoto());
+
 			profil.addMouseListener(new changePhoto());
 			profil.setName(listOfFiles[i].toString());
 			profil.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -249,7 +247,7 @@ public class ContactPanel extends JPanel {
 		// ajoute du panel des contacts et pour ajouter des contacts
 		contentPanel2.add(contactPanel, "contactPanel");
 		contentPanel2.add(contactAppli, "contactAppli");
-		//contentPanel2.add(contactModification, "contactModif");
+
 		// panel des boutons
 		boutonContact.setBackground(Color.WHITE);
 		boutonContact.setPreferredSize(new Dimension(400, 670));
@@ -275,7 +273,7 @@ public class ContactPanel extends JPanel {
 		listPerson = new PersonneInfo[listOfFiles.length];
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
-				//System.out.println(listOfFiles[i]);
+
 				try {
 					FileInputStream in = new FileInputStream(listOfFiles[i]);
 					ObjectInputStream ois = new ObjectInputStream(in);
@@ -324,20 +322,7 @@ public class ContactPanel extends JPanel {
 			    public void mouseClicked(MouseEvent e) {
 			    	JLabel temp = (JLabel)e.getSource();
 			    	PersonneInfo tempz = null;
-			    	System.out.println("tetteettetetet");/*try {
-						FileInputStream in = new FileInputStream(temp.getName());
-						ObjectInputStream ois = new ObjectInputStream(in);
-						
-						try {
-							tempz = (PersonneInfo)ois.readObject();
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						ois.close();
-					} catch (IOException e5) {
-						// …
-					}*/
+			    	System.out.println("tetteettetetet");
 			    	GalleryPanelProfil  gpp = new GalleryPanelProfil(cardLayout2, contentPanel2,true, tempz, temp.getName());
 			    	contentPanel2.add(gpp, "contactModif");
 			    	cardLayout2.show(contentPanel2, "contactModif");
@@ -346,15 +331,14 @@ public class ContactPanel extends JPanel {
 			
 			
 			
-			//BoutonMenu profil = new BoutonMenu(profile, 40);
+		
 			JLabel profil = new JLabel();
-			//System.out.println(this.filename);
-			//System.out.println(listPerson[i].getPhoto());
+
 			if(listPerson[i].getPhoto().isEmpty())
 			{
 				System.out.println(listPerson[i].getPhoto());
 				profile = new ImageIcon(listPerson[i].getPhoto());
-				//profile = new ImageIcon("image/profile.png");
+	
 				profil.setIcon(profile);
 			}
 			else {
@@ -362,7 +346,7 @@ public class ContactPanel extends JPanel {
 				profil.setIcon(profile);
 			}
 			
-			//profil.addMouseMotionListener(new changePhoto());
+	
 			profil.addMouseListener(new changePhoto());
 			profil.setName(listOfFiles[i].toString());
 			profil.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -391,16 +375,8 @@ public class ContactPanel extends JPanel {
 		annuaire.revalidate();
 
 	}
-	/*class clicContact extends MouseAdapter {
-		@Override
-	    public void mouseClicked(MouseEvent e) {
-	    	System.out.println("test");
-	    	cardLayout2.show(contentPanel2, "contactModif");
-	    	
-	    
-	  
-	    }
-	}*/class changePhoto extends MouseAdapter{
+	
+	class changePhoto extends MouseAdapter{
 		public void mouseClicked(MouseEvent e) {
 			JLabel temp = (JLabel)e.getSource();
 			PersonneInfo temp2 = null;
@@ -427,7 +403,7 @@ public class ContactPanel extends JPanel {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			//System.out.println(temp.getName());
+			
 			galerieProfil = new GalleryPanelProfil(cardLayout2, contentPanel2, true, temp2,temp.getName());
 	    	contentPanel2.add(galerieProfil, "galerie");
 	    	cardLayout2.show(contentPanel2, "galerie");

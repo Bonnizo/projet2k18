@@ -8,9 +8,6 @@ import java.awt.geom.RoundRectangle2D;
  * C'est ici que le smartphone devient visible
  * </p>
  * 
- * 
- * 
- * 
  * @author Victor
  *
  *

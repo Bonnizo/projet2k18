@@ -132,7 +132,7 @@ public class FrameMain extends JFrame implements Runnable{
 	// panel contact
 	private ContactPanel contactPanel = new ContactPanel();
 	//jeu
-	private JeuPanel jeuPanel = new JeuPanel();
+	
 		
 	private NorthPanel nPanel = new NorthPanel();
 	
@@ -149,14 +149,12 @@ public class FrameMain extends JFrame implements Runnable{
 		setUndecorated(true);
 		setBackground(Color.BLACK);
 		setLocation((int)(screenWidth/2)-240, (int)(screenHeight/2)-410);
-		//setSize(480, 800);
-		//setShape(new RoundRectangle2D.Double(20, 0, 440, 735, 20, 20));
 		setSize(480, 820);
 		setShape(new RoundRectangle2D.Double(20, 0, 440, 765, 20, 20));
 		
 		
 		// Smartphone
-		//smartphonePanel.setLayout(new BorderLayout());
+
 		setContentPane(smartphonePanel);
 		smartphonePanel.setOpaque(false);
 		
@@ -170,9 +168,9 @@ public class FrameMain extends JFrame implements Runnable{
 		
 		contentPanel.add(verou, "verouiller");
 		contentPanel.add(menuPanel, "menu");
-		//contentPanel.add(photoPanel,"photo" );
+
 		contentPanel.add(contactPanel,"contact" );
-		contentPanel.add(jeuPanel, "jeu");
+		
 		contentPanel.add(changeCode,"changeCode");
 		contentPanel.add(settings,"settings");
 		
@@ -224,8 +222,7 @@ public class FrameMain extends JFrame implements Runnable{
 		
 		//TESTER CARDLAYOUT
 		
-		//photoPanel.setBackground(Color.RED);
-		//photoPanel.setPreferredSize(new Dimension(400,670));
+
 		
 		contactPanel.setBackground(Color.WHITE);
 	}
@@ -341,7 +338,7 @@ public class FrameMain extends JFrame implements Runnable{
 			GalleryPanel gPanel = new GalleryPanel(cardLayout, contentPanel);
 			contentPanel.add(gPanel, "photo");
 			cardLayout.show(contentPanel, "photo");
-			//cardLayout.show(contentPanel, "photo");
+
 		}
 	}
 	class boutonMenu extends Listener
@@ -363,6 +360,8 @@ public class FrameMain extends JFrame implements Runnable{
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
+			JeuPanel jeuPanel = new JeuPanel();
+			contentPanel.add(jeuPanel, "jeu");
 			cardLayout.show(contentPanel, "jeu");
 		}
 	}

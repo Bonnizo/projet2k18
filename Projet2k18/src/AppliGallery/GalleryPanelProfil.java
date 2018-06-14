@@ -34,9 +34,9 @@ import javax.swing.JFileChooser;
 
 
 /**
- * Cette classe est l'application Photo on y retrouve les différentes photos 
+ * Cette classe est la possibilité d'ajouter une photo à un contact en ouvrant un nouveau pannel avec des images 
  * 
- * La possibilité de séléctionner les photos, les supprmiers, ou les afficher à l'écran.
+ * 
  * 
  * @see menu
  * 
@@ -116,19 +116,15 @@ public class GalleryPanelProfil extends JPanel {
 
 	class SelectImage extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
-			/*if (isProfilePicture) {
-					JLabel temp = (JLabel)e.getSource();
-					cardLayout2.show(contentPanel2, "contactPanel");
-				}*/
+
 			PersonneInfo person = p;
 			JLabel test = (JLabel)e.getSource();
-			//System.out.println(test.getName());
+
 			String filename = test.getIcon().toString();
 			p.setPhoto(filename);
 			
 			try {
 				FileOutputStream out = new FileOutputStream(filenameZ);
-				//FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
 				ObjectOutputStream oos = new ObjectOutputStream(out);
 				oos.writeObject(p);
 
@@ -136,7 +132,6 @@ public class GalleryPanelProfil extends JPanel {
 			} catch (IOException f) {
 				// …
 			}
-			System.out.println(p.getPhoto());
 			ContactPanel cPanel = new ContactPanel();
 	    	contentPanel2.add(cPanel, "addProfilePicture");
 	    	cardLayout2.show(contentPanel2, "addProfilePicture");

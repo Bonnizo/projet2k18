@@ -219,7 +219,6 @@ public class GalleryPanel extends JPanel {
 								destination = new File(path);
 							}
 							try {
-								System.out.println(source);
 								Files.copy(source, destination.toPath());
 							} catch (IOException e1) {
 								e1.printStackTrace();
@@ -287,12 +286,12 @@ public class GalleryPanel extends JPanel {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			for (int i = 0; i < listOfFiles.length; i++) {
-				imgIcon = new ImageIcon(listOfFiles[i].getPath());
-				ImageIcon icon = new ImageIcon(listOfFiles[i].getPath());
+						
 				
-				ImageIcon tmp = new ImageIcon(icon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH));
-				imagesList[i].setIcon(tmp);
-				//imagesList[i].setIcon(imgIcon);
+				imgIcon = new ImageIcon(listOfFiles[i].getPath());
+//				ImageIcon tmp = new ImageIcon(icon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH));
+				imagesList[i].setIcon(imgIcon);
+
 			}
 		}
 	}

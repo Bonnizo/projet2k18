@@ -250,7 +250,7 @@ import AppliGallery.DiapoPanel;
 			ContactPanel cPanel = new ContactPanel();
 	    	contentPanel2.add(cPanel, "conatct");
 	    	cardLayout2.show(contentPanel2, "conatct");
-			//cardLayout2.show(contentPanel2, "contactPanel");
+		
 			
 			
 		}
@@ -262,7 +262,7 @@ import AppliGallery.DiapoPanel;
 	
 		public void actionPerformed(ActionEvent e) {
 			cardLayout2.show(contentPanel2, "contactPanel");
-			// prenom.setText(prenomDefaut.getText());
+	
 			
 
 		}

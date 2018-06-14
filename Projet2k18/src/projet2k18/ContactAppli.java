@@ -173,7 +173,7 @@ public class ContactAppli extends JPanel {
 			ContactPanel cPanel = new ContactPanel();
 	    	contentPanel2.add(cPanel, "addProfilePicture");
 	    	cardLayout2.show(contentPanel2, "addProfilePicture");
-			//cardLayout2.show(contentPanel2, "contactPanel");
+		
 		}
 	}
 
@@ -181,7 +181,7 @@ public class ContactAppli extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			cardLayout2.show(contentPanel2, "contactPanel");
-			// prenom.setText(prenomDefaut.getText());
+	
 	
 		}
 	}

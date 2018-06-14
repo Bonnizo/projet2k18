@@ -17,6 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 
+/**
+ * Cette classe affiche les photos séléctionner
+ * @author Nathan
+ *
+ */
 public class DiapoPanel extends JPanel {
 	private CardLayout cardLayout;
 	private JPanel contentPanel;
@@ -167,7 +172,6 @@ public class DiapoPanel extends JPanel {
 					resetPanel();
 			}
 			else if(e.getSource().equals(lblPrevious) && id != 0) {
-					System.out.println("WTF");
 					id -=1;
 					filename = listOfFiles[id].toString();
 					resetPanel();
