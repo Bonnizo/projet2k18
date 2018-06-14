@@ -1,4 +1,4 @@
-package projet2k18;
+package AppliGallery;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -245,7 +245,7 @@ public class GalleryPanel extends JPanel {
 
 	}
 
-	private String getFileExtension(File file) {
+	public String getFileExtension(File file) {
 		String fileName = file.getName();
 		if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
 			return fileName.substring(fileName.lastIndexOf(".") + 1);

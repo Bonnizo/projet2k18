@@ -44,10 +44,6 @@ public class JeuPanel extends JPanel{
 	 * Le premier panel du jeu
 	 */
 	private JPanel panel1 = new JPanel();
-	/** 
-	 * Le deuxième panel du jeu 
-	 */
-	//private GamePanel panel2 = new GamePanel(panelct, cl, name1, name2);
 	private JLabel titre; 
 	/** 
 	 * Ou il faut rentrer le nom des joueurs

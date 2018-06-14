@@ -24,6 +24,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import AppliGallery.GalleryPanelProfil;
+
 /**
  * 
  *  <b>ContactPanel permet de creer la liste de contact pour le smartphone.</b>

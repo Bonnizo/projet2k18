@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
 import javax.swing.JButton;
@@ -65,7 +66,10 @@ public class Regle extends JDialog {
 //		texteregle.setFont(new Font("Tahoma", Font.BOLD, 16));
 
 		//Text des règles en lecture
-		text= new JLabel(LireRegle("TextRegle/Regle.txt"));
+		
+
+		File fichier = new File ("TextRegle/Regle.txt");
+		text= new JLabel(LireRegle(fichier));
 		text.setForeground(Color.WHITE);
 		text.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
@@ -93,7 +97,7 @@ public class Regle extends JDialog {
 	 * @param file le texte ayant les règles
 	 * @return le texte qui le met dans un JLabel
 	 */
-	public String LireRegle(String file )
+	public String LireRegle(File file )
     {
 		//Lis le fichier
         String texttt = "";

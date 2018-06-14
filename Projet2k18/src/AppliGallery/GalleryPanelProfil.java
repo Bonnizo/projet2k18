@@ -1,4 +1,4 @@
-package projet2k18;
+package AppliGallery;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;

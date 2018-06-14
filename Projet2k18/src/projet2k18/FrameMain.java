@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import AppliGallery.GalleryPanel;
 import Jeu.GamePanel;
 import Jeu.JeuPanel;
 
