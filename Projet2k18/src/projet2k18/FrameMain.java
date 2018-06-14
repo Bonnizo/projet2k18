@@ -126,7 +126,7 @@ public class FrameMain extends JFrame implements Runnable{
 	private LockedScreenPanel locked= new LockedScreenPanel(cardLayout, contentPanel);
 
 	// panel photo
-	private GalleryPanel photoPanel = new GalleryPanel(cardLayout, contentPanel);
+	//private GalleryPanel photoPanel = new GalleryPanel(cardLayout, contentPanel);
 	
 	// panel contact
 	private ContactPanel contactPanel = new ContactPanel();
@@ -169,7 +169,7 @@ public class FrameMain extends JFrame implements Runnable{
 		
 		contentPanel.add(verou, "verouiller");
 		contentPanel.add(menuPanel, "menu");
-		contentPanel.add(photoPanel,"photo" );
+		//contentPanel.add(photoPanel,"photo" );
 		contentPanel.add(contactPanel,"contact" );
 		contentPanel.add(jeuPanel, "jeu");
 		contentPanel.add(changeCode,"changeCode");
@@ -224,7 +224,7 @@ public class FrameMain extends JFrame implements Runnable{
 		//TESTER CARDLAYOUT
 		
 		//photoPanel.setBackground(Color.RED);
-		photoPanel.setPreferredSize(new Dimension(400,670));
+		//photoPanel.setPreferredSize(new Dimension(400,670));
 		
 		contactPanel.setBackground(Color.WHITE);
 	}
@@ -337,7 +337,10 @@ public class FrameMain extends JFrame implements Runnable{
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
+			GalleryPanel gPanel = new GalleryPanel(cardLayout, contentPanel);
+			contentPanel.add(gPanel, "photo");
 			cardLayout.show(contentPanel, "photo");
+			//cardLayout.show(contentPanel, "photo");
 		}
 	}
 	class boutonMenu extends Listener

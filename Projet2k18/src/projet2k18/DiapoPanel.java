@@ -157,7 +157,9 @@ public class DiapoPanel extends JPanel {
 			numberOfImage = listOfFiles.length;
 			
 			if(e.getSource().equals(lblReturn)) {
-				cardLayout.show(contentPanel, "photo");
+				GalleryPanel gPanel = new GalleryPanel(cardLayout, contentPanel);
+				contentPanel.add(gPanel, "photo2");
+				cardLayout.show(contentPanel, "photo2");
 			}
 			else if(e.getSource().equals(lblNext) && (id+2) != numberOfImage) {
 					id += 1;
