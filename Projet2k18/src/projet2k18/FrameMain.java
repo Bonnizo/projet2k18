@@ -165,7 +165,7 @@ public class FrameMain extends JFrame implements Runnable{
 		smartphonePanel.add(navigationPanel);
 
 		// ajout panel pour cardlayout
-	
+		
 		contentPanel.add(locked, "locked");
 		
 		contentPanel.add(verou, "verouiller");

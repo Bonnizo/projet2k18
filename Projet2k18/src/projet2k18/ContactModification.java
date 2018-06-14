@@ -186,19 +186,32 @@ import javax.xml.bind.Marshaller.Listener;
 		String telephoneC = person.getTelephone().toString();
 		String adresseC = person.getAdresse().toString();
 		String emailC = person.getEmail().toString();
-	
+
+		
 	
 		prenom.setText(prenomC);
 		nom.setText(nomC);
 		telephone.setText(telephoneC);
 		adresse.setText(adresseC);
 		email.setText(emailC);
+		
+		
 	}
 	
 	//effacer no ok
 	class EffacerContact implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+
+			prenom.setText("null");
+			nom.setText("null");
+			telephone.setText("null");
+			adresse.setText("null");
+			email.setText("null");
 			
+			
+			System.out.println(person);
+				
+				
 			PersonneInfo person = new PersonneInfo(prenom.getText(), nom.getText(), telephone.getText(), adresse.getText(), email.getText());
 			try {
 				FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
@@ -220,6 +233,8 @@ import javax.xml.bind.Marshaller.Listener;
 	class AjouterContactModif implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
+			
+			
 			PersonneInfo person = new PersonneInfo(prenom.getText(), nom.getText(), telephone.getText(), adresse.getText(), email.getText());
 			try {
 				FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
@@ -232,6 +247,8 @@ import javax.xml.bind.Marshaller.Listener;
 			}
 			
 			cardLayout2.show(contentPanel2, "contactPanel");
+			
+			
 		}
 	}
 

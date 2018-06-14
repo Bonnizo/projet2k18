@@ -152,12 +152,18 @@ public class ContactPanel extends JPanel {
 		
 		for (int i = 0; i < listPerson.length; i++) {
 			
+			String essai = listPerson[i].getPrenom().toString();
+			if(essai =="null")
+			{
+				System.out.println(listPerson[i]);
+			}
+			
 			Font myFont = new Font ("Courier New", 1, 15);
 			
 			String texte = "<html>"+listPerson[i].getPrenom()  +"<br>"+ listPerson[i].getNom() +"<br>"+ listPerson[i].getTelephone() +"<br>"+
 					 listPerson[i].getAdresse() +" <br>" +  listPerson[i].getEmail()+ "</htlm>";
 			
-	    	
+			
 			
 			JLabel labelContact = new JLabel(texte,SwingConstants.CENTER);
 			labelContact.setFont(myFont);
@@ -195,7 +201,8 @@ public class ContactPanel extends JPanel {
 		}
 
 		annuaire.setBackground(Color.WHITE);
-	
+		this.repaint();
+		this.revalidate();
 		listeContacts.repaint();
 		listeContacts.revalidate();
 		annuaire.repaint();
