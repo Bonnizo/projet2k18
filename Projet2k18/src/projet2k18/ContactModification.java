@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -78,14 +79,14 @@ import javax.xml.bind.Marshaller.Listener;
 	// image
 	ImageIcon back = new ImageIcon("image/back.png");
 	ImageIcon ok = new ImageIcon("image/correct.png");
-
+	ImageIcon del = new ImageIcon("image/delete.png");
 	// bouton
 	private BoutonMenu annuler = new BoutonMenu(back, 40);
 	private BoutonMenu correct = new BoutonMenu(ok, 40);
-
+	private BoutonMenu delete = new BoutonMenu(del, 40);
 	// layout
 	private GridLayout grille = new GridLayout(0, 1, 20, 20);
-	private FlowLayout boutonPlacer = new FlowLayout(100, 100, 80);
+	private FlowLayout boutonPlacer = new FlowLayout(100, 72, 70);
 	private BorderLayout centre = new BorderLayout();
 
 	// cardlayout
@@ -133,7 +134,11 @@ import javax.xml.bind.Marshaller.Listener;
 
 		boutonPanel.add(annuler);
 		boutonPanel.add(correct);
-
+		boutonPanel.add(delete);
+		
+		annuler.addActionListener(new RetourContact());
+		correct.addActionListener(new AjouterContactModif());
+		delete.addActionListener(new EffacerContact());
 		// layout des 2 panels info + bouton
 		infoPanel.setLayout(grille);
 		boutonPanel.setLayout(boutonPlacer);
@@ -152,37 +157,7 @@ import javax.xml.bind.Marshaller.Listener;
 		add(espacePanel1, BorderLayout.EAST);
 		add(espacePanel2, BorderLayout.NORTH);
 
-	
-	/*File folder = new File("SerialisationContact");
-	File[] listOfFiles = folder.listFiles();
-	
-	listPerson = new PersonneInfo[listOfFiles.length];
-	for (int i = 0; i < listOfFiles.length; i++) {
-		if (listOfFiles[i].isFile()) {
-			System.out.println(listOfFiles[i]);
-			try {
-				FileInputStream in = new FileInputStream(listOfFiles[i]);
-				ObjectInputStream ois = new ObjectInputStream(in);
-				try {
-					PersonneInfo temp = (PersonneInfo)ois.readObject();
-					listPerson[i] = temp;
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				try {
-					listPerson[i] = (PersonneInfo)ois.readObject();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				ois.close();
-			} catch (IOException e) {
-				// …
-			}
-			
-		}
-	}*/
+
 		
 		try {
 			FileInputStream in = new FileInputStream(filename);
@@ -205,22 +180,7 @@ import javax.xml.bind.Marshaller.Listener;
 			// …
 		}
 	
-	/*for (int i = 0; i < listPerson.length; i++) {
 	
-		String prenomC = listPerson[i].getPrenom().toString();
-		String nomC = listPerson[i].getNom().toString();
-		String telephoneC = listPerson[i].getTelephone().toString();
-		String adresseC = listPerson[i].getAdresse().toString();
-		String emailC = listPerson[i].getEmail().toString();
-	
-	
-		prenom.setText(prenomC);
-		nom.setText(nomC);
-		telephone.setText(telephoneC);
-		adresse.setText(adresseC);
-		email.setText(emailC);
-	
-	}*/
 		String prenomC = person.getPrenom().toString();
 		String nomC = person.getNom().toString();
 		String telephoneC = person.getTelephone().toString();
@@ -234,7 +194,30 @@ import javax.xml.bind.Marshaller.Listener;
 		adresse.setText(adresseC);
 		email.setText(emailC);
 	}
-	class AjouterContact extends Listener {
+	
+	//effacer no ok
+	class EffacerContact implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
+			PersonneInfo person = new PersonneInfo(prenom.getText(), nom.getText(), telephone.getText(), adresse.getText(), email.getText());
+			try {
+				FileOutputStream out = new FileOutputStream("SerialisationContact/Contact" + prenom.getText() + "_" + nom.getText()+ now.getTimeInMillis()+".ser");
+				ObjectOutputStream oos = new ObjectOutputStream(out);
+				oos.writeObject(person);
+
+				oos.close();
+			} catch (IOException f) {
+				// …
+			}
+			
+			cardLayout2.show(contentPanel2, "contactPanel");
+		}
+	}
+	
+	
+	
+	//modifier ok
+	class AjouterContactModif implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			PersonneInfo person = new PersonneInfo(prenom.getText(), nom.getText(), telephone.getText(), adresse.getText(), email.getText());
@@ -252,7 +235,9 @@ import javax.xml.bind.Marshaller.Listener;
 		}
 	}
 
-	class RetourContact extends Listener {
+	
+	//annuler ok
+	class RetourContact implements ActionListener {
 	
 		public void actionPerformed(ActionEvent e) {
 			cardLayout2.show(contentPanel2, "contactPanel");
